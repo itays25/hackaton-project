@@ -11,13 +11,14 @@ export default function Questioning(props) {
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
-    
+
     return (
         <div>
             <h2>
                 "Is there inappropriate content?"
             </h2>
             <button onClick={incInappr()}>
+                {/* maybe this will help */}
                 YES
             </button>
         </div>

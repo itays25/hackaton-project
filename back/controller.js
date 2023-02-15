@@ -220,3 +220,15 @@ module.exports.randomAnswer = (req, res) => {
         )
         
 }
+
+module.exports.allVideos = (req, res) => {
+    Video.find()
+        .then((data) => {
+            if (data) {
+                res.status(200).json(data)
+            }
+            else {
+                res.status(500).json({ message: "no videos located" })
+            }
+        })
+}

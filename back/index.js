@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
-const { register, login, addVideo, rateVideo, rateQuality, rateQuality2, rateQuality3, rateQuality4, rateQuality5, correctAnswer, similiarAnswer, randomAnswer, isAppropriate } = require('./controller')
+const { register, login, addVideo, rateVideo, rateQuality, rateQuality2, rateQuality3, rateQuality4, rateQuality5, correctAnswer, similiarAnswer, randomAnswer, isAppropriate, allVideos } = require('./controller')
 
 mongoose.connect('mongodb+srv://emotiplay:emotiplay@cluster0.mqbcnqd.mongodb.net/test',{})
 .then(()=>{console.log('hacked in successfully')})
@@ -18,6 +18,7 @@ app.get('/login', login)
 
 // video related
 app.post('/addVIdeo', addVideo)
+app.get('/allVIdeos', allVideos)
 app.put('/addVIdeo/:id', rateVideo)
 app.put('/rateVIdeo/:id', rateQuality)
 app.put('/rateVIdeo/:id/2', rateQuality2)

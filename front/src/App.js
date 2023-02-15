@@ -20,6 +20,7 @@ function App() {
           <Route path="/" element={<Enter />}></Route>
           <Route path="/donor" element={<Donor />}></Route>
           <Route path="/checker" element={<Checker />}></Route>
+          {/* <Route path="/checker/quality" element={<Quality />}></Route>*/}
         </Routes>
       </div>
     </Storage.Provider>

@@ -21,7 +21,7 @@ const VideoPlayer = (props) => {
     };
     return (
         <div>
-           {videoSrc[1]?.cloudinaryLink && <video
+           {videoSrc[0]?.cloudinaryLink && <video
                 onTimeUpdate={handleProgress}
                 ref={videoRef}
                 width="100%"
@@ -29,11 +29,10 @@ const VideoPlayer = (props) => {
                 controls
             >
                 <source
-                    src={videoSrc[1]?.cloudinaryLink}
+                    src={videoSrc[0]?.cloudinaryLink}
                     type="video/mp4" />
             </video>
             }
-            {    console.log("videoPlay:", typeof videoSrc[1]?.cloudinaryLink)}
         </div>
     )
 }

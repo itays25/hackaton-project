@@ -82,7 +82,7 @@ module.exports.rateQuality = (req, res) => {
         )
         
 }
-module.exports.rateQuality = (req, res) => {
+module.exports.rateQuality2 = (req, res) => {
     Video.findByIdAndUpdate(
         req.params.id, 
          { $inc: { "quality.2":1 } }
@@ -99,7 +99,7 @@ module.exports.rateQuality = (req, res) => {
         )
         
 }
-module.exports.rateQuality = (req, res) => {
+module.exports.rateQuality3 = (req, res) => {
     Video.findByIdAndUpdate(
         req.params.id, 
          { $inc: { "quality.3":1 } }
@@ -116,7 +116,7 @@ module.exports.rateQuality = (req, res) => {
         )
         
 }
-module.exports.rateQuality = (req, res) => {
+module.exports.rateQuality4 = (req, res) => {
     Video.findByIdAndUpdate(
         req.params.id, 
          { $inc: { "quality.4":1 } }
@@ -133,7 +133,7 @@ module.exports.rateQuality = (req, res) => {
         )
         
 }
-module.exports.rateQuality = (req, res) => {
+module.exports.rateQuality5 = (req, res) => {
     Video.findByIdAndUpdate(
         req.params.id, 
          { $inc: { "quality.5":1 } }
@@ -145,6 +145,76 @@ module.exports.rateQuality = (req, res) => {
                 }
                 else {
                     res.status(200).json({ message: "succssesfully rated" })
+                }
+            }
+        )
+        
+}
+
+module.exports.isAppropriate = (req, res) => {
+    Video.findByIdAndUpdate(
+        req.params.id, 
+         { $inc: { isAppropriate: 1 } }
+        )
+        .then(
+            (item) => {
+                if (!item) {
+                    res.status(500).send({ message: "can't asses" })
+                }
+                else {
+                    res.status(200).json({ message: "appropriate rated" })
+                }
+            }
+        )
+        
+}
+
+module.exports.correctAnswer = (req, res) => {
+    Video.findByIdAndUpdate(
+        req.params.id, 
+         { $inc: { "validation.correctAnswer":1 } }
+        )
+        .then(
+            (item) => {
+                if (!item) {
+                    res.status(500).send({ message: "couldn't answer" })
+                }
+                else {
+                    res.status(200).json({ message: "succssesfully answered" })
+                }
+            }
+        )
+        
+}
+module.exports.similiarAnswer = (req, res) => {
+    Video.findByIdAndUpdate(
+        req.params.id, 
+         { $inc: { "validation.similiarAnswer":1 } }
+        )
+        .then(
+            (item) => {
+                if (!item) {
+                    res.status(500).send({ message: "couldn't answer" })
+                }
+                else {
+                    res.status(200).json({ message: "succssesfully answered" })
+                }
+            }
+        )
+        
+}
+module.exports.randomAnswer = (req, res) => {
+    Video.findByIdAndUpdate(
+        req.params.id, 
+         { $inc: { "validation.randomAnswer":1 } }
+        )
+        .then(
+            (item) => {
+                if (!item) {
+                    res.status(500).send({ message: "couldn't answer" })
+                }
+                else {
+                    res.status(200).json({ message: "succssesfully answered" })
                 }
             }
         )

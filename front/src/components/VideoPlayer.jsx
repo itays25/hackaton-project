@@ -1,9 +1,11 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
+import { Storage } from '../App';
 
-const Player = () => {
+const VideoPlayer = (props) => {
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
     const videoRef = useRef(null);
+    const { link, videoSrc } = useContext(Storage)
 
     const togglePlay = () => {
         if (isPlaying) { videoRef.current.pause() }
@@ -19,7 +21,7 @@ const Player = () => {
     };
     return (
         <div>
-            <video
+           {videoSrc[1]?.cloudinaryLink && <video
                 onTimeUpdate={handleProgress}
                 ref={videoRef}
                 width="100%"
@@ -27,11 +29,13 @@ const Player = () => {
                 controls
             >
                 <source
-                    src="https://res.cloudinary.com/dsgdoguhb/video/upload/v1676457406/h18c0hx3gvttead44eeo.mp4"
+                    src={videoSrc[1]?.cloudinaryLink}
                     type="video/mp4" />
             </video>
+            }
+            {    console.log("videoPlay:", typeof videoSrc[1]?.cloudinaryLink)}
         </div>
     )
 }
 
-export default Player;
+export default VideoPlayer;

@@ -51,6 +51,8 @@ function AppropriateQuestion(props) {
                 <button onClick={()=> setWrong()}>{allEmotion[randomA2]}</button>
                 <button onClick={()=> setWrong()}>{allEmotion[randomA3]}</button>
             </div>
+
+
         </div>
     );
 }

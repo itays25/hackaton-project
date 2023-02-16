@@ -14,18 +14,11 @@ export default function Questioning(props) {
 
     const nextVideo = () => {
         props.setCounter(props.counter + 1);
-        navigate("/checker")
     }
 
     return (
         <div>
-            <AppropriateQuestion></AppropriateQuestion>
-            {/* <QualityQuestion></QualityQuestion>
-                <EmotionQuestion></EmotionQuestion> */}
-
-            {/* <button onClick={()=>nextVideo()}>
-                Finish survey
-            </button> */}
+            <AppropriateQuestion/>
         </div>
     )
 }

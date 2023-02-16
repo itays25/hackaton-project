@@ -5,7 +5,7 @@ import VideoPlayer from '../components/VideoPlayer'
 
 export default function Checker() {
     const [counter, setCounter] = useState(0)
-    const { videoSrc, } = useContext(Storage)
+    const { videoSrc } = useContext(Storage)
 
     return (
         <div>

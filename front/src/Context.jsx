@@ -7,7 +7,7 @@ export default function Context() {
     const [cloudinaryLink, setCloudinaryLink] = useState();
     const [emotion, setEmotion] = useState();
     const [videoSrc, setVideoSrc] = useState([]);
-        const [emotionList, setEmotionList] = useState({
+    const [emotionList, setEmotionList] = useState({
         happiness: ['friendly', 'happy', 'proud', 'joy'],
         sadness: ['sad', 'ashamed', 'depressed', 'ashamed'],
         scary: ['afraid', 'nervous', 'terrified'],
@@ -36,17 +36,17 @@ export default function Context() {
             .catch((error) => console.log(error))
     }
     const quality3 = () => {
-        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[0]._id}/2`)
+        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[0]._id}/3`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
     const quality4 = () => {
-        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[0]._id}/2`)
+        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[0]._id}/4`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
     const quality5 = () => {
-        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[0]._id}/2`)
+        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[0]._id}/5`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
@@ -69,6 +69,17 @@ export default function Context() {
     const handleAnswer5 = () => {
         quality5();
     }
+    const handleRating = () => {
+        localStorage.getItem("isAppropriate") && isAppropriate();
+        localStorage.getItem("quality") && quality1();
+        localStorage.getItem("quality2") && quality2();
+        localStorage.getItem("quality3") && quality3();
+        localStorage.getItem("quality4") && quality4();
+        localStorage.getItem("quality5") && quality5();
+
+
+    }
+
 
     useEffect(() => {
         axios.get('http://localhost:8639/allVIdeos')
@@ -76,22 +87,23 @@ export default function Context() {
                 setVideoSrc(response?.data)
             })
             .catch((error) => console.log(error))
-        }, [])
-        console.log(videoSrc);
+    }, [])
+    console.log(videoSrc);
 
     return {
-        cloudinaryLink, 
-        setCloudinaryLink, 
-        emotion, 
-        setEmotion, 
-        videoSrc, 
-        setVideoSrc, 
-        emotionList, 
-        setEmotionList, 
+        cloudinaryLink,
+        setCloudinaryLink,
+        emotion,
+        setEmotion,
+        videoSrc,
+        setVideoSrc,
+        emotionList,
+        setEmotionList,
         handleAppropriate,
         handleAnswer,
-        handleAnswer2,handleAnswer3,handleAnswer4,handleAnswer5,
-        allEmotion
-         
+        handleAnswer2, handleAnswer3, handleAnswer4, handleAnswer5,
+        allEmotion,
+        handleRating
+
     }
 }

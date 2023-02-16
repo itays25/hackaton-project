@@ -5,6 +5,7 @@ import { Storage } from '../App';
 
 
 
+
 function AppropriateQuestion(props) {
     const navigate = useNavigate();
     const { link, videoSrc, handleAnswer2, handleAppropriate, handleAnswer
@@ -15,7 +16,7 @@ function AppropriateQuestion(props) {
             <div className='appropriate'>
                 <h1>is it an appropriate video?</h1>
                 <button>yes</button>
-                <button onClick={()=>
+                <button onClick={() =>
                     localStorage.setItem('isAppropriate', "1")
                 }>no</button>
             </div>

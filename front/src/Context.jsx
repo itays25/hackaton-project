@@ -27,44 +27,49 @@ export default function Context() {
 
 
     // axios commands for checker
-
+    const voteVideo = () => {
+        axios.put(`http://localhost:8639/addVIdeo/${videoSrc[title]._id}`)
+            .then((response) => console.log(response))
+            .catch((error) => console.log(error))
+    }
+console.log(title);
     const isAppropriate = () => {
         axios.put(`http://localhost:8639/isappropriateVIdeo/${videoSrc[title]._id}`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
     const quality1 = () => {
-        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[0]._id}`)
+        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[title]._id}`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
     const quality2 = () => {
-        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[0]._id}/2`)
+        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[title]._id}/2`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
     const quality3 = () => {
-        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[0]._id}/3`)
+        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[title]._id}/3`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
     const quality4 = () => {
-        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[0]._id}/4`)
+        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[title]._id}/4`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
     const quality5 = () => {
-        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[0]._id}/5`)
+        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[title]._id}/5`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
     const correctEmotion = () => {
-        axios.put(`http://localhost:8639/answerVIdeo/ ${videoSrc[0]._id}/correct`)
+        axios.put(`http://localhost:8639/answerVIdeo/ ${videoSrc[title]._id}/correct`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
     const randomEmotion = () => {
-        axios.put(`http://localhost:8639/answerVIdeo/ ${videoSrc[0]._id}/random`)
+        axios.put(`http://localhost:8639/answerVIdeo/ ${videoSrc[title]._id}/random`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
@@ -73,30 +78,62 @@ export default function Context() {
         isAppropriate();
         // navigate('/checker/quality');
     }
-    const handleAnswer = () => {
-        quality2();
-    }
-    const handleAnswer2 = () => {
-        quality2();
-    }
-    const handleAnswer3 = () => {
-        quality3();
-    }
-    const handleAnswer4 = () => {
-        quality4();
-    }
-    const handleAnswer5 = () => {
-        quality5();
-    }
+   
     const handleRating = (x) => {
+        voteVideo();
         localStorage.getItem("isAppropriate") && isAppropriate();
         localStorage.getItem("quality") && quality1();
         localStorage.getItem("quality2") && quality2();
         localStorage.getItem("quality3") && quality3();
         localStorage.getItem("quality4") && quality4();
-        localStorage.getItem("quality5") && quality5()
+        localStorage.getItem("quality5") && quality5();
+        localStorage.getItem("wrongAnswer") && randomEmotion();
+        localStorage.getItem("correctAnswer") && correctEmotion();
+    }
+    function setDelete() {
+        localStorage.setItem("quality", 1);
+        localStorage.removeItem("quality2");
+        localStorage.removeItem("quality3");
+        localStorage.removeItem("quality4");
+        localStorage.removeItem("quality5");
+    }
+    function setDelete2() {
+        localStorage.setItem("quality2", 1);
+        localStorage.removeItem("quality");
+        localStorage.removeItem("quality3");
+        localStorage.removeItem("quality4");
+        localStorage.removeItem("quality5");
+    }
+    function setDelete3() {
+        localStorage.setItem("quality3", 1);
+        localStorage.removeItem("quality2");
+        localStorage.removeItem("quality");
+        localStorage.removeItem("quality4");
+        localStorage.removeItem("quality5");
+    }
+    function setDelete4() {
+        localStorage.setItem("quality4", 1);
+        localStorage.removeItem("quality2");
+        localStorage.removeItem("quality3");
+        localStorage.removeItem("quality");
+        localStorage.removeItem("quality5");
+    }
+    function setDelete5() {
+        localStorage.setItem("quality5", 1);
+        localStorage.removeItem("quality2");
+        localStorage.removeItem("quality3");
+        localStorage.removeItem("quality4");
+        localStorage.removeItem("quality");
     }
 
+    function setCorrect() {
+        localStorage.setItem("correctAnswer", 1);
+        localStorage.removeItem("wrongAnswer");
+    }
+    function setWrong() {
+        localStorage.setItem("wrongAnswer", 1);
+        localStorage.removeItem("correctAnswer");
+    }
 
     useEffect(() => {
         axios.get('http://localhost:8639/allVIdeos')
@@ -116,11 +153,10 @@ export default function Context() {
         emotionList,
         setEmotionList,
         handleAppropriate,
-        handleAnswer,
-
-        handleAnswer2, handleAnswer3, handleAnswer4, handleAnswer5,
         handleRating,
-        allEmotion, setTitle, title
+        allEmotion, setTitle, title,
+        setDelete, setDelete2, setDelete3, setDelete4, setDelete5,
+        setCorrect, setWrong
          
     }
 }

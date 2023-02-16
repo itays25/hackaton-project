@@ -11,11 +11,7 @@ const VideoPlayer = (props) => {
     const videoRef = useRef(null);
 
     const [counter, setCounter] = useState(Number(params.index));
-    function getIndex(){
-        setCounter(counter + 1)
-        setTitle(counter)
-    }
-    console.log(title);
+    setTitle(Number(params.index))
     const handleProgress = () => {
         const duration = videoRef.current.duration;
         const currentTime = videoRef.current.currentTime;
@@ -25,6 +21,7 @@ const VideoPlayer = (props) => {
 
     function finishingFunc() {
         setCounter(counter + 1)
+        setTitle(counter+1)
         handleRating()
         localStorage.clear()
 
@@ -48,7 +45,7 @@ const VideoPlayer = (props) => {
                 </video>
             }
             <div className='object-none'>
-                <div className='object-none' onClick={() => getIndex()}>
+                <div className='object-none' onClick={() => finishingFunc()}>
                     <a className='object-none' href={`/checker/${counter}`}>
                         Finish servey
                     </a>

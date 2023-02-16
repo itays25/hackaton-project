@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { useContext } from 'react'
 import { Storage } from '../App'
+import Form from 'react-bootstrap/Form';
+
 
 
 
@@ -17,13 +19,17 @@ export default function YourEmotion() {
     console.log(emotion);
 
     return (
-        <form>
-            {/* <input type="text" onChange={(e) => setEmotion(e.target.value)} /> */}
-            <select name="emotion" onChange={(e) => setEmotion(e.target.value)}>
-                {allEmotion.map((item, index)=> 
+        <form className="h-auto w-100 d-flex justify-content-center"
+        >
+            <Form.Select size="lg" name="emotion"
+                onChange={(e) => setEmotion(e.target.value)} >
+                {allEmotion.map((item, index) =>
                     <option key={index} value={item}>{item}</option>
-                ) }           
-                 </select>
+                )}
+            </Form.Select>
+
+
+
             <button onClick={() => save()}>
                 Save
             </button>

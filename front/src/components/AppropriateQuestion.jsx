@@ -5,7 +5,6 @@ import { Storage } from '../App';
 
 
 
-
 function AppropriateQuestion(props) {
     const navigate = useNavigate();
     const { link, videoSrc, handleAnswer2, handleAppropriate, handleAnswer

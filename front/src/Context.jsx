@@ -15,6 +15,7 @@ export default function Context() {
         loathing: ['bored', 'disgusted', 'unfriendly'],
         amazement: ['surprised', 'confused', 'excited', 'stressed'],
     });
+    const allEmotion = emotionList.happiness.concat(emotionList.sadness.concat(emotionList.scary.concat(emotionList.tenderness.concat(emotionList.loathing.concat(emotionList.amazement)))))
 
 
     // axios commands for checker
@@ -98,8 +99,10 @@ export default function Context() {
         setEmotionList,
         handleAppropriate,
         handleAnswer,
-        handleAnswer2, handleAnswer3, handleAnswer4, handleAnswer5,
-        handleRating
 
+        handleAnswer2, handleAnswer3, handleAnswer4, handleAnswer5,
+        handleRating,
+        allEmotion
+         
     }
 }

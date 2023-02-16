@@ -21,7 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Enter />}></Route>
           <Route path="/donor" element={<Donor />}></Route>
-          <Route path="/checker" element={<Checker />}></Route>
+          <Route path="/checker/:index" element={<Checker />}></Route>
           <Route path="/checker/quality" element={<QualityQuestion/>}></Route>
           <Route path="/checker/emotion" element={<EmotionQuestion/>}></Route>
         </Routes>

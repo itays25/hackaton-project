@@ -7,26 +7,15 @@ export default function Context() {
     const [cloudinaryLink, setCloudinaryLink] = useState();
     const [emotion, setEmotion] = useState();
     const [videoSrc, setVideoSrc] = useState([]);
-    const [counter, setCounter] = useState(0)
-    const [link, setLink] = useState("");
-
-    useEffect(() => {
-        axios.get('http://localhost:8639/allVIdeos')
-            .then((response) => {
-                setVideoSrc(response?.data)
-            })
-            .catch((error) => console.log(error))
-    }, [])
-
-    const [emotionList, setEmotionList] = useState({
+        const [emotionList, setEmotionList] = useState({
         happiness: ['friendly', 'happy', 'proud', 'joy'],
         sadness: ['sad', 'ashamed', 'depressed', 'ashamed'],
         scary: ['afraid', 'nervous', 'terrified'],
         tenderness: ['kind', 'worry', 'symphatic', 'loving', 'interested'],
         loathing: ['bored', 'disgusted', 'unfriendly'],
         amazement: ['surprised', 'confused', 'excited', 'stressed'],
-
     });
+
 
     // axios commands for checker
 
@@ -80,10 +69,27 @@ export default function Context() {
         quality5();
     }
 
+    useEffect(() => {
+        axios.get('http://localhost:8639/allVIdeos')
+            .then((response) => {
+                setVideoSrc(response?.data)
+            })
+            .catch((error) => console.log(error))
+        }, [])
+        console.log(videoSrc);
+
     return {
-        cloudinaryLink, setCloudinaryLink, emotion, setEmotion,
-        videoSrc, setVideoSrc, link, setLink, 
-        handleAppropriate,handleAnswer,handleAnswer2,handleAnswer3,handleAnswer4,handleAnswer5
+        cloudinaryLink, 
+        setCloudinaryLink, 
+        emotion, 
+        setEmotion, 
+        videoSrc, 
+        setVideoSrc, 
+        emotionList, 
+        setEmotionList, 
+        handleAppropriate,
+        handleAnswer,
+        handleAnswer2,handleAnswer3,handleAnswer4,handleAnswer5
          
     }
 }

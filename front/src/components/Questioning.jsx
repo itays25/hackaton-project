@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useContext } from "react"
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { Storage } from "../App"
 import AppropriateQuestion from "./AppropriateQuestion"
 import QualityQuestion from "./QualityQuestion"
@@ -9,18 +9,23 @@ import EmotionQuestion from "./EmotionQuestion"
 
 export default function Questioning(props) {
     const { counter, setCounter } = useContext(Storage)
-    console.log(props.videoData)
-    // const incInappr = () => {
-    //     axios.put("http://localhost:8639/incInappr/")
-    //         .then((response) => console.log(response))
-    //         .catch((error) => console.log(error))
-    // }
+    // console.log(props.videoData)
+    const navigate = useNavigate();
+
+    const nextVideo = () => {
+        props.setCounter(props.counter + 1);
+        navigate("/checker")
+    }
 
     return (
         <div>
             <AppropriateQuestion></AppropriateQuestion>
             {/* <QualityQuestion></QualityQuestion>
-            <EmotionQuestion></EmotionQuestion> */}
+                <EmotionQuestion></EmotionQuestion> */}
+
+            {/* <button onClick={()=>nextVideo()}>
+                Finish survey
+            </button> */}
         </div>
     )
 }

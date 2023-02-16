@@ -3,8 +3,6 @@ import { useContext } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
 import { Storage } from "../App"
 import AppropriateQuestion from "./AppropriateQuestion"
-import QualityQuestion from "./QualityQuestion"
-import EmotionQuestion from "./EmotionQuestion"
 
 
 export default function Questioning(props) {

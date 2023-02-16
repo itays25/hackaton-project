@@ -69,15 +69,13 @@ export default function Context() {
     const handleAnswer5 = () => {
         quality5();
     }
-    const handleRating = () => {
+    const handleRating = (x) => {
         localStorage.getItem("isAppropriate") && isAppropriate();
         localStorage.getItem("quality") && quality1();
         localStorage.getItem("quality2") && quality2();
         localStorage.getItem("quality3") && quality3();
         localStorage.getItem("quality4") && quality4();
-        localStorage.getItem("quality5") && quality5();
-
-
+        localStorage.getItem("quality5") && quality5()
     }
 
 

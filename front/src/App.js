@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import { Cloudinary } from "@cloudinary/url-gen";
 import { Routes, Route } from 'react-router-dom';
@@ -17,13 +18,13 @@ function App() {
       <ThemeProvider
         breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
         minBreakpoint="xxs">
-        <div className="">
+        
           <Routes>
             <Route path="/" element={<Enter />}></Route>
             <Route path="/donor" element={<Donor />}></Route>
             <Route path="/checker/:index" element={<Checker />}></Route>
           </Routes>
-        </div>
+        
       </ThemeProvider>;
 
     </Storage.Provider >

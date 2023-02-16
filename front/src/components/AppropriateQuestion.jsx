@@ -7,7 +7,6 @@ import { useParams } from "react-router-dom"
 
 
 
-
 function AppropriateQuestion(props) {
     const navigate = useNavigate();
     const { link, videoSrc, handleAnswer2, handleAppropriate, handleAnswer

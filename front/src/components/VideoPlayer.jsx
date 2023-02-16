@@ -23,6 +23,7 @@ const VideoPlayer = (props) => {
         setCounter(counter + 1)
         handleRating()
         localStorage.clear()
+
     }
 
 

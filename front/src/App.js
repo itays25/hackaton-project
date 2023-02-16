@@ -7,6 +7,8 @@ import Context from './Context';
 import Donor from "./pages/Donor";
 import Checker from "./pages/Checker";
 import Enter from "./pages/Enter";
+import QualityQuestion from "./components/QualityQuestion";
+import EmotionQuestion from "./components/EmotionQuestion";
 
 
 export const Storage = createContext()
@@ -20,7 +22,8 @@ function App() {
           <Route path="/" element={<Enter />}></Route>
           <Route path="/donor" element={<Donor />}></Route>
           <Route path="/checker" element={<Checker />}></Route>
-          {/* <Route path="/checker/quality" element={<Quality />}></Route>*/}
+          <Route path="/checker/quality" element={<QualityQuestion/>}></Route>
+          <Route path="/checker/emotion" element={<EmotionQuestion/>}></Route>
         </Routes>
       </div>
     </Storage.Provider>

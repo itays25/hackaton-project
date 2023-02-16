@@ -6,7 +6,7 @@ export default function Enter() {
         <div>
             <NavLink to={"/donor"}> DONOR</NavLink>
             <br />
-            <NavLink to={"/checker"}>CHECKER</NavLink>
+            <NavLink to={"/checker/0"}>CHECKER</NavLink>
         </div>
     )
 }

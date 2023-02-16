@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom"
 
 const VideoPlayer = (props) => {
     const params = useParams();
-    const { videoSrc } = useContext(Storage)
+    const { videoSrc, handleRating } = useContext(Storage)
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
     const videoRef = useRef(null);
@@ -18,6 +18,13 @@ const VideoPlayer = (props) => {
         const progress = (currentTime / duration) * 100;
         setProgress(progress);
     };
+
+    function finishingFunc() {
+        setCounter(counter + 1)
+        handleRating()
+        localStorage.clear()
+    }
+
 
     return (
         <div>
@@ -36,7 +43,7 @@ const VideoPlayer = (props) => {
                 </video>
             }
             <div className='object-none'>
-                <div className='object-none' onClick={() => setCounter(counter + 1)}>
+                <div className='object-none' onClick={() => finishingFunc()}>
                     <a className='object-none' href={`/checker/${counter}`}>
                         Finish servey
                     </a>

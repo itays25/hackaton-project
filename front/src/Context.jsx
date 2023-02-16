@@ -1,9 +1,17 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import {AppropriateQuestion} from "./components/AppropriateQuestion";
+
+
 
 
 
 export default function Context() {
+    const params = useParams();
+    const [title, setTitle] = useState(0);
+
+    console.log(params.index);
     const [cloudinaryLink, setCloudinaryLink] = useState();
     const [emotion, setEmotion] = useState();
     const [videoSrc, setVideoSrc] = useState([]);
@@ -21,7 +29,7 @@ export default function Context() {
     // axios commands for checker
 
     const isAppropriate = () => {
-        axios.put(`http://localhost:8639/isappropriateVIdeo/${videoSrc[0]._id}`)
+        axios.put(`http://localhost:8639/isappropriateVIdeo/${videoSrc[title]._id}`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
@@ -50,6 +58,17 @@ export default function Context() {
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
+    const correctEmotion = () => {
+        axios.put(`http://localhost:8639/answerVIdeo/ ${videoSrc[0]._id}/correct`)
+            .then((response) => console.log(response))
+            .catch((error) => console.log(error))
+    }
+    const randomEmotion = () => {
+        axios.put(`http://localhost:8639/answerVIdeo/ ${videoSrc[0]._id}/random`)
+            .then((response) => console.log(response))
+            .catch((error) => console.log(error))
+    }
+   
     const handleAppropriate = () => {
         isAppropriate();
         // navigate('/checker/quality');
@@ -85,8 +104,7 @@ export default function Context() {
                 setVideoSrc(response?.data)
             })
             .catch((error) => console.log(error))
-    }, [])
-    console.log(videoSrc);
+        }, [])
 
     return {
         cloudinaryLink,
@@ -102,7 +120,7 @@ export default function Context() {
 
         handleAnswer2, handleAnswer3, handleAnswer4, handleAnswer5,
         handleRating,
-        allEmotion
+        allEmotion, setTitle, title
          
     }
 }

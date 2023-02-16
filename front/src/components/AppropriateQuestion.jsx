@@ -9,23 +9,34 @@ import { useParams } from "react-router-dom"
 
 function AppropriateQuestion(props) {
     const navigate = useNavigate();
-    const { link, videoSrc, handleAnswer2, handleAppropriate, handleAnswer
-        , handleAnswer3, handleAnswer4, handleAnswer5, allEmotion } = useContext(Storage)
-    const params = useParams();
-    console.log(params);
-    const isAppropriate = () => {
-        axios.put(`http://localhost:8639/isappropriateVIdeo/${videoSrc[0]._id}`)
+    const { link, videoSrc, handleAnswer2,handleAppropriate, handleAnswer
+        , allEmotion } = useContext(Storage)
+        const params = useParams();
+        console.log(params);
+        const isAppropriate = () => {
+            axios.put(`http://localhost:8639/isappropriateVIdeo/${videoSrc[0]._id}`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
-    }
-    // const handleAnswer = () => {
-    //     isAppropriate();
+        }
+         
+        // const handleAnswer = () => {
+            //     isAppropriate();
     //     console.log(videoSrc[0]._id);
     //     // navigate('/checker/quality');
     // }
-    const randomA = Math.floor(Math.random() * allEmotion.length)
-    const randomA2 = Math.floor(Math.random() * allEmotion.length)
-    const randomA3 = Math.floor(Math.random() * allEmotion.length)
+    // function randomExcluded(min, max, excluded) {
+    //     var n = Math.floor(Math.random() * (max-min) + min);
+    //     console.log(randomA3);
+    //     if (n == excluded) ;
+    //     randomExcluded(0, allEmotion.length);
+    // }
+    // const randomA= randomExcluded(0, allEmotion.length);
+    // const randomA3= randomExcluded(0, allEmotion.length, randomA);
+    // const randomA2= randomExcluded(0, allEmotion.length, randomA3);
+    
+    const randomA= Math.floor(Math.random() * allEmotion.length)
+    const randomA2= Math.floor(Math.random() * allEmotion.length)
+    const randomA3= Math.floor(Math.random() * allEmotion.length)
     return (
         <div>
             <div className='appropriate'>

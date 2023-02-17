@@ -21,11 +21,12 @@ function App() {
         
           <Routes>
             <Route path="/" element={<Enter />}></Route>
+            <Route path="/enter" element={<Enter />}></Route>
             <Route path="/donor" element={<Donor />}></Route>
             <Route path="/checker/:index" element={<Checker />}></Route>
           </Routes>
         
-      </ThemeProvider>;
+      </ThemeProvider>
 
     </Storage.Provider >
 

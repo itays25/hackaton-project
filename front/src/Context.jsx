@@ -3,10 +3,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {AppropriateQuestion} from "./components/AppropriateQuestion";
 
-
-
-
-
 export default function Context() {
     const params = useParams();
     const [title, setTitle] = useState(0);
@@ -25,7 +21,7 @@ export default function Context() {
     });
     const allEmotion = emotionList.happiness.concat(emotionList.sadness.concat(emotionList.scary.concat(emotionList.tenderness.concat(emotionList.loathing.concat(emotionList.amazement)))))
 
-
+console.log('hello',videoSrc[title]?._id);
     // axios commands for checker
     const voteVideo = () => {
         axios.put(`http://localhost:8639/addVIdeo/${videoSrc[title]._id}`)
@@ -70,12 +66,12 @@ console.log(title);
             .catch((error) => console.log(error))
     }
     const correctEmotion = () => {
-        axios.put(`http://localhost:8639/answerVIdeo/ ${videoSrc[title]._id}/correct`)
+        axios.put(`http://localhost:8639/answerVIdeo/${videoSrc[title]._id}/correct`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
     const randomEmotion = () => {
-        axios.put(`http://localhost:8639/answerVIdeo/ ${videoSrc[title]._id}/random`)
+        axios.put(`http://localhost:8639/answerVIdeo/${videoSrc[title]._id}/random`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
@@ -146,6 +142,7 @@ console.log(title);
         axios.get('http://localhost:8639/allVIdeos')
             .then((response) => {
                 setVideoSrc(response?.data)
+                console.log("1:",response?.data);
             })
             .catch((error) => console.log(error))
 

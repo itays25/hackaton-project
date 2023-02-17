@@ -8,24 +8,24 @@ export default function Enter() {
 
             <NavLink to={"/donor"} style={{ textDecoration: 'none' }}>
                 <Card
-                    bg={"warning".toLowerCase()}
-                    key={"warning"}
-                    text={"warning".toLowerCase() === 'light' ? 'dark' : 'white'}
+                    bg={"primary".toLowerCase()}
+                    key={"primary"}
+                    text={"primary".toLowerCase() === 'light' ? 'dark' : 'white'}
                     style={{ width: '18rem' }}
-                    className="mb-2 w-75 p-5 m-5">
-                    <Card.Title>
+                    className="mb-2 w-75 p-5 m-5 rounded-pill">
+                    <Card.Title className='fs-2'>
                         DONOR
                     </Card.Title>
                 </Card>
             </NavLink>
             <NavLink to={"/checker/0"} style={{ textDecoration: 'none' }}>
                 <Card
-                    bg={"info".toLowerCase()}
-                    key={"info"}
-                    text={"info".toLowerCase() === 'light' ? 'dark' : 'white'}
+                    bg={"danger".toLowerCase()}
+                    key={"danger"}
+                    text={"danger".toLowerCase() === 'light' ? 'dark' : 'white'}
                     style={{ width: '18rem' }}
-                    className="mb-2 w-75 p-5 m-5">
-                    <Card.Title>
+                    className="mb-2 w-75 p-5 m-5 rounded-pill">
+                    <Card.Title className='fs-2' >
                         CHECKER
                     </Card.Title>
                 </Card>

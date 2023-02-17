@@ -1,11 +1,13 @@
 import React, { useState, useRef, useContext, useEffect } from 'react';
 import { Storage } from '../App';
 import { useParams } from "react-router-dom"
+import Button from 'react-bootstrap/Button';
+
 
 
 const VideoPlayer = (props) => {
     const params = useParams();
-    const { videoSrc, setTitle, title, handleRating } = useContext(Storage)
+    const { videoSrc, setTitle, handleRating } = useContext(Storage)
     const [isPlaying, setIsPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
     const videoRef = useRef(null);
@@ -21,7 +23,7 @@ const VideoPlayer = (props) => {
 
     function finishingFunc() {
         setCounter(counter + 1)
-        setTitle(counter+1)
+        setTitle(counter + 1)
         handleRating()
         localStorage.clear()
 
@@ -29,27 +31,29 @@ const VideoPlayer = (props) => {
 
 
     return (
-        <div>
+        <div className='d-flex justify-content-center flex-column align-items-center pt-1'>
             {
                 videoSrc[counter]?.cloudinaryLink &&
                 <video
+                    className='d-flex justify-content-center flex-column align-items-center p-1'
                     onTimeUpdate={handleProgress}
                     ref={videoRef}
-                    width="100%"
-                    height="100%"
+                    width="95%"
+                    height="auto"
                     controls
                 >
                     <source
                         src={videoSrc[counter]?.cloudinaryLink}
-                        type="video/mp4" />
+                        type="video/mp4"
+                    />
                 </video>
             }
-            <div className='object-none'>
-                <div className='object-none' onClick={() => finishingFunc()}>
-                    <a className='object-none' href={`/checker/${counter}`}>
+            <div className='position-fixed bottom-0 '>
+                <Button className='rounded-pill' size="lg" onClick={() => finishingFunc()}>
+                    <a className='object-none text-light' href={`/checker/${counter}`}>
                         Finish servey
                     </a>
-                </div>
+                </Button>
             </div>
         </div>
     )

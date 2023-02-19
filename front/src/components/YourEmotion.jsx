@@ -28,13 +28,16 @@ export default function YourEmotion() {
                     <option key={index} value={item}>{item}</option>
                 )}
             </Form.Select>
-
-            <Button onClick={() => save()} size="lg" className='px-3 p-3  my-2 rounded-pill'>
-                Save
-            </Button>
-            <Button onClick={() => navigate('/enter')} size="lg" className='px-3 opacity-50 my-2 rounded-pill' >
-                Back
-            </Button>
+            <div className=' mt-5 w-100 d-flex align-items-center'>
+                <div className='  w-75 d-flex justify-content-between align-items-center'>
+                    <Button onClick={() => navigate('/enter')} size="lg" className='h-75 me-2 px-3 opacity-50 my-2 rounded-pill' >
+                        Back
+                    </Button>
+                    <Button onClick={() => save()} size="lg" className=' w-100 px-3 p-3 my-2 rounded-pill'>
+                        Save
+                    </Button>
+                </div>
+            </div>
 
             {cloudinaryLink && console.log(cloudinaryLink)}
         </form>

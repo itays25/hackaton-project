@@ -27,7 +27,8 @@ const WidgetUpload = () => {
     }, [])
     return (
         <div className="h-50 w-75 p-2  d-flex justify-content-center">
-            <Button variant="success" className="btn btn-primary h-100 w-100 d-flex justify-content-center flex-column align-items-center rounded-pill" size="lg"
+            <Button variant="primary" 
+            className="btn btn-primary h-100 w-100 d-flex justify-content-center flex-column align-items-center rounded-pill" size="lg"
                 onClick={() => widgetRef.current.open()}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                     width="60" height="60" fill="currentColor"
@@ -42,3 +43,50 @@ const WidgetUpload = () => {
     )
 }
 export default WidgetUpload
+
+// function showUploadWidget() {
+//     cloudinary.openUploadWidget({
+//        cloudName: "<cloud name>",
+//        uploadPreset: "<upload preset>",
+//        sources: [
+//            "local",
+//            "camera",
+//            "google_drive",
+//            "facebook"
+//        ],
+//        googleApiKey: "<image_search_google_api_key>",
+//        showAdvancedOptions: true,
+//        cropping: true,
+//        multiple: false,
+//        defaultSource: "local",
+//        styles: {
+//            palette: {
+//                window: "#F0F0FF",
+//                sourceBg: "#F0F0FF",
+//                windowBorder: "#929292",
+//                tabIcon: "#000000",
+//                inactiveTabIcon: "#0D6EFD",
+//                menuIcons: "#366CA3",
+//                link: "#E72651",
+//                action: "#339933",
+//                inProgress: "#030717",
+//                complete: "#339933",
+//                error: "#FF2828",
+//                textDark: "#FFFFFF",
+//                textLight: "#2DAB57"
+//            },
+//            fonts: {
+//                default: null,
+//                "'Merriweather', serif": {
+//                    url: "https://fonts.googleapis.com/css?family=Merriweather",
+//                    active: true
+//                }
+//            }
+//        }
+//    },
+//     (err, info) => {
+//       if (!err) {    
+//         console.log("Upload Widget event - ", info);
+//       }
+//      });
+//     }

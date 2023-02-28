@@ -27,17 +27,21 @@ export default function Admin() {
                     </tr>
                 </thead>
                 <tbody>
+
                     {videoSrc.map((item, index) => {
                         return (
                             <tr key={index}>
-
                                 <td><SmallVideos src={item?.cloudinaryLink} /></td>
                                 <td>{item?.emotion}</td>
                                 <td>{item?.isAppropriate}</td>
-                                <td>{item?.validation.correctAnswer}</td>
-                                <td>{item?.validation.randomAnswer}</td>
-                                <td>{item?.validation.similiarAnswer}</td>
-                                {/* <td>{item?.quality.1}</td> */}
+                                <td>{item?.validation?.correctAnswer}</td>
+                                <td>{item?.validation?.randomAnswer}</td>
+                                <td>{item?.validation?.similiarAnswer}</td>
+                                <td>{item?.quality?.[1]}</td>
+                                <td>{item?.quality?.[2]}</td>
+                                <td>{item?.quality?.[3]}</td>
+                                <td>{item?.quality?.[4]}</td>
+                                <td>{item?.quality?.[5]}</td>
                             </tr>
                         )
                     })}

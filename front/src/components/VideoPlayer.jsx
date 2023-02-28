@@ -1,13 +1,10 @@
-import React, { useState, useRef, useContext, useEffect } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import { Storage } from '../App';
 import { useParams } from "react-router-dom"
-import Button from 'react-bootstrap/Button';
-
 
 const VideoPlayer = (props) => {
     const params = useParams();
-    const { videoSrc,} = useContext(Storage)
-    const [isPlaying, setIsPlaying] = useState(false);
+    const { videoSrc } = useContext(Storage)
     const [progress, setProgress] = useState(0);
     const videoRef = useRef(null);
 
@@ -31,6 +28,8 @@ const VideoPlayer = (props) => {
                     width="95%"
                     height="auto"
                     controls
+                    autoPlay
+                    muted
                 >
                     <source
                         src={videoSrc[counter]?.cloudinaryLink}
@@ -39,7 +38,7 @@ const VideoPlayer = (props) => {
                 </video>
             }
             <div className='position-fixed bottom-0 '>
-                
+
             </div>
         </div>
     )

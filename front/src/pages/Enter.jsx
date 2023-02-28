@@ -1,11 +1,13 @@
 import { NavLink } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
+import Emotion from "../lotty/Emotion1.json"
+import Lottie from "lottie-react";
 
 
-export default function Enter() {
+const Enter = () => {
     return (
         <div className="h-100 w-100 d-flex justify-content-center flex-column align-content-around ">
-
+            <Lottie animationData={Emotion} loop={true} className="w-50 h-auto "/>
             <NavLink to={"/donor"} style={{ textDecoration: 'none' }}>
                 <Card
                     bg={"primary".toLowerCase()}
@@ -33,3 +35,4 @@ export default function Enter() {
         </div>
     )
 }
+export default Enter

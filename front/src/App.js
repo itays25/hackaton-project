@@ -1,12 +1,12 @@
 import { createContext } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ThemeProvider from 'react-bootstrap/ThemeProvider'
-import { Cloudinary } from "@cloudinary/url-gen";
 import { Routes, Route } from 'react-router-dom';
 import Context from './Context';
 import Donor from "./pages/Donor";
 import Checker from "./pages/Checker";
 import Enter from "./pages/Enter";
+import Admin from "./pages/Admin";
 
 
 export const Storage = createContext()
@@ -24,6 +24,7 @@ function App() {
             <Route path="/enter" element={<Enter />}></Route>
             <Route path="/donor" element={<Donor />}></Route>
             <Route path="/checker/:index" element={<Checker />}></Route>
+            <Route path="/admin" element={<Admin/>}></Route>
           </Routes>
         
       </ThemeProvider>

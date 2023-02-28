@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {Questioning} from "./components/Questioning";
 
 export default function Context() {
     const params = useParams();

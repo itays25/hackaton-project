@@ -1,35 +1,31 @@
-import { NavLink, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { React, useContext } from 'react';
 import axios from 'axios';
 import { Storage } from '../App';
 import { useParams } from "react-router-dom";
 import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
-import Alert from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import "./appropriateQuestion.css"
 
 
 export default function Questioning(props) {
-    const navigate = useNavigate();
     const params = useParams();
-    const { link, videoSrc, setDelete, setDelete2, setDelete3, setDelete4, setDelete5,
-        allEmotion, setCorrect, setWrong, counter, setCounter } = useContext(Storage)
+    const { videoSrc, setDelete, setDelete2, setDelete3, setDelete4, setDelete5,
+        allEmotion, setCorrect, setWrong} = useContext(Storage)
 
         const randomA = Math.floor(Math.random() * allEmotion.length)
         const randomA2 = Math.floor(Math.random() * allEmotion.length)
         const randomA3 = Math.floor(Math.random() * allEmotion.length)
 
-    const isAppropriate = () => {
-        axios.put(`http://localhost:8639/isappropriateVIdeo/${videoSrc[0]._id}`)
-            .then((response) => console.log(response))
-            .catch((error) => console.log(error))
-    }
+    // const isAppropriate = () => {
+    //     axios.put(`http://localhost:8639/isappropriateVIdeo/${videoSrc[0]._id}`)
+    //         .then((response) => console.log(response))
+    //         .catch((error) => console.log(error))
+    // }
 
-    const nextVideo = () => {
-        props.setCounter(props.counter + 1);
-    }
+    // const nextVideo = () => {
+    //     props.setCounter(props.counter + 1);
+    // }
 
     return (
         <div>

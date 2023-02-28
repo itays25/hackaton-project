@@ -1,0 +1,15 @@
+html,
+body,
+#app,
+#app>div {
+  height: 100%;
+  background: rgb(255, 176, 151);
+  background: linear-gradient(103deg, #ffb097ce 0%, rgba(171, 233, 255, 0.7079831932773109) 100%);
+  background-size: cover;
+
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}

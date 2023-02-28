@@ -4,9 +4,10 @@ const Video = require('./models/Video')
 module.exports.register = (req, res) => {
     const newUser = new User(req.body)
     newUser.save((error, user) => {
-        if (error) { 
+        if (error) {
             console.log(error);
-            res.status(500).send({ message: "couldn't create a user" }) } 
+            res.status(500).send({ message: "couldn't create a user" })
+        }
         else {
             res.status(200).json({ message: "a new user was created" })
         }
@@ -16,31 +17,32 @@ module.exports.register = (req, res) => {
 module.exports.login = (req, res) => {
     User.findOne({
         email: req.body.email,
-    }, 
-    (error, user) => {
-        if (error) {
-            res.status(500).send({ message: "couldn't find a user" })
+    },
+        (error, user) => {
+            if (error) {
+                res.status(500).send({ message: "couldn't find a user" })
+            }
+            else if (user == null) {
+                res.status(404).send({ message: "user doesn't exist" })
+            }
+            else if (req.body.email == User.Email
+                && req.body.Password !== user.Password || req.body.userName !== user.userName) {
+                res.status(404).send({ message: "password/username doesn't match" })
+            }
+            else {
+                res.status(200).json({ message: "succssesfully logged in" })
+            }
         }
-        else if (user == null) {
-            res.status(404).send({ message: "user doesn't exist" })
-        }
-        else if (req.body.email == User.Email
-            && req.body.Password !== user.Password || req.body.userName !== user.userName) {
-            res.status(404).send({ message: "password/username doesn't match" })
-        }
-        else {
-            res.status(200).json({ message: "succssesfully logged in" })
-        }
-    }
     )
 }
 
 module.exports.addVideo = (req, res) => {
     const newVideo = new Video(req.body)
     newVideo.save((error, video) => {
-        if (error) { 
+        if (error) {
             console.log(error);
-            res.status(500).send({ message: "couldn't add video" }) } 
+            res.status(500).send({ message: "couldn't add video" })
+        }
         else {
             res.status(200).json({ message: "video was added" })
         }
@@ -49,9 +51,9 @@ module.exports.addVideo = (req, res) => {
 
 module.exports.rateVideo = (req, res) => {
     Video.findByIdAndUpdate(
-        req.params.id, 
-         { $inc: { votes: 1 } }
-        )
+        req.params.id,
+        { $inc: { votes: 1 } }
+    )
         .then(
             (item) => {
                 if (!item) {
@@ -62,14 +64,14 @@ module.exports.rateVideo = (req, res) => {
                 }
             }
         )
-        
+
 }
 
 module.exports.rateQuality = (req, res) => {
     Video.findByIdAndUpdate(
-        req.params.id, 
-         { $inc: { "quality.1":1 } }
-        )
+        req.params.id,
+        { $inc: { "quality.1": 1 } }
+    )
         .then(
             (item) => {
                 if (!item) {
@@ -80,13 +82,13 @@ module.exports.rateQuality = (req, res) => {
                 }
             }
         )
-        
+
 }
 module.exports.rateQuality2 = (req, res) => {
     Video.findByIdAndUpdate(
-        req.params.id, 
-         { $inc: { "quality.2":1 } }
-        )
+        req.params.id,
+        { $inc: { "quality.2": 1 } }
+    )
         .then(
             (item) => {
                 if (!item) {
@@ -97,13 +99,13 @@ module.exports.rateQuality2 = (req, res) => {
                 }
             }
         )
-        
+
 }
 module.exports.rateQuality3 = (req, res) => {
     Video.findByIdAndUpdate(
-        req.params.id, 
-         { $inc: { "quality.3":1 } }
-        )
+        req.params.id,
+        { $inc: { "quality.3": 1 } }
+    )
         .then(
             (item) => {
                 if (!item) {
@@ -114,13 +116,13 @@ module.exports.rateQuality3 = (req, res) => {
                 }
             }
         )
-        
+
 }
 module.exports.rateQuality4 = (req, res) => {
     Video.findByIdAndUpdate(
-        req.params.id, 
-         { $inc: { "quality.4":1 } }
-        )
+        req.params.id,
+        { $inc: { "quality.4": 1 } }
+    )
         .then(
             (item) => {
                 if (!item) {
@@ -131,13 +133,13 @@ module.exports.rateQuality4 = (req, res) => {
                 }
             }
         )
-        
+
 }
 module.exports.rateQuality5 = (req, res) => {
     Video.findByIdAndUpdate(
-        req.params.id, 
-         { $inc: { "quality.5":1 } }
-        )
+        req.params.id,
+        { $inc: { "quality.5": 1 } }
+    )
         .then(
             (item) => {
                 if (!item) {
@@ -148,14 +150,14 @@ module.exports.rateQuality5 = (req, res) => {
                 }
             }
         )
-        
+
 }
 
 module.exports.isAppropriate = (req, res) => {
     Video.findByIdAndUpdate(
-        req.params.id, 
-         { $inc: { isAppropriate: 1 } }
-        )
+        req.params.id,
+        { $inc: { isAppropriate: 1 } }
+    )
         .then(
             (item) => {
                 if (!item) {
@@ -166,14 +168,14 @@ module.exports.isAppropriate = (req, res) => {
                 }
             }
         )
-        
+
 }
 
 module.exports.correctAnswer = (req, res) => {
     Video.findByIdAndUpdate(
-        req.params.id, 
-         { $inc: { "validation.correctAnswer":1 } }
-        )
+        req.params.id,
+        { $inc: { "validation.correctAnswer": 1 } }
+    )
         .then(
             (item) => {
                 if (!item) {
@@ -184,13 +186,13 @@ module.exports.correctAnswer = (req, res) => {
                 }
             }
         )
-        
+
 }
 module.exports.similiarAnswer = (req, res) => {
     Video.findByIdAndUpdate(
-        req.params.id, 
-         { $inc: { "validation.similiarAnswer":1 } }
-        )
+        req.params.id,
+        { $inc: { "validation.similiarAnswer": 1 } }
+    )
         .then(
             (item) => {
                 if (!item) {
@@ -201,13 +203,13 @@ module.exports.similiarAnswer = (req, res) => {
                 }
             }
         )
-        
+
 }
 module.exports.randomAnswer = (req, res) => {
     Video.findByIdAndUpdate(
-        req.params.id, 
-         { $inc: { "validation.randomAnswer":1 } }
-        )
+        req.params.id,
+        { $inc: { "validation.randomAnswer": 1 } }
+    )
         .then(
             (item) => {
                 if (!item) {
@@ -218,5 +220,18 @@ module.exports.randomAnswer = (req, res) => {
                 }
             }
         )
-        
+}
+
+module.exports.allVideos = (req, res) => {
+    Video.find({ votes: { $lte: 50 } })
+
+        .sort({ votes: -1 })
+        .then((data) => {
+            if (data) {
+                res.status(200).json(data)
+            }
+            else {
+                res.status(500).json({ message: "no videos located" })
+            }
+        })
 }

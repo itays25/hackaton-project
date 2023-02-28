@@ -1,13 +1,12 @@
-<<<<<<< HEAD
-import { createContext, useContext, useEffect, useState } from "react";
-import './App.css';
-import { Cloudinary } from "@cloudinary/url-gen";
+import { createContext } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import ThemeProvider from 'react-bootstrap/ThemeProvider'
 import { Routes, Route } from 'react-router-dom';
-import WidgetUpload from './components/WidgetUpload';
 import Context from './Context';
 import Donor from "./pages/Donor";
 import Checker from "./pages/Checker";
 import Enter from "./pages/Enter";
+import Admin from "./pages/Admin";
 
 
 export const Storage = createContext()
@@ -16,38 +15,22 @@ function App() {
   const values = Context()
   return (
     <Storage.Provider value={values}>
-      <div className="">
-        <Routes>
-          <Route path="/" element={<Enter />}></Route>
-          <Route path="/donor" element={<Donor />}></Route>
-          <Route path="/checker" element={<Checker />}></Route>
-        </Routes>
-      </div>
-    </Storage.Provider>
+      <ThemeProvider
+        breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
+        minBreakpoint="xxs">
+        
+          <Routes>
+            <Route path="/" element={<Enter />}></Route>
+            <Route path="/enter" element={<Enter />}></Route>
+            <Route path="/donor" element={<Donor />}></Route>
+            <Route path="/checker/:index" element={<Checker />}></Route>
+            <Route path="/admin" element={<Admin/>}></Route>
+          </Routes>
+        
+      </ThemeProvider>
 
-=======
-import logo from './logo.svg';
-import './App.css';
+    </Storage.Provider >
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
->>>>>>> b49f4e4 (backend basic functions)
   );
 }
 

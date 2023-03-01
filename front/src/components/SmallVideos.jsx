@@ -3,7 +3,7 @@ import { Storage } from '../App';
 import { useParams } from "react-router-dom"
 
 const SmallVideos = (props) => {
-    console.log("smallsrc:", props?.src);
+    // console.log("smallsrc:", props?.src);
     const { videoSrc } = useContext(Storage)
     const [progress, setProgress] = useState(0);
     const videoRef = useRef(null);

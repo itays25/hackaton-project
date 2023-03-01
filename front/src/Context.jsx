@@ -20,14 +20,14 @@ export default function Context() {
     });
     const allEmotion = emotionList.happiness.concat(emotionList.sadness.concat(emotionList.scary.concat(emotionList.tenderness.concat(emotionList.loathing.concat(emotionList.amazement)))))
 
-console.log('hello',videoSrc[title]?._id);
+    console.log('hello', videoSrc[title]?._id);
     // axios commands for checker
     const voteVideo = () => {
         axios.put(`http://localhost:8639/addVIdeo/${videoSrc[title]._id}`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
-console.log(title);
+    console.log(title);
     const isAppropriate = () => {
         axios.put(`http://localhost:8639/isappropriateVIdeo/${videoSrc[title]._id}`)
             .then((response) => console.log(response))
@@ -74,12 +74,12 @@ console.log(title);
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
-   
+
     const handleAppropriate = () => {
         isAppropriate();
         // navigate('/checker/quality');
     }
-   
+
     const handleRating = () => {
         voteVideo();
         localStorage.getItem("isAppropriate") && isAppropriate();
@@ -135,13 +135,13 @@ console.log(title);
         localStorage.setItem("wrongAnswer", 1);
         localStorage.removeItem("correctAnswer");
     }
-   
+
 
     useEffect(() => {
         axios.get('http://localhost:8639/allVIdeos')
             .then((response) => {
                 setVideoSrc(response?.data)
-                console.log("1:",response?.data);
+                console.log("1:", response?.data);
             })
             .catch((error) => console.log(error))
 
@@ -164,7 +164,7 @@ console.log(title);
         allEmotion, setTitle, title,
         setDelete, setDelete2, setDelete3, setDelete4, setDelete5,
         setCorrect, setWrong
-         
+
 
     }
 }

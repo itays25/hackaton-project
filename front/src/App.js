@@ -7,7 +7,7 @@ import Donor from "./pages/Donor";
 import Checker from "./pages/Checker";
 import Enter from "./pages/Enter";
 import Admin from "./pages/Admin";
-
+import ContactUs from "./pages/Email";
 
 export const Storage = createContext()
 

@@ -20,7 +20,7 @@ function App() {
         minBreakpoint="xxs">
         
           <Routes>
-            <Route path="/" element={<Enter />}></Route>
+          <Route path="/" element={<ContactUs/>}></Route>
             <Route path="/enter" element={<Enter />}></Route>
             <Route path="/donor" element={<Donor />}></Route>
             <Route path="/checker/:index" element={<Checker />}></Route>

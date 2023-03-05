@@ -7,6 +7,7 @@ import Donor from "./pages/Donor";
 import Checker from "./pages/Checker";
 import Enter from "./pages/Enter";
 import Admin from "./pages/Admin";
+import Preview from "./components/Preview";
 import ContactUs from "./pages/Email";
 
 export const Storage = createContext()
@@ -18,14 +19,16 @@ function App() {
       <ThemeProvider
         breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
         minBreakpoint="xxs">
-        
-          <Routes>
+
+        <Routes>
           <Route path="/" element={<ContactUs/>}></Route>
-            <Route path="/enter" element={<Enter />}></Route>
-            <Route path="/donor" element={<Donor />}></Route>
-            <Route path="/checker/:index" element={<Checker />}></Route>
-            <Route path="/admin" element={<Admin/>}></Route>
-          </Routes>
+          <Route path="/enter" element={<Enter />}></Route>
+          <Route path="/donor" element={<Donor />}></Route>
+          <Route path="/preview" element={<Preview />}></Route>
+          <Route path="/checker/:index" element={<Checker />}></Route>
+          <Route path="/admin" element={<Admin />}></Route>
+        </Routes>
+
         
       </ThemeProvider>
 

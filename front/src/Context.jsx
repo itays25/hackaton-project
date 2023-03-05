@@ -1,15 +1,18 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Cloudinary } from "@cloudinary/url-gen";
+
 
 export default function Context() {
     const params = useParams();
     const [title, setTitle] = useState(0);
 
-    console.log(params.index);
+    // console.log(params.index);
     const [cloudinaryLink, setCloudinaryLink] = useState();
     const [emotion, setEmotion] = useState();
     const [videoSrc, setVideoSrc] = useState([]);
+    const [videoPreview, setVideoPreview] = useState()
     const [emotionList, setEmotionList] = useState({
         happiness: ['friendly', 'happy', 'proud', 'joy'],
         sadness: ['sad', 'ashamed', 'depressed', 'ashamed'],
@@ -18,16 +21,24 @@ export default function Context() {
         loathing: ['bored', 'disgusted', 'unfriendly'],
         amazement: ['surprised', 'confused', 'excited', 'stressed'],
     });
+
+    const [cld, setCld] = useState(new Cloudinary({
+        cloud: {
+            cloudName: 'dsgdoguhb',
+            uploadPreset: "gbpggwot",
+        }
+    }))
+
     const allEmotion = emotionList.happiness.concat(emotionList.sadness.concat(emotionList.scary.concat(emotionList.tenderness.concat(emotionList.loathing.concat(emotionList.amazement)))))
 
-    console.log('hello', videoSrc[title]?._id);
+    // console.log('hello', videoSrc[title]?._id);
     // axios commands for checker
     const voteVideo = () => {
         axios.put(`http://localhost:8639/addVIdeo/${videoSrc[title]._id}`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
-    console.log(title);
+    // console.log(title);
     const isAppropriate = () => {
         axios.put(`http://localhost:8639/isappropriateVIdeo/${videoSrc[title]._id}`)
             .then((response) => console.log(response))
@@ -141,7 +152,7 @@ export default function Context() {
         axios.get('http://localhost:8639/allVIdeos')
             .then((response) => {
                 setVideoSrc(response?.data)
-                console.log("1:", response?.data);
+                // console.log("1:", response?.data);
             })
             .catch((error) => console.log(error))
 
@@ -150,20 +161,17 @@ export default function Context() {
 
 
     return {
-        cloudinaryLink,
-        setCloudinaryLink,
-        emotion,
-        setEmotion,
-        videoSrc,
-        setVideoSrc,
-        emotionList,
-        setEmotionList,
+        cloudinaryLink,  setCloudinaryLink,
+        emotion, setEmotion,
+        videoSrc, setVideoSrc,
+        emotionList, setEmotionList,
+        videoPreview, setVideoPreview,
         handleAppropriate,
-
         handleRating,
-        allEmotion, setTitle, title,
+        allEmotion, 
         setDelete, setDelete2, setDelete3, setDelete4, setDelete5,
-        setCorrect, setWrong
+        setCorrect, setWrong,
+        cld, setCld
 
 
     }

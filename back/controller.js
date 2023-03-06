@@ -37,17 +37,23 @@ module.exports.login = (req, res) => {
 }
 
 module.exports.addVideo = (req, res) => {
-    const newVideo = new Video(req.body)
-    newVideo.save((error, video) => {
-        if (error) {
-            console.log(error);
-            res.status(500).send({ message: "couldn't add video" })
-        }
-        else {
-            res.status(200).json({ message: "video was added" })
-        }
-    })
+    if (req.body.emotion == "default") {
+        res.status(500).json({ message: "Please, select the emotion" })
+    }
+    else {
+        const newVideo = new Video(req.body)
+        newVideo.save((error, video) => {
+            if (error) {
+                console.log(error);
+                res.status(500).send({ message: "couldn't add video" })
+            }
+            else {
+                res.status(200).json({ message: "video was added" })
+            }
+        })
+    }
 }
+
 
 module.exports.rateVideo = (req, res) => {
     Video.findByIdAndUpdate(

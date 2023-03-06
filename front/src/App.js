@@ -19,7 +19,6 @@ function App() {
       <ThemeProvider
         breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
         minBreakpoint="xxs">
-
         <Routes>
           <Route path="/" element={<ContactUs/>}></Route>
           <Route path="/enter" element={<Enter />}></Route>

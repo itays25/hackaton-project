@@ -16,10 +16,8 @@ export default function Checker() {
 
     function finishingFunc() {
         setCounter(counter + 1)
-        // setTitle(counter + 1)
         handleRating()
         localStorage.clear()
-
     }
     return (
         <div className='w-100 h-100% bg-white'>

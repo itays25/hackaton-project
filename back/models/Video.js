@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const User = require("./User");
 
 
-const videoSchema = new mongoose.Schema({
+const VideoSchema = new mongoose.Schema({
     cloudinaryLink: {
         type: String,
         required: true,
@@ -18,7 +18,7 @@ const videoSchema = new mongoose.Schema({
     },
     uploader: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: User
+        ref: "User"
     },
     reviews: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -81,4 +81,4 @@ const videoSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model("Video", videoSchema);
+module.exports = mongoose.model("Video", VideoSchema);

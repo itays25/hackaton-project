@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { rateQuality } = require('../controllers/ratingController');
+const { review, inappropriate } = require('../controllers/ratingController');
 
-router.put('/rateVideo/:id', rateQuality)
+router.put('/rateVideo/:id', review)
+router.put('/rateVideo/:id', inappropriate)
 
 
 module.exports = router;

@@ -18,25 +18,16 @@ app.use(express.json())
 app.use(cors())
 
 
-
 app.use('/video', videoRoutes);
 app.use('/rate', ratingRoutes)
-// user related
-app.post('/register', register)
-app.get('/login', login)
+// app.get('/login', login)
 
 // video relatedj
 
-app.put('/addVIdeo/:id', rateVideo)
-// app.put('/rateVIdeo/:id', rateQuality)
-// app.put('/rateVIdeo/:id/2', rateQuality2)
-// app.put('/rateVIdeo/:id/3', rateQuality3)
-// app.put('/rateVIdeo/:id/4', rateQuality4)
-// app.put('/rateVIdeo/:id/5', rateQuality5)
-app.put('/answerVIdeo/:id/correct', correctAnswer)
-app.put('/answerVIdeo/:id/similiar', similiarAnswer)
-app.put('/answerVIdeo/:id/random', randomAnswer)
-app.put('/isappropriateVIdeo/:id', isAppropriate)
+// app.put('/answerVIdeo/:id/correct', correctAnswer)
+// app.put('/answerVIdeo/:id/similiar', similiarAnswer)
+// app.put('/answerVIdeo/:id/random', randomAnswer)
+// app.put('/isappropriateVIdeo/:id', isAppropriate)
 
 
 app.listen(8639, () => console.log('emotions'))

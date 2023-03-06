@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect('mongodb+srv://emotiplay:emotiplay@cluster0.mqbcnqd.mongodb.net/test',{})
+const Review = require('./Review');
 
 
 const userSchema = new mongoose.Schema({

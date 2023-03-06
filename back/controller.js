@@ -36,23 +36,6 @@ module.exports.login = (req, res) => {
     )
 }
 
-module.exports.addVideo = (req, res) => {
-    if (req.body.emotion == "default") {
-        res.status(500).json({ message: "Please, select the emotion" })
-    }
-    else {
-        const newVideo = new Video(req.body)
-        newVideo.save((error, video) => {
-            if (error) {
-                console.log(error);
-                res.status(500).send({ message: "couldn't add video" })
-            }
-            else {
-                res.status(200).json({ message: "video was added" })
-            }
-        })
-    }
-}
 
 
 module.exports.rateVideo = (req, res) => {
@@ -64,92 +47,6 @@ module.exports.rateVideo = (req, res) => {
             (item) => {
                 if (!item) {
                     res.status(500).send({ message: "couldn't rate video" })
-                }
-                else {
-                    res.status(200).json({ message: "succssesfully rated" })
-                }
-            }
-        )
-
-}
-
-module.exports.rateQuality = (req, res) => {
-    Video.findByIdAndUpdate(
-        req.params.id,
-        { $inc: { "quality.1": 1 } }
-    )
-        .then(
-            (item) => {
-                if (!item) {
-                    res.status(500).send({ message: "couldn't rate quality" })
-                }
-                else {
-                    res.status(200).json({ message: "succssesfully rated" })
-                }
-            }
-        )
-
-}
-module.exports.rateQuality2 = (req, res) => {
-    Video.findByIdAndUpdate(
-        req.params.id,
-        { $inc: { "quality.2": 1 } }
-    )
-        .then(
-            (item) => {
-                if (!item) {
-                    res.status(500).send({ message: "couldn't rate quality" })
-                }
-                else {
-                    res.status(200).json({ message: "succssesfully rated" })
-                }
-            }
-        )
-
-}
-module.exports.rateQuality3 = (req, res) => {
-    Video.findByIdAndUpdate(
-        req.params.id,
-        { $inc: { "quality.3": 1 } }
-    )
-        .then(
-            (item) => {
-                if (!item) {
-                    res.status(500).send({ message: "couldn't rate quality" })
-                }
-                else {
-                    res.status(200).json({ message: "succssesfully rated" })
-                }
-            }
-        )
-
-}
-module.exports.rateQuality4 = (req, res) => {
-    Video.findByIdAndUpdate(
-        req.params.id,
-        { $inc: { "quality.4": 1 } }
-    )
-        .then(
-            (item) => {
-                if (!item) {
-                    res.status(500).send({ message: "couldn't rate quality" })
-                }
-                else {
-                    res.status(200).json({ message: "succssesfully rated" })
-                }
-            }
-        )
-
-}
-module.exports.rateQuality5 = (req, res) => {
-    Video.findByIdAndUpdate(
-        req.params.id,
-        { $inc: { "quality.5": 1 } }
-    )
-        .then(
-            (item) => {
-                if (!item) {
-                    res.status(500).send({ message: "couldn't rate quality" })
                 }
                 else {
                     res.status(200).json({ message: "succssesfully rated" })
@@ -228,16 +125,3 @@ module.exports.randomAnswer = (req, res) => {
         )
 }
 
-module.exports.allVideos = (req, res) => {
-    Video.find({ votes: { $lte: 50 } })
-
-        .sort({ votes: -1 })
-        .then((data) => {
-            if (data) {
-                res.status(200).json(data)
-            }
-            else {
-                res.status(500).json({ message: "no videos located" })
-            }
-        })
-}

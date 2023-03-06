@@ -14,8 +14,8 @@ const WidgetUpload = () => {
     useEffect(() => {
         cloudinaryRef.current = window.cloudinary;
         widgetRef.current = cloudinaryRef.current.createUploadWidget({
-            cloudName: 'dsgdoguhb',
-            uploadPreset: "gbpggwot",
+            cloudName: process.env.CLOUDINARY_cloudName,
+            uploadPreset: process.env.CLOUDINARY_uploadPreset,
             maxFileSize: 40000000, // 40 MB
             maxVideoFileSize: 40000000, // 40 MB
             maxRawFileSize: 40000000, // 40 MB
@@ -39,17 +39,10 @@ const WidgetUpload = () => {
                     widgetRef.current.close({ quiet: true })
                         .then(() => console.log("widget closed:"), navigate("/preview"))
                         .catch(error => console.log(error))
-                    // setClose(false)
-                    // widgetRef.current.close({ quiet: true })
-
                 }
             }
         })
     }, [])
-
-    // useEffect(() => {
-    //     close && widgetRef.current.open()
-    // }, [])
 
     return (
         <div className="h-100 w-75 p-2  d-flex justify-content-center">

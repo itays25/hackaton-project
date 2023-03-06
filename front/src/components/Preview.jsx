@@ -20,7 +20,7 @@ export default function Preview() {
     }
 
     function onSubmit(data) {
-        axios.post("http://localhost:8639/addVideo",
+        axios.post("http://localhost:8639/video/addVideo",
             { cloudinaryLink: videoLink, emotion: data.emotion })
             .then((result) => {
                 console.log("adding to mongo response:", result);

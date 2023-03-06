@@ -43,7 +43,7 @@ export default function Questioning(props) {
             <div className='quality px-2'>
                 <div className="text-center  ">
                     <header className="text-center fs-2 ">
-                        Rate the video qulity
+                        Rate the video quality
                     </header>
                     <p>(regardless of content)</p>
                 </div>

@@ -149,10 +149,9 @@ export default function Context() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:8639/allVIdeos')
+        axios.get('http://localhost:8639/video/allVIdeos')
             .then((response) => {
                 setVideoSrc(response?.data)
-                // console.log("1:", response?.data);
             })
             .catch((error) => console.log(error))
 

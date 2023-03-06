@@ -224,7 +224,6 @@ module.exports.randomAnswer = (req, res) => {
 
 module.exports.allVideos = (req, res) => {
     Video.find({ votes: { $lte: 50 } })
-
         .sort({ votes: -1 })
         .then((data) => {
             if (data) {

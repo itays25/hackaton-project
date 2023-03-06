@@ -62,7 +62,7 @@ const videoSchema = new mongoose.Schema({
 
         }
     },
-    isAppropriate: {
+    inappropriate: {
         type: Number,
         default: 0
     }

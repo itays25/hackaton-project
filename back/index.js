@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const videoRoutes = require('./routers/videoRoutes')
 const ratingRoutes = require('./routers/ratingRoutes')
+const emotionRoutes = require('./routers/emotionRoutes')
 const { register, login, rateVideo, rateQuality2, rateQuality3, rateQuality4, rateQuality5, correctAnswer, similiarAnswer, randomAnswer, isAppropriate } = require('./controller')
 
 
@@ -20,13 +21,11 @@ app.use(cors())
 
 app.use('/video', videoRoutes);
 app.use('/rate', ratingRoutes)
+app.use('/emotion', emotionRoutes)
 // app.get('/login', login)
 
 // video relatedj
 
-// app.put('/answerVIdeo/:id/correct', correctAnswer)
-// app.put('/answerVIdeo/:id/similiar', similiarAnswer)
-// app.put('/answerVIdeo/:id/random', randomAnswer)
 // app.put('/isappropriateVIdeo/:id', isAppropriate)
 
 

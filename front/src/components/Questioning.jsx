@@ -1,8 +1,6 @@
 import { React, useContext } from 'react';
 import { Storage } from '../App';
 import { useParams } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import "./appropriateQuestion.css"
 
 
 export default function Questioning() {
@@ -19,15 +17,20 @@ export default function Questioning() {
 
     return (
         <div>
-            <div className='appropriate p-1 pt-1'>
+            <div className='flex flex-col items-center p-1 pt-1'>
                 <header className="text-center fs-2 p-1">Is it an appropriate video?</header>
-                <Button variant="danger" onClick={() =>
-                    localStorage.setItem('inappropriate', 1)}>NO</Button>
-
-                <Button variant="success" className=''>YES</Button>
+                <div class="inline-flex">
+  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l" onClick={() =>
+    localStorage.setItem('inappropriate', 1)}>
+  NO
+  </button>
+  <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r">
+  YES
+  </button>
+</div>
             </div>
 
-            <div className='quality px-2'>
+            <div className='flex flex-col items-center px-2'>
 
                 <div className="text-center  ">
                     <header className="text-center fs-2 ">
@@ -35,35 +38,35 @@ export default function Questioning() {
                     </header>
                     <p>(regardless of content)</p>
                 </div>
-
-                <Button variant="danger" onClick={() => localSaveData(1)}>1</Button>
-                <Button variant="warning" onClick={() => localSaveData(2)}>2</Button>
-                <Button variant="info" onClick={() => localSaveData(3)}>3</Button>
-                <Button variant="primary" onClick={() => localSaveData(4)}>4</Button>
-                <Button variant="success" onClick={() => localSaveData(5)}>5</Button>
-
+                <div>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => localSaveData(1)}>1</button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"  onClick={() => localSaveData(2)}>2</button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => localSaveData(3)}>3</button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => localSaveData(4)}>4</button>
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={() => localSaveData(5)}>5</button>
+                </div>
             </div>
 
-            <div className='emotion px-2'>
                 <header className="text-center fs-2">
                     How does the person feel?
                 </header>
-                <Button classname=" p-2 alerts opacity-75" size="lg" key={'primary'} variant={'primary'}
+            <div className='emotion px-2 flex flex-row justify-center'>
+                <button c class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" size="lg" key={'primary'} variant={'primary'}
                     onClick={() => setCorrect("correct")}>
                     {videoSrc[params.index]?.emotion}
-                </Button>
-                <Button classname=" p-2 alerts opacity-75 " size="lg" key={'success'} variant={'success'}
+                </button>
+                <button  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" size="lg" key={'success'} variant={'success'}
                     onClick={() => setCorrect("random")}>
                     {allEmotion[randomA]}
-                </Button>
-                <Button classname=" p-2 alerts opacity-75 " size="lg" key={'warning'} variant={'warning'}
+                </button>
+                <button  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" size="lg" key={'warning'} variant={'warning'}
                     onClick={() => setCorrect("random")}>
                     {allEmotion[randomA2]}
-                </Button>
-                <Button classname=" p-2 alerts opacity-75" size="lg" key={'danger'} variant={'danger'}
+                </button>
+                <button c class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" size="lg" key={'danger'} variant={'danger'}
                     onClick={() => setCorrect("random")}>
                     {allEmotion[randomA3]}
-                </Button>
+                </button>
 
             </div>
 

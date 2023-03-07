@@ -57,8 +57,8 @@ export default function Context() {
     const handleRating = () => {
         localStorage.getItem("inappropriate") && inappropriate();
         review(localStorage.getItem("quality"));
-        localStorage.getItem("wrongAnswer") && randomEmotion();
-        localStorage.getItem("correctAnswer") && correctEmotion();
+        localStorage.getItem("wrongAnswer")
+        localStorage.getItem("correctAnswer") 
     }
 
     const emotionAnswer = () => {
@@ -83,7 +83,7 @@ export default function Context() {
         review,
         handleRating,
         allEmotion,
-        setCorrect, setWrong,
+        setCorrect, 
         cld, setCld
     }
 }

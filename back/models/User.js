@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect('mongodb+srv://emotiplay:emotiplay@cluster0.mqbcnqd.mongodb.net/test',{})
+const Review = require('./Review');
 
 
 const userSchema = new mongoose.Schema({
@@ -8,15 +8,15 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    userName: {
+    token:{
         type: String,
-        required: true,
-        unique: true
     },
-    password: {
-        type: String,
-        required: true,
-    }
+    reviews:[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Review'
+        }
+    ]
 })
 
 module.exports = mongoose.model('User', userSchema)

@@ -8,11 +8,17 @@ export default function Context() {
     const params = useParams();
     const [title, setTitle] = useState(0);
 
-    // console.log(params.index);
     const [cloudinaryLink, setCloudinaryLink] = useState();
     const [emotion, setEmotion] = useState();
     const [videoSrc, setVideoSrc] = useState([]);
     const [videoPreview, setVideoPreview] = useState()
+    const [cld, setCld] = useState(new Cloudinary({
+        cloud: {
+            cloudName: process.env.CLOUDINARY_cloudName,
+            uploadPreset: process.env.CLOUDINARY_uploadPreset,
+        }
+    }))
+
     const [emotionList, setEmotionList] = useState({
         happiness: ['friendly', 'happy', 'proud', 'joy'],
         sadness: ['sad', 'ashamed', 'depressed', 'ashamed'],
@@ -22,157 +28,62 @@ export default function Context() {
         amazement: ['surprised', 'confused', 'excited', 'stressed'],
     });
 
-    const [cld, setCld] = useState(new Cloudinary({
-        cloud: {
-            cloudName: 'dsgdoguhb',
-            uploadPreset: "gbpggwot",
-        }
-    }))
+    useEffect(() => {
+        axios.get('http://localhost:8639/video/allVIdeos')
+            .then((response) => { setVideoSrc(response?.data) })
+            .catch((error) => console.log(error))
+    }, [])
 
-    const allEmotion = emotionList.happiness.concat(emotionList.sadness.concat(emotionList.scary.concat(emotionList.tenderness.concat(emotionList.loathing.concat(emotionList.amazement)))))
+    const allEmotion = emotionList.happiness.concat(
+        emotionList.sadness
+            .concat(emotionList.scary
+                .concat(emotionList.tenderness
+                    .concat(emotionList.loathing
+                        .concat(emotionList.amazement))))
+    )
 
-    // console.log('hello', videoSrc[title]?._id);
-    // axios commands for checker
-    const voteVideo = () => {
-        axios.put(`http://localhost:8639/addVIdeo/${videoSrc[title]._id}`)
+    const inappropriate = () => {
+        axios.put(`http://localhost:8639/rate/rateVideo/${videoSrc[title]._id}`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
-    // console.log(title);
-    const isAppropriate = () => {
-        axios.put(`http://localhost:8639/isappropriateVIdeo/${videoSrc[title]._id}`)
-            .then((response) => console.log(response))
-            .catch((error) => console.log(error))
-    }
-    const quality1 = () => {
-        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[title]._id}`)
-            .then((response) => console.log(response))
-            .catch((error) => console.log(error))
-    }
-    const quality2 = () => {
-        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[title]._id}/2`)
-            .then((response) => console.log(response))
-            .catch((error) => console.log(error))
-    }
-    const quality3 = () => {
 
-        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[title]._id}/3`)
-
+    const review = (level) => {
+        const scale = level
+        axios.put(`http://localhost:8639/rate/rateVideo/${videoSrc[title]._id}`, scale)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
-    const quality4 = () => {
-
-        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[title]._id}/4`)
-
-            .then((response) => console.log(response))
-            .catch((error) => console.log(error))
+    const handleRating = () => {
+        localStorage.getItem("inappropriate") && inappropriate();
+        review(localStorage.getItem("quality"));
+        localStorage.getItem("wrongAnswer") && randomEmotion();
+        localStorage.getItem("correctAnswer") && correctEmotion();
     }
-    const quality5 = () => {
 
-        axios.put(`http://localhost:8639/rateVIdeo/${videoSrc[title]._id}/5`)
-
-            .then((response) => console.log(response))
-            .catch((error) => console.log(error))
-    }
-    const correctEmotion = () => {
-        axios.put(`http://localhost:8639/answerVIdeo/${videoSrc[title]._id}/correct`)
-            .then((response) => console.log(response))
-            .catch((error) => console.log(error))
-    }
-    const randomEmotion = () => {
+    const emotionAnswer = () => {
         axios.put(`http://localhost:8639/answerVIdeo/${videoSrc[title]._id}/random`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }
 
-    const handleAppropriate = () => {
-        isAppropriate();
-        // navigate('/checker/quality');
+    function setCorrect(x) {
+        x=="correct" ? localStorage.setItem("correctAnswer", 1)
+            : localStorage.setItem("wrongAnswer", 1);
     }
 
-    const handleRating = () => {
-        voteVideo();
-        localStorage.getItem("isAppropriate") && isAppropriate();
-        localStorage.getItem("quality") && quality1();
-        localStorage.getItem("quality2") && quality2();
-        localStorage.getItem("quality3") && quality3();
-        localStorage.getItem("quality4") && quality4();
-        localStorage.getItem("quality5") && quality5();
-        localStorage.getItem("wrongAnswer") && randomEmotion();
-        localStorage.getItem("correctAnswer") && correctEmotion();
-    }
-    function setDelete() {
-        localStorage.setItem("quality", 1);
-        localStorage.removeItem("quality2");
-        localStorage.removeItem("quality3");
-        localStorage.removeItem("quality4");
-        localStorage.removeItem("quality5");
-    }
-    function setDelete2() {
-        localStorage.setItem("quality2", 1);
-        localStorage.removeItem("quality");
-        localStorage.removeItem("quality3");
-        localStorage.removeItem("quality4");
-        localStorage.removeItem("quality5");
-    }
-    function setDelete3() {
-        localStorage.setItem("quality3", 1);
-        localStorage.removeItem("quality2");
-        localStorage.removeItem("quality");
-        localStorage.removeItem("quality4");
-        localStorage.removeItem("quality5");
-    }
-    function setDelete4() {
-        localStorage.setItem("quality4", 1);
-        localStorage.removeItem("quality2");
-        localStorage.removeItem("quality3");
-        localStorage.removeItem("quality");
-        localStorage.removeItem("quality5");
-    }
-    function setDelete5() {
-        localStorage.setItem("quality5", 1);
-        localStorage.removeItem("quality2");
-        localStorage.removeItem("quality3");
-        localStorage.removeItem("quality4");
-        localStorage.removeItem("quality");
-    }
-
-    function setCorrect() {
-        localStorage.setItem("correctAnswer", 1);
-        localStorage.removeItem("wrongAnswer");
-    }
-    function setWrong() {
-        localStorage.setItem("wrongAnswer", 1);
-        localStorage.removeItem("correctAnswer");
-    }
-
-
-    useEffect(() => {
-        axios.get('http://localhost:8639/allVIdeos')
-            .then((response) => {
-                setVideoSrc(response?.data)
-                // console.log("1:", response?.data);
-            })
-            .catch((error) => console.log(error))
-
-    }, [])
-    console.log(videoSrc);
 
 
     return {
-        cloudinaryLink,  setCloudinaryLink,
+        cloudinaryLink, setCloudinaryLink,
         emotion, setEmotion,
         videoSrc, setVideoSrc,
         emotionList, setEmotionList,
         videoPreview, setVideoPreview,
-        handleAppropriate,
+        review,
         handleRating,
-        allEmotion, 
-        setDelete, setDelete2, setDelete3, setDelete4, setDelete5,
+        allEmotion,
         setCorrect, setWrong,
         cld, setCld
-
-
     }
 }

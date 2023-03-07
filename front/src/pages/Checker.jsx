@@ -12,14 +12,12 @@ export default function Checker() {
     const [counter, setCounter] = useState(Number(params.index))
     const { videoSrc, setTitle, handleRating } = useContext(Storage)
     const navigate = useNavigate();
-    setTitle(Number(params.index))
+    // setTitle(Number(params.index))
 
     function finishingFunc() {
         setCounter(counter + 1)
-        setTitle(counter + 1)
         handleRating()
         localStorage.clear()
-
     }
     return (
         <div className='w-100 h-100% bg-white'>

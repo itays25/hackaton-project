@@ -1,31 +1,47 @@
 const mongoose = require("mongoose");
-mongoose.connect('mongodb+srv://emotiplay:emotiplay@cluster0.mqbcnqd.mongodb.net/test', {})
+const User = require("./User");
 
-const videoSchema = new mongoose.Schema({
+
+const VideoSchema = new mongoose.Schema({
     cloudinaryLink: {
         type: String,
         required: true,
         unique: true
-
     },
     emotion: {
         type: String,
         required: true
     },
+    uploadDate: {
+        type: Date,
+        default: Date.now
+    },
+    uploader: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
+    reviews: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Review'
+    }],
     votes: {
         type: Number,
         default: 0
     },
-    quality:  {
+    inappropriate: {
+        type: Number,
+        default: 0
+    },
+    quality: {
         type: Object,
-         1: {
+        1: {
             type: Number,
             default: 0
         }
         ,
         2: {
             type: Number,
-            default: 0  
+            default: 0
 
         },
         3: {
@@ -42,7 +58,8 @@ const videoSchema = new mongoose.Schema({
             type: Number,
             default: 0
 
-        },}
+        },
+    }
     ,
     validation: {
         type: Object,
@@ -61,11 +78,7 @@ const videoSchema = new mongoose.Schema({
             default: 0
 
         }
-    },
-    isAppropriate: {
-        type: Number,
-        default: 0
     }
 })
 
-module.exports = mongoose.model("Video", videoSchema);
+module.exports = mongoose.model("Video", VideoSchema);

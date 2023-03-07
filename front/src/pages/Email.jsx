@@ -68,7 +68,7 @@ export default function ContactUs() {
         </div>
       ) : (
         <div className="emailpage">
-         <h3>Enter your email to verify</h3>
+          <h3>Enter your email to verify</h3>
           <Lottie animationData={Arrow} loop={true} className="w-50 h-auto " />
           <input
             type="number"

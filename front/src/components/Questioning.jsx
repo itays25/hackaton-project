@@ -7,24 +7,22 @@ import "./appropriateQuestion.css"
 
 export default function Questioning() {
     const params = useParams();
-    const { videoSrc, allEmotion, setCorrect } = useContext(Storage)
+    const { videoSrc, randomOptions, } = useContext(Storage)
 
-    const localSaveData = (level) => {
+    const qualitySave = (level) => {
         localStorage.setItem("quality", level)
     }
 
-    const randomA = Math.floor(Math.random() * allEmotion.length)
-    const randomA2 = Math.floor(Math.random() * allEmotion.length)
-    const randomA3 = Math.floor(Math.random() * allEmotion.length)
+    function validSave(picked) {
+        localStorage.setItem("option", picked)
+    }
 
     return (
         <div>
             <div className='appropriate p-1 pt-1'>
                 <header className="text-center fs-2 p-1">Is it an appropriate video?</header>
-                <Button variant="danger" onClick={() =>
-                    localStorage.setItem('inappropriate', 1)}>NO</Button>
-
-                <Button variant="success" className=''>YES</Button>
+                <Button onClick={() => localStorage.setItem('inappropriate', 1)}>NO</Button>
+                <Button className=''>YES</Button>
             </div>
 
             <div className='quality px-2'>
@@ -36,11 +34,11 @@ export default function Questioning() {
                     <p>(regardless of content)</p>
                 </div>
 
-                <Button variant="danger" onClick={() => localSaveData(1)}>1</Button>
-                <Button variant="warning" onClick={() => localSaveData(2)}>2</Button>
-                <Button variant="info" onClick={() => localSaveData(3)}>3</Button>
-                <Button variant="primary" onClick={() => localSaveData(4)}>4</Button>
-                <Button variant="success" onClick={() => localSaveData(5)}>5</Button>
+                <Button onClick={() => qualitySave(1)}>1</Button>
+                <Button onClick={() => qualitySave(2)}>2</Button>
+                <Button onClick={() => qualitySave(3)}>3</Button>
+                <Button onClick={() => qualitySave(4)}>4</Button>
+                <Button onClick={() => qualitySave(5)}>5</Button>
 
             </div>
 
@@ -48,26 +46,20 @@ export default function Questioning() {
                 <header className="text-center fs-2">
                     How does the person feel?
                 </header>
-                <Button classname=" p-2 alerts opacity-75" size="lg" key={'primary'} variant={'primary'}
-                    onClick={() => setCorrect("correct")}>
+                <Button classname=" p-2 alerts opacity-75" onClick={() => validSave("correct")}>
                     {videoSrc[params.index]?.emotion}
                 </Button>
-                <Button classname=" p-2 alerts opacity-75 " size="lg" key={'success'} variant={'success'}
-                    onClick={() => setCorrect("random")}>
-                    {allEmotion[randomA]}
+                <Button classname=" p-2 alerts opacity-75 " onClick={() => validSave("random")}>
+                    {randomOptions[1]}
                 </Button>
-                <Button classname=" p-2 alerts opacity-75 " size="lg" key={'warning'} variant={'warning'}
-                    onClick={() => setCorrect("random")}>
-                    {allEmotion[randomA2]}
+                <Button classname=" p-2 alerts opacity-75 " onClick={() => validSave("random")}>
+                    {randomOptions[0]}
                 </Button>
-                <Button classname=" p-2 alerts opacity-75" size="lg" key={'danger'} variant={'danger'}
-                    onClick={() => setCorrect("random")}>
-                    {allEmotion[randomA3]}
+                <Button classname=" p-2 alerts opacity-75" onClick={() => validSave("wrong")}>
+                    WRONGG(ONE MORE FUNC)
                 </Button>
 
             </div>
-
-
         </div>
     )
 }

@@ -17,7 +17,7 @@ module.exports.addVideo = (req, res) => {
             }
         })
     }
-}
+};
 
 module.exports.allVideos = (req, res) => {
     Video.find({ votes: { $lte: 50 } })
@@ -31,11 +31,11 @@ module.exports.allVideos = (req, res) => {
                 res.status(500).json({ message: "no videos located" })
             }
         })
-}
+};
 
 module.exports.deleteFromCloudinary = (req, res) => {
 
     // cloudinary.v2.uploader
     //     .destroy('sample', resource_type: 'video')
     //     .then(result => console.log(result));
-}
+};

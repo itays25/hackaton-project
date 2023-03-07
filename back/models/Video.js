@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const User = require("./User");
-
+const Review = require('./Review');
 
 const VideoSchema = new mongoose.Schema({
     cloudinaryLink: {
@@ -63,17 +63,17 @@ const VideoSchema = new mongoose.Schema({
     ,
     validation: {
         type: Object,
-        randomAnswer: {
+        random: {
             type: Number,
             default: 0
 
         },
-        correctAnswer: {
+        correct: {
             type: Number,
             default: 0
 
         },
-        similliarAnswer: {
+        wrong: {
             type: Number,
             default: 0
 

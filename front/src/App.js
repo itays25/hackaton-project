@@ -16,9 +16,7 @@ function App() {
   const values = Context()
   return (
     <Storage.Provider value={values}>
-      <ThemeProvider
-        breakpoints={['xxxl', 'xxl', 'xl', 'lg', 'md', 'sm', 'xs', 'xxs']}
-        minBreakpoint="xxs">
+      
         <Routes>
           <Route path="/" element={<ContactUs/>}></Route>
           <Route path="/enter" element={<Enter />}></Route>
@@ -28,8 +26,7 @@ function App() {
           <Route path="/admin" element={<Admin />}></Route>
         </Routes>
 
-        
-      </ThemeProvider>
+  
 
     </Storage.Provider >
 

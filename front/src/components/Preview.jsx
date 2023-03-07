@@ -3,7 +3,6 @@ import { useContext } from 'react'
 import { useForm } from "react-hook-form";
 import { Storage } from '../App'
 import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
 import { NavLink, useNavigate } from "react-router-dom"
 
 
@@ -36,18 +35,19 @@ export default function Preview() {
     }
 
     return (
-        <div className='w-100 h=100'>
-            {videoLink && <video src={videoLink} controls width="100%" height="auto" className='p-3' />}
-
-            <Form className="h-50 w-100 d-flex justify-content-center flex-column align-items-center"
+        <div className='w-screen h-screen flex justify-center flex-row items-center bg-indigo-50'>
+            {videoLink && <div className='w-3/5 -ml-32'><video src={videoLink} controls width="100%" height="auto" className='p-3' /></div>}
+            <div className="flex flex-col max-w-xs font-sans ml-11 ">
+           <p className='text-3xl'> your video is ready now select an emotion and then finish uploading by click on save</p>
+            <form 
                 onSubmit={handleSubmit(onSubmit)} >
 
-                <Form.Select size="lg" name="emotion" className='m-2'
+                <select class="block appearance-none mt-9 w-4/5 bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" 
                     {...register("emotion", { required: true })}
                     defaultValue="default">
 
                     <option value="default" disabled>
-                        -- select an option --
+                        -- select an emotion --
                     </option>
 
                     {allEmotion.map((item, index) =>
@@ -55,21 +55,23 @@ export default function Preview() {
                             {item}
                         </option>
                     )}
-                </Form.Select>
+                </select>
 
                 <div className=' mt-5 w-100 d-flex align-items-center'>
-                    <div className='  w-75 d-flex justify-content-between align-items-center'>
-                        <Button onClick={() => back()} size="lg" className='h-75 me-2 px-3 opacity-50 my-2 rounded-pill' >
+                    
+                    <div className='  w-75 d-flex justify-content-between align-items-center '>
+                        <button  onClick={() => back()} size="lg" className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-blue-700 rounded' >
                             Back
-                        </Button>
-                        <Button size="lg" className=' w-100 px-3 p-3 my-2 rounded-pill' type='submit'>
+                        </button>
+                        <button size="lg" className='bg-blue-500 ml-9 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded' type='submit'>
                             Save
-                        </Button>
+                        </button>
                     </div>
                 </div>
 
                 {/* {cloudinaryLink && console.log(cloudinaryLink)} */}
-            </Form>
+            </form>
+            </div>
         </div>
     )
 }

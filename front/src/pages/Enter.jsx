@@ -1,5 +1,4 @@
 import { NavLink } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
 import Emotion from "../lotty/enter.json"
 import Lottie from "lottie-react";
 import { useContext, useEffect, useRef, useState } from "react"

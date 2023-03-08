@@ -6,7 +6,7 @@ import SmallVideos from "../components/SmallVideos";
 
 export default function Admin() {
     const { videoSrc } = useContext(Storage)
-    console.log("surce:", videoSrc);
+    // console.log("surce:", videoSrc);
     return (
         
         <div className="w-full h-screen">

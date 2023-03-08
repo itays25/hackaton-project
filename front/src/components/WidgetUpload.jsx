@@ -11,7 +11,7 @@ const WidgetUpload = (props) => {
 
     const accept = props.accept
 
-    console.log('hie' + accept);
+    // console.log('hie' + accept);
 
     useEffect(() => {
         cloudinaryRef.current = window.cloudinary;

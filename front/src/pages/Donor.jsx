@@ -4,7 +4,7 @@ import Image2 from '../lotty/arrowdown.json'
 import Lottie from "lottie-react";
 export default function Donor() {
 const [acceptterms,setacceptterms] = useState(false)
-console.log(acceptterms);
+// console.log(acceptterms);
     return (
         <div className="min-h-screen w-100 d-flex justify-content-center align-items-center bg-indigo-50 ">
           <Lottie animationData={Image2} loop={true} className="w-96 h-auto " /> 

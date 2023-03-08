@@ -16,22 +16,19 @@ const SmallVideos = (props) => {
 
 
     return (
-        // <div className='d-flex justify-content-center flex-column align-items-center w-'>
             <video
-                className='d-flex justify-content-center flex-column align-items-center p-1'
+                className=' p-1'
                 onTimeUpdate={handleProgress}
                 ref={videoRef}
-                width="150px"
+                width=""
                 height="auto"
                 controls
-                
             >
                 <source
                     src={props?.src}
                     type="video/mp4"
                 />
             </video>
-        // </div>
     )
 }
 

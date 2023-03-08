@@ -59,7 +59,6 @@ export default function Context() {
             .catch((error) => console.log(error))
     }
 
-
     // const emotionAnswer = () => {
     //     axios.put(`http://localhost:8639/answerVIdeo/${videoSrc[title]._id}/random`)
     //         .then((response) => console.log(response))
@@ -77,5 +76,8 @@ export default function Context() {
         title, setTitle,
         review,
         handleRating,
+        allEmotion,
+        setCorrect, setWrong,
+        cld, setCld
     }
 }

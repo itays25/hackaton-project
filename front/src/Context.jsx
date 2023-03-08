@@ -10,6 +10,7 @@ export default function Context() {
     const [videoSrc, setVideoSrc] = useState([]);
     const [videoPreview, setVideoPreview] = useState()
     const [emotionList, setEmotionList] = useState([]);
+    const [apiOjb, setApiOjb] = useState();
     const [randomOptions, setRandomOptions] = useState([]);
     const [cld, setCld] = useState(new Cloudinary({
         cloud: {
@@ -25,18 +26,31 @@ export default function Context() {
 
         axios.get('http://localhost:8639/emotion/allEmotions')
             .then((response) => {
-                setEmotionList(response?.data);
-                const list = response?.data;
-                const firtsIndex = Math.floor(Math.random() * list?.length)
-                const firstRandomAnswer = list[firtsIndex]
-                const temp = list.filter((item) => item !== firstRandomAnswer)
-                const secondIndex = Math.floor(Math.random() * temp?.length)
-                const secondRandomAnswer = list[secondIndex]
-                setRandomOptions([firstRandomAnswer, secondRandomAnswer]);
+                console.log(response.data);
+                setApiOjb(response.data)
             })
             .catch(error => console.log("all emotions:", error))
 
+        emotionListOrder()
     }, [])
+
+    const emotionListOrder = () => {
+        const roster = apiOjb?.forEach((item) => {
+            item?.stock?.forEach((stock) => {
+                emotionList?.push(stock?.title);
+            });
+        });
+        console.log(emotionList);
+        // console.log(roster?.data);
+        // const list = apiOjb?.data;
+        // const firtsIndex = Math.floor(Math.random() * list?.length)
+        // const firstRandomAnswer = list[firtsIndex]
+        // const temp = list.filter((item) => item !== firstRandomAnswer)
+        // const secondIndex = Math.floor(Math.random() * temp?.length)
+        // const secondRandomAnswer = list[secondIndex]
+        // setRandomOptions([firstRandomAnswer, secondRandomAnswer]);
+
+    }
 
     const handleRating = () => {
         localStorage.getItem("inappropriate") && inappropriate();

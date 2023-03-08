@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { addVideo, allVideos, deleteFromCloudinary } = require('../controllers/videoController');
 
-router.post('/addVideo', addVideo)
+router.post('/addVideo/:emotionId', addVideo)
 router.get('/allVideos', allVideos)
 
 

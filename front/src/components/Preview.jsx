@@ -1,45 +1,38 @@
 import axios from "axios";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Storage } from "../App";
-import Form from "react-bootstrap/Form";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Storage } from '../App'
+import { NavLink, useNavigate } from "react-router-dom"
+
+
 
 export default function Preview() {
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm();
-  const navigate = useNavigate();
-  const { cloudinaryLink, emotion, setEmotion, emotio, emotionList } =
-    useContext(Storage);
-  const videoLink = localStorage.getItem("videoPreview");
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const navigate = useNavigate();
+    const { emotionList, } = useContext(Storage)
+    const videoLink = localStorage.getItem('videoPreview')
 
   const back = () => {
     navigate("/donor");
     localStorage.removeItem("videoPreview");
   };
 
-  function onSubmit(data) {
-    axios
-      .post("http://localhost:8639/video/addVideo", {
-        cloudinaryLink: videoLink,
-        emotion: data.emotion,
-      })
-      .then((result) => {
-        console.log("adding to mongo response:", result);
-        if (result.status === 200) {
-          localStorage.removeItem("videoPreview");
-          navigate("/enter");
-        }
-      })
-      .catch((error) => {
-        console.log("fuuuck", error);
-        alert(error.response.data.message);
-      });
-  }
+    function onSubmit(data) {
+        axios.post("http://localhost:8639/video/addVideo",
+        // addVideoIdToEmotionInStock
+            { cloudinaryLink: videoLink, emotion: data.emotion })
+            .then((result) => {
+                console.log("adding to mongo response:", result);
+                if (result.status === 200) {
+                    localStorage.removeItem('videoPreview');
+                    navigate('/enter');
+                }
+            })
+            .catch((error) => {
+                console.log("fuuuck", error);
+                alert(error.response.data.message)
+            })
+    }
 
   return (
     <div className="w-screen h-screen flex justify-center flex-row items-center bg-indigo-50">
@@ -76,28 +69,22 @@ export default function Preview() {
             ))}
           </select>
 
-          <div className=" mt-5 w-100 d-flex align-items-center">
-            <div className="  w-75 d-flex justify-content-between align-items-center ">
-              <button
-                onClick={() => back()}
-                size="lg"
-                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
-              >
-                Back
-              </button>
-              <button
-                size="lg"
-                className="bg-blue-500 ml-9 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
-                type="submit"
-              >
-                Save
-              </button>
-            </div>
-          </div>
+                    <div className=' mt-5 w-100 d-flex align-items-center'>
 
-          {/* {cloudinaryLink && console.log(cloudinaryLink)} */}
-        </form>
-      </div>
-    </div>
-  );
+                        <div className='w-75 d-flex justify-content-between align-items-center '>
+                            <button onClick={() => back()}
+                                className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-blue-700 rounded' >
+                                Back
+                            </button>
+                            <button type='submit'
+                                className='bg-blue-500 ml-9 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded' >
+                                Save
+                            </button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    )
 }

@@ -49,7 +49,7 @@ export default function ContactUs() {
     }
   }
   return(
-    <div class="relative isolate overflow-hidden bg-indigo-50  h-full py-16 flex-row sm:py-24 lg:py-32 " >
+    <div class="relative isolate overflow-hidden bg-indigo-50  h-screen py-16 flex-row sm:py-24 lg:py-32 " >
   <div class="mx-auto max-w-7xl px-6  flex-row lg:px-8 ">
     <div class="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 flex-row lg:max-w-none lg:grid-cols-2 ">
       {submited ? ( 

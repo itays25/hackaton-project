@@ -59,19 +59,6 @@ export default function Context() {
             .catch((error) => console.log(error))
     }
 
-    const review = (level) => {
-        const scale = level
-        axios.put(`http://localhost:8639/rate/rateVideo/${videoSrc[title]._id}`, scale)
-            .then((response) => console.log(response))
-            .catch((error) => console.log(error))
-    }
-    const handleRating = () => {
-        localStorage.getItem("inappropriate") && inappropriate();
-        review(localStorage.getItem("quality"));
-        localStorage.getItem("wrongAnswer") && randomEmotion();
-        localStorage.getItem("correctAnswer") && correctEmotion();
-    }
-
     // const emotionAnswer = () => {
     //     axios.put(`http://localhost:8639/answerVIdeo/${videoSrc[title]._id}/random`)
     //         .then((response) => console.log(response))

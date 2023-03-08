@@ -1,6 +1,5 @@
 import { useContext } from "react"
 import { Storage } from "../App"
-import Table from 'react-bootstrap/Table';
 import SmallVideos from "../components/SmallVideos";
 
 
@@ -8,45 +7,51 @@ export default function Admin() {
     const { videoSrc } = useContext(Storage)
     console.log("surce:", videoSrc);
     return (
-
-        <div>
-            <Table striped bordered size="sm" hover>
-                <thead>
+        
+        <div className="w-full h-screen">
+            sort by : <select name="sad" id=""> 
+            <option value="">rating</option>
+            <option value="">nothing</option>
+            <option value="">klum</option>
+            </select>
+           <table className="w-5/6 ml-16  ">
+                <thead >
                     <tr>
-                        <th>#</th>
-                        <th>donor emotion</th>
-                        <th>inappropriate votes</th>
-                        <th>validation correct</th>
-                        <th>validation random</th>
-                        <th>validation similar(wrong)</th>
-                        <th>quality 1</th>
-                        <th>quality 2</th>
-                        <th>quality 3</th>
-                        <th>quality 4</th>
-                        <th>quality 5</th>
+                        <th className="border border-gray-500 px-4 py-2 ">Video </th>
+                        <th className="border border-gray-500 px-4 py-2">donor emotion</th>
+                        <th className="border border-gray-500 px-4 py-2">inappropriate votes</th>
+                        <th className="border border-gray-500 px-4 py-2">validation correct</th>
+                        <th className="border border-gray-500 px-4 py-2">validation random</th>
+                        <th className="border border-gray-500 px-4 py-2">validation similar(wrong)</th>
+                        <th className="border border-gray-500 px-4 py-2">quality votes:1</th>
+                        <th className="border border-gray-500 px-4 py-2">quality votes:2</th>
+                        <th className="border border-gray-500 px-4 py-2">quality votes:3</th>
+                        <th className="border border-gray-500 px-4 py-2">quality votes:4</th>
+                        <th className="border border-gray-500 px-4 py-2">quality votes:5</th>
                     </tr>
                 </thead>
                 <tbody>
-
                     {videoSrc.map((item, index) => {
                         return (
-                            <tr key={index}>
-                                <td><SmallVideos src={item?.cloudinaryLink} /></td>
-                                <td>{item?.emotion}</td>
-                                <td>{item?.isAppropriate}</td>
-                                <td>{item?.validation?.correctAnswer}</td>
-                                <td>{item?.validation?.randomAnswer}</td>
-                                <td>{item?.validation?.similiarAnswer}</td>
-                                <td>{item?.quality?.[1]}</td>
-                                <td>{item?.quality?.[2]}</td>
-                                <td>{item?.quality?.[3]}</td>
-                                <td>{item?.quality?.[4]}</td>
-                                <td>{item?.quality?.[5]}</td>
+                            <tr key={index} className="hover:bg-slate-400">
+                                <td className="border border-gray-500  hover:bg-slate-400 ">
+                                <SmallVideos src={item?.cloudinaryLink} /></td>
+                                <td className="border border-gray-500 px-4 py-2">{item?.emotion}</td>
+                                <td className="border border-gray-500 px-4 py-2">{item?.isAppropriate}</td>
+                                <td className="border border-gray-500 px-4 py-2">{item?.validation?.correctAnswer}</td>
+                                <td className="border border-gray-500 px-4 py-2">{item?.validation?.randomAnswer}</td>
+                                <td className="border border-gray-500 px-4 py-2">{item?.validation?.similiarAnswer}</td>
+                                <td className="border border-gray-500 px-4 py-2">{item?.quality?.[1]}</td>
+                                <td className="border border-gray-500 px-4 py-2">{item?.quality?.[2]}</td>
+                                <td className="border border-gray-500 px-4 py-2">{item?.quality?.[3]}</td>
+                                <td className="border border-gray-500 px-4 py-2">{item?.quality?.[4]}</td>
+                                <td className="border border-gray-500 px-4 py-2">{item?.quality?.[5]}</td>
                             </tr>
                         )
                     })}
                 </tbody>
-            </Table>
-        </div >
+            </table>
+            </div> 
+     
     )
 }

@@ -19,23 +19,18 @@ export default function Checker() {
         localStorage.clear()
     }
     return (
-        <div className='w-100 h-100% bg-white'>
-            <button onClick={() => navigate('/enter')} size="sm" className='px-3 opacity-50 mt-1 ms-1 h-2 rounded-pill'>
-                Back
-            </button>
-            <VideoPlayer counter={counter} setCounter={setCounter} />
-            <Questioning counter={counter} setCounter={setCounter} />
-            <div className='w-100 d-flex justify-content-center pt-4'>
-                <button className='rounded-pill h-100 w-75' size="lg" onClick={() => finishingFunc()}>
-                    <a className='object-none text-light' href={`/checker/${counter}`}>
-                        Finish servey
-                    </a>
+        <div className='w-full h-full flex flex-row justify-center bg-indigo-50'>
+           <div className='w-1/6 flex justify-center items-center'>
+             <button onClick={() => navigate('/enter')} size="sm" className=' bg-slate-500 rounded-full p-12 ' >
+                Exit
+            </button></div>
+           <div className='w-3/6 p-8 '> <VideoPlayer  counter={counter} setCounter={setCounter} />
+            <Questioning counter={counter} setCounter={setCounter} /></div>
+            <div className='w-1/6 flex justify-center items-center  '>
+                <button className=' bg-slate-500 rounded-full p-12 ' size="lg" onClick={() => finishingFunc()}>
+                    <a className='object-none text-light' href={`/checker/${counter}`}>next</a>
                 </button>
             </div>
-
-
         </div>
     )
-
-
 }

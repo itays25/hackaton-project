@@ -5,20 +5,21 @@ import { useNavigate } from "react-router-dom";
 
 const WidgetUpload = (props) => {
     const navigate = useNavigate()
-    const { setCloudinaryLink, videoPreview, setVideoPreview } = useContext(Storage)
-    const [close, setClose] = useState(true)
+    // const { setCloudinaryLink, videoPreview, setVideoPreview } = useContext(Storage)
     const cloudinaryRef = useRef()
     const widgetRef = useRef()
 
-    const accept= props.accept
+    const accept = props.accept
 
+    console.log('hie' + accept);
 
-    console.log('hie'+accept);
     useEffect(() => {
         cloudinaryRef.current = window.cloudinary;
         widgetRef.current = cloudinaryRef.current.createUploadWidget({
-            cloudName: process.env.CLOUDINARY_cloudName,
-            uploadPreset: process.env.CLOUDINARY_uploadPreset,
+            cloudName: 'dsgdoguhb',
+            // process.env.CLOUDINARY_cloudName,
+            uploadPreset: 'gbpggwot',
+            //  process.env.CLOUDINARY_uploadPreset,
             maxFileSize: 40000000, // 40 MB
             maxVideoFileSize: 40000000, // 40 MB
             maxRawFileSize: 40000000, // 40 MB
@@ -34,22 +35,26 @@ const WidgetUpload = (props) => {
                 console.log(error);
             }
             else {
-                console.log("cloudinary connected", result.info.url);
+                console.log("cloudinary connected", result?.info?.url);
             }
-            if (result.info.url) {
+            if (result?.info?.url) {
                 localStorage.setItem("videoPreview", `${result.info.url}`);
                 if (result = { event: "upload-added" }) {
-                    widgetRef.current.close({ quiet: true })
-                        .then(() => console.log("widget closed:"), navigate("/preview"))
-                        .catch(error => console.log(error))
+                    widgetRef.current.hide();
+                    console.log("widget closed:");
+                    navigate("/preview")
+                    if (error) { console.log(error) }
+                } else {
+                    console.log("add media to upload");
+                    alert("add media to upload")
                 }
             }
         })
     }, [])
 
     return (
-     <div> {accept== true ?(  
-      <button
+        <div> {accept == true ? (
+            <button
                 className="w-96 p-3 flex flex-row justify-center text-center bg-blue-400 items-center content-start hover:bg-blue-600 "
                 onClick={() => widgetRef.current.open()}>
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -59,9 +64,9 @@ const WidgetUpload = (props) => {
                     <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z" />
                 </svg>
                 upload your video
-            </button>):(
-                <button 
-                onClick={()=>{alert('you need to accept terms')}}
+            </button>) : (
+            <button
+                onClick={() => { alert('you need to accept terms') }}
                 className="w-96 p-3 flex flex-row justify-center text-center bg-stone-400 items-center content-start">
                 <svg xmlns="http://www.w3.org/2000/svg"
                     width="60" height="60" fill="currentColor"
@@ -71,7 +76,7 @@ const WidgetUpload = (props) => {
                 </svg>
                 upload your video
             </button>
-            )}
+        )}
         </div>
     )
 }

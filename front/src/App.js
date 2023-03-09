@@ -7,9 +7,12 @@ import Donor from "./pages/Donor";
 import Checker from "./pages/Checker";
 import Enter from "./pages/Enter";
 import Admin from "./pages/Admin";
-import Preview from "./pages/Preview";
-import ContactUs from "./pages/Email";
 
+import Statistics from "./pages/Statistics";
+import Preview from "./pages/Preview";
+
+import ContactUs from "./pages/Email";
+import EmotionControl from "./pages/EmotionControl";
 export const Storage = createContext()
 
 function App() {
@@ -24,6 +27,8 @@ function App() {
           <Route path="/preview" element={<Preview />}></Route>
           <Route path="/checker/:index" element={<Checker />}></Route>
           <Route path="/admin" element={<Admin />}></Route>
+          <Route path="/EmotionControl" element={<EmotionControl />}></Route>
+          <Route path="/statistics" element={<Statistics />}></Route>
         </Routes>
 
   

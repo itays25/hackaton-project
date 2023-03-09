@@ -11,19 +11,27 @@ module.exports.create = (req, res) => {
     })
 };
 
-// all emotions from all of the documents of collection
 module.exports.getAll = (req, res) => {
-    const list = [];
-    Emotion.aggregate([{ $project: { 'stock.title': 1, 'stock._id': 1 } }])
+    Emotion.find()
         .then(response => {
-            response.forEach((item) => {
-                item.stock.forEach((stock) => {
-                    list.push({ title: stock.title, _id: stock._id });
-                });
-            });
-            res.status(200).json(list)
+            res.status(200).json(response)
         })
-        .catch(error => res.status(500).json({ message: "error:", error }))
+        .catch(error =>
+            res.status(500).json({ message: "errorrrr:", error }))
 };
 
-module.exports
+// all emotions from all of the documents of collection
+// module.exports.getAll = (req, res) => {
+//     const list = [];
+//     Emotion.aggregate([{ $project: { 'stock.title': 1, 'stock._id': 1 } }])
+//         .then(response => {
+//             response.forEach((item) => {
+//                 item.stock.forEach((stock) => {
+//                     list.push({ title: stock.title, _id: stock._id });
+//                 });
+//             });
+//             res.status(200).json(list)
+//         })
+//         .catch(error => res.status(500).json({ message: "error:", error }))
+// };
+

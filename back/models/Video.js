@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const User = require("./User");
 const Review = require('./Review');
+const Emotion = require('./Emotion');
 
 const VideoSchema = new mongoose.Schema({
     cloudinaryLink: {
@@ -8,9 +9,12 @@ const VideoSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    emotion: {
-        type: String,
-        required: true
+    feeling: {
+        spectrum: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Emotion'        },
+        emotion: {
+            type: String        }
     },
     uploadDate: {
         type: Date,

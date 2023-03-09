@@ -7,8 +7,10 @@ import Donor from "./pages/Donor";
 import Checker from "./pages/Checker";
 import Enter from "./pages/Enter";
 import Admin from "./pages/Admin";
+
 import Statistics from "./pages/Statistics";
-import Preview from "./components/Preview";
+import Preview from "./pages/Preview";
+
 import ContactUs from "./pages/Email";
 import EmotionControl from "./pages/EmotionControl";
 export const Storage = createContext()

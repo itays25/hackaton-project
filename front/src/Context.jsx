@@ -9,6 +9,8 @@ export default function Context() {
     const [emotion, setEmotion] = useState();
     const [videoSrc, setVideoSrc] = useState([]);
     const [videoPreview, setVideoPreview] = useState()
+    const [correct, setCorrect] = useState()
+    const [wrong, setWrong] = useState()
     const [emotionList, setEmotionList] = useState([]);
     const [randomOptions, setRandomOptions] = useState([]);
     const [allEmotions, setAllEmotions] = useState([]);
@@ -25,28 +27,48 @@ export default function Context() {
             .catch((error) => console.log("all videos:", error))
 
         axios.get('http://localhost:8639/emotion/allEmotions')
-            .then(({ data }) => {
-                setEmotionList(data);
-
-                // getting list of emotions for random answers
-                const list = []
-                data?.map((spectrum) => (
-                    spectrum.stock.map((emotion) => (
-                        list.push(emotion.title)))))
-                const firtsIndex = Math.floor(Math.random() * list?.length)
-                const firstRandomAnswer = list[firtsIndex]
-                const temp = list.filter((item) => item !== firstRandomAnswer)
-                const secondIndex = Math.floor(Math.random() * temp?.length)
-                const secondRandomAnswer = list[secondIndex]
-                setRandomOptions([firstRandomAnswer, secondRandomAnswer]);
+            .then(({ data }) => { setEmotionList(data); 
             })
             .catch(error => console.log("all emotions:", error))
     }, [])
 
+    const answers = (videoNumber) => {
+        const correctAnswer = videoSrc[videoNumber]?.feeling?.emotion && localStorage.setItem("correctAnswer", correctAnswer);
+
+        // const wrongAnswer = () => {
+        //     for (let index = 0; index < emotionList?.length; index++) {
+        //         if (correctAnswer === emotionList[index]?._id) {
+        //             const temp = [];
+        //             emotionList[index]?.stock?.forEach(item => { temp?.push(item.title) });
+        //             const temporary = temp?.filter(item => item !== correctAnswer);
+        //             return random(temporary)
+        //         }
+        //     }
+        // }
+        // localStorage.setItem("wrongAnswer", wrongAnswer());
+
+        // const list = []
+        // emotionList?.map((spectrum) => (
+        //     spectrum.stock.map((emotion) => (
+        //         list.push(emotion.title)))))
+        // list.filter(item => item !== correctAnswer && item !== wrongAnswer)
+        // const first = random(list)
+        // list.filter(item => item !== first)
+        // const second = random(list)
+        // localStorage.setItem("firstAnswer", first);
+        // localStorage.setItem("secondAnswer", second)
+    }
+
+    const random = (array) => {
+        const index = Math.floor(Math.random() * array?.length)
+        const random = array[index]
+        return random
+    }
+
     const handleRating = () => {
         localStorage.getItem("inappropriate") && inappropriate();
-        localStorage.getItem("quality") && localStorage.getItem("option") && 
-        review({
+        localStorage.getItem("quality") && localStorage.getItem("option") &&
+            review({
                 scale: localStorage.getItem("quality"),
                 validation: localStorage.getItem("option")
             });
@@ -74,7 +96,10 @@ export default function Context() {
         videoPreview, setVideoPreview,
         randomOptions, setRandomOptions,
         title, setTitle,
+        correct, setCorrect,
+        wrong, setWrong,
         review,
+        answers,
         handleRating,
         allEmotions, setAllEmotions
     }

@@ -1,16 +1,20 @@
-import { React, useContext, useState } from "react";
+import { React, useContext, useEffect, useState } from "react";
 import { Storage } from "../App";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 
 export default function Questioning() {
   const params = useParams();
-  const { videoSrc, randomOptions } = useContext(Storage);
+  const { videoSrc, randomOptions, emotionList, answers } = useContext(Storage);
 
-  const wrongAnswer = () => {
-    const spectrum = videoSrc[params.index]?.feeling.spectrum
+  useEffect(() => {
+    answers(params?.index);
+  }, [])
+  const answer = (option) => {
+    localStorage.getItem(`${option}Answer`) && localStorage.getItem(`${option}Answer`)
+
   }
-  console.log("answers:", videoSrc[params.index]);
 
   const qualitySave = (level) => {
     localStorage.setItem("quality", level)
@@ -24,6 +28,7 @@ export default function Questioning() {
   const [clickedR, setCclickedR] = useState(false);
   const [clicked, setClicked] = useState([false, false, false, false, false, false]);
   const [clicked2, setClicked2] = useState([false, false, false, false, false]);
+
   const buttonL = clickedL
     ? "bg-gray-600 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
     : "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l";
@@ -134,29 +139,29 @@ export default function Questioning() {
           className={clicked2[0]
             ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
-          {videoSrc[params.index]?.feeling?.emotion}
+          {answer("correct")}
         </button>
 
-        <button onClick={() => { validSave("random"); handleClick2(1) }}
+        {/* <button onClick={() => { validSave("random"); handleClick2(1) }}
           className={clicked2[1]
             ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
-          {randomOptions[1]}
-        </button>
-
-        <button onClick={() => { validSave("random"); handleClick2(2) }}
-          className={clicked2[2]
-            ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
-          {randomOptions[0]}
+          {answer("first")}
         </button>
 
         <button onClick={() => { validSave("wrong"); handleClick2(3) }}
           className={clicked2[3]
             ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
-          WRONGG(ONE MORE FUNC)
+          {answer("wrong")}
         </button>
+
+        <button onClick={() => { validSave("random"); handleClick2(2) }}
+          className={clicked2[2]
+            ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
+          {answer("second")}
+        </button> */}
 
       </div>
     </div>

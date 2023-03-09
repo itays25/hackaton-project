@@ -3,7 +3,7 @@ import { Storage } from "../App";
 import Graph from "../components/Graph";
 import SmallVideos from "../components/SmallVideos";
 import Popup from "../components/Popup ";
-
+import AdminNavBar from "../components/AdminNavbar";
 export default function Admin() {
   const { videoSrc } = useContext(Storage);
   // console.log("surce:", videoSrc);
@@ -16,6 +16,7 @@ export default function Admin() {
   };
   return (
     <div className="w-full h-screen">
+      <AdminNavBar></AdminNavBar>
       {/* sort by : <select name="sad" id=""> 
             <option value="">rating</option>
             <option value="">nothing</option>
@@ -113,7 +114,8 @@ export default function Admin() {
         {isOpen && (
           <Popup
             title="My Popup"
-            content={<SmallVideos src={popupvideo} />}
+            content={<SmallVideos 
+              src={popupvideo} />}
             handleClose={togglePopup}
             emotion={popupemotion}
           />

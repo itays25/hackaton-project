@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 export default function Questioning() {
   const params = useParams();
-  const { videoSrc,randomOptions } = useContext(Storage);
+  const { videoSrc, randomOptions } = useContext(Storage);
 
   const qualitySave = (level) => {
     localStorage.setItem("quality", level)
@@ -79,8 +79,8 @@ export default function Questioning() {
           Is it an appropriate video?
         </header>
 
-        <div class="inline-flex">
-          <button class={buttonL}
+        <div className="inline-flex">
+          <button className={buttonL}
             onClick={() => {
               localStorage.setItem("inappropriate", 1);
               buttonclicked("L");
@@ -88,7 +88,7 @@ export default function Questioning() {
             NO
           </button>
 
-          <button class={buttonR}
+          <button className={buttonR}
             onClick={() => {
               localStorage.removeItem("inappropriate");
               buttonclicked("R");
@@ -109,7 +109,7 @@ export default function Questioning() {
         <div>
           {[1, 2, 3, 4, 5].map((number) => (
             <button onClick={() => { qualitySave(number) }} key={number}
-              class={clicked[number]
+              className={clicked[number]
                 ? "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 : "bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"}>
               {number}
@@ -126,25 +126,25 @@ export default function Questioning() {
       <div className="emotion px-2 flex flex-row justify-center">
 
         <button onClick={() => { validSave("correct"); handleClick2(0) }}
-          class={clicked2[0] ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className={clicked2[0] ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
           {videoSrc[params.index]?.emotion}
         </button>
 
         <button onClick={() => { validSave("random"); handleClick2(1) }}
-          class={clicked2[1] ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className={clicked2[1] ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
-           {randomOptions[1]}
+          {randomOptions[1]?.title}
         </button>
 
         <button onClick={() => { validSave("random"); handleClick2(2) }}
-          class={clicked2[2] ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className={clicked2[2] ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
-           {randomOptions[0]}
+          {randomOptions[0]?.title}
         </button>
 
         <button onClick={() => { validSave("wrong"); handleClick2(3) }}
-          class={clicked2[3] ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          className={clicked2[3] ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
           WRONGG(ONE MORE FUNC)
         </button>

@@ -2,7 +2,6 @@ import React, { useState, useRef, useContext } from 'react';
 import { Storage } from '../App';
 
 const SmallVideos = (props) => {
-    // console.log("smallsrc:", props?.src);
     const { videoSrc } = useContext(Storage)
     const [progress, setProgress] = useState(0);
     const videoRef = useRef(null);

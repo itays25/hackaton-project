@@ -9,7 +9,7 @@ import { NavLink, useNavigate } from "react-router-dom"
 export default function Preview() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
-  const { emotionList, } = useContext(Storage)
+  const { emotionList, allEmotions } = useContext(Storage)
   const videoLink = localStorage.getItem('videoPreview')
 
   const back = () => {
@@ -18,9 +18,15 @@ export default function Preview() {
   };
 
   function onSubmit(data) {
-    const { title, id } = JSON.parse(data.emotion);
+    const { spectrum, title, emotionId } = JSON.parse(data.emotion);
     axios.post('http://localhost:8639/video/addVideo',
-      { cloudinaryLink: videoLink, emotionId: id, emotion: title })
+      {
+        cloudinaryLink: videoLink,
+        emotionId: emotionId,
+        spectrum: spectrum,
+        emotion: title,
+        uploader: "63ec9a31a7e28e2f87ff635b"
+      })
       .then((result) => {
         console.log("adding to mongo successed:", result);
         if (result.status === 200) {
@@ -33,6 +39,7 @@ export default function Preview() {
         alert(error.response.data.message)
       })
   }
+
 
   return (
     <div className="w-screen h-screen flex justify-center flex-row items-center bg-indigo-50">
@@ -58,15 +65,19 @@ export default function Preview() {
               -- select an emotion --
             </option>
 
-            {emotionList?.map((item, index) => (
-              <option key={index}
-                value={
-                  JSON.stringify({
-                    title: item.title,
-                    id: item._id
-                  })}>
-                {item.title}
-              </option>
+            {emotionList?.map((spectrum) => (
+              spectrum.stock.map((emotion) => (
+                <option key={emotion._id}
+                  value={
+                    JSON.stringify({
+                      spectrum: spectrum._id,
+                      emotionId: emotion._id,
+                      title: emotion.title
+                    })}>
+                  {emotion.title}
+                </option>
+              ))
+
             ))}
           </select>
 

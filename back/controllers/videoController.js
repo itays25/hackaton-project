@@ -4,20 +4,27 @@ const { default: mongoose } = require('mongoose');
 
 
 module.exports.addVideo = async (req, res) => {
-  const { emotionId, cloudinaryLink, emotion } = req.body;
+  const { cloudinaryLink, emotionId, emotion , spectrum, uploader } = req.body;
 
   try {
     const feeling = await Emotion.findOne({ 'stock._id': emotionId });
     if (!feeling) {
       return res.status(404).json({ message: 'Emotion not found' });
     }
-
-    const matchingStock = feeling.stock.find((stock) => String(stock._id) === emotionId);
+    const matchingStock = feeling.stock.find((stock) =>
+      String(stock._id) === emotionId);
     if (!matchingStock) {
       return res.status(404).json({ message: 'Stock not found' });
     }
 
-    const video = new Video({ cloudinaryLink, emotion });
+    const video = new Video({
+      cloudinaryLink: cloudinaryLink,
+      feeling: {
+        spectrum: spectrum,
+        emotion: emotion 
+      },
+      uploader: uploader
+    });
     await video.save();
 
     matchingStock.content.push(video._id);
@@ -26,7 +33,7 @@ module.exports.addVideo = async (req, res) => {
     res.status(200).json({ message: 'Video added successfully' });
   } catch (err) {
     console.error(err);
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ message: 'Internal server error', err });
   }
 };
 

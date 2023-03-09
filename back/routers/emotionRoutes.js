@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router()
-const { create, getAll } = require("../controllers/emotionController")
+const { create, getAll, getAllEmotions } = require("../controllers/emotionController")
 
 router.post("/newEmotion", create);
 router.get("/allEmotions", getAll);

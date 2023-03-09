@@ -11,12 +11,13 @@ export default function Context() {
     const [videoPreview, setVideoPreview] = useState()
     const [emotionList, setEmotionList] = useState([]);
     const [randomOptions, setRandomOptions] = useState([]);
-    const [cld, setCld] = useState(new Cloudinary({
-        cloud: {
-            cloudName: process.env.CLOUDINARY_cloudName,
-            uploadPreset: process.env.CLOUDINARY_uploadPreset,
-        }
-    }))
+    const [allEmotions, setAllEmotions] = useState([]);
+    // const [cld, setCld] = useState(new Cloudinary({
+    //     cloud: {
+    //         cloudName: process.env.CLOUDINARY_cloudName,
+    //         uploadPreset: process.env.CLOUDINARY_uploadPreset,
+    //     }
+    // }))
 
     useEffect(() => {
         axios.get('http://localhost:8639/video/allVideos')
@@ -24,9 +25,14 @@ export default function Context() {
             .catch((error) => console.log("all videos:", error))
 
         axios.get('http://localhost:8639/emotion/allEmotions')
-            .then((response) => {
-                setEmotionList(response.data);
-                const list = response?.data;
+            .then(({ data }) => {
+                setEmotionList(data);
+
+                // getting list of emotions for random answers
+                const list = []
+                data?.map((spectrum) => (
+                    spectrum.stock.map((emotion) => (
+                        list.push(emotion.title)))))
                 const firtsIndex = Math.floor(Math.random() * list?.length)
                 const firstRandomAnswer = list[firtsIndex]
                 const temp = list.filter((item) => item !== firstRandomAnswer)
@@ -37,13 +43,13 @@ export default function Context() {
             .catch(error => console.log("all emotions:", error))
     }, [])
 
-
     const handleRating = () => {
         localStorage.getItem("inappropriate") && inappropriate();
+        localStorage.getItem("quality") && localStorage.getItem("option") && 
         review({
-            scale: localStorage.getItem("quality"),
-            validation: localStorage.getItem("option")
-        });
+                scale: localStorage.getItem("quality"),
+                validation: localStorage.getItem("option")
+            });
 
     }
 
@@ -60,7 +66,7 @@ export default function Context() {
     }
 
     return {
-        cld, setCld,
+        // cld, setCld,
         cloudinaryLink, setCloudinaryLink,
         emotion, setEmotion,
         videoSrc, setVideoSrc,
@@ -70,5 +76,6 @@ export default function Context() {
         title, setTitle,
         review,
         handleRating,
+        allEmotions, setAllEmotions
     }
 }

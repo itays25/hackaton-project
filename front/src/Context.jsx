@@ -24,14 +24,18 @@ export default function Context() {
             try {
                 let correct = 0;
                 let id;
-                setVideoSrc(videos)
-
-                if (pathname) {
-                    const correctAnswer = videos[pathname.split('/')[2]]?.feeling?.emotion
-                    id = videos[pathname.split('/')[2]].feeling.spectrum
-                    correct = correctAnswer
-                    localStorage.setItem("correctAnswer", correctAnswer);
-
+                try {
+                    const { data: videos } = await axios.get('http://localhost:8639/video/allVideos')
+                    setVideoSrc(videos)
+                    console.log("videos", videos);
+                    if (pathname.split('/')[2] >= 0) {
+                        const correctAnswer = videos[pathname.split('/')[2]].feeling.emotion
+                        id = videos[pathname.split('/')[2]].feeling.spectrum
+                        correct = correctAnswer
+                        localStorage.setItem("correctAnswer", correctAnswer);
+                    }
+                } catch (err) {
+                    console.log("failed to fetch videos : ", err.message)
                 }
 
                 try {

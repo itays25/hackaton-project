@@ -24,17 +24,14 @@ export default function Context() {
             try {
                 let correct = 0;
                 let id;
-                try {
-                    const { data: videos } = await axios.get('http://localhost:8639/video/allVideos')
-                    setVideoSrc(videos)
-                    if (pathname.split('/')[2] >= 0) {
-                        const correctAnswer = videos[pathname.split('/')[2]].feeling.emotion
-                        id = videos[pathname.split('/')[2]].feeling.spectrum
-                        correct = correctAnswer
-                        localStorage.setItem("correctAnswer", correctAnswer);
-                    }
-                } catch (err) {
-                    console.log("failed to fetch videos : ", err.message)
+                setVideoSrc(videos)
+
+                if (pathname) {
+                    const correctAnswer = videos[pathname.split('/')[2]]?.feeling?.emotion
+                    id = videos[pathname.split('/')[2]].feeling.spectrum
+                    correct = correctAnswer
+                    localStorage.setItem("correctAnswer", correctAnswer);
+
                 }
 
                 try {
@@ -101,6 +98,7 @@ export default function Context() {
             .catch((error) => console.log(error))
     }
 
+
     return {
         // cld, setCld,
         cloudinaryLink, setCloudinaryLink,
@@ -115,5 +113,5 @@ export default function Context() {
         review,
         handleRating,
         allEmotions, setAllEmotions
-    }
+}
 }

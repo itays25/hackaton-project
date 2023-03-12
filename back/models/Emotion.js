@@ -14,6 +14,10 @@ const EmotionSchema = new mongoose.Schema({
         title: {
             type: String,
         },
+        need: {
+            type: Boolean,
+            default : true
+        },
         content: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Video'

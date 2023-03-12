@@ -42,14 +42,14 @@ export default function Admin() {
         </thead>
         <tbody>
           {videoSrc.map((item, index) => {
-            const similar = item?.validation?.similiarAnswer
-              ? item?.validation?.similiarAnswer
+            const similar = item?.validation?.similiar
+              ? item?.validation?.similiar
               : 0;
-            const correct = item?.validation?.correctAnswer
-              ? item?.validation?.correctAnswer
+            const correct = item?.validation?.correct
+              ? item?.validation?.correct
               : 0;
-            const random = item?.validation?.randomAnswer
-              ? item?.validation?.randomAnswer
+            const random = item?.validation?.random
+              ? item?.validation?.random
               : 0;
             const sum = correct + random + similar;
             const amount = (correct / sum) * 100;
@@ -90,9 +90,9 @@ export default function Admin() {
                 </td>
                 <td className="border border-gray-500 px-4 py-2">
                   {" "}
-                  correct: {item?.validation?.correctAnswer} random:{" "}
-                  {item?.validation?.randomAnswer} similar:{" "}
-                  {item?.validation?.similiarAnswer}{" "}
+                  correct: {item?.validation?.correct} random:{" "}
+                  {item?.validation?.random} similar:{" "}
+                  {item?.validation?.similiar}{" "}
                 </td>
                 <td className="border border-gray-500 px-4 py-2">
                   {" "}
@@ -102,9 +102,18 @@ export default function Admin() {
                   only coreect: {amount.toFixed(2)}% coreect+simillar:{" "}
                   {amount2.toFixed(2)}%
                 </td>
-                <td className="border border-gray-500 px-4 py-2"> </td>
+                <td className="border border-gray-500 px-4 py-2"> 
+                <select defaultValue={""} id="" className="w-28 ">
+                      <option value="In 1st check">In 1st check</option>
+                      <option value="In 2nd check">In 2nd check</option>
+                      <option value="In “Validated” pool with donor-intended emotion">In “Validated” pool with donor-intended emotion</option>
+                      <option value="In “Unclear Emotion” pool">In “Unclear Emotion” pool</option>
+                      <option value="Banned:Inappropriate/low quality">Banned:Inappropriate/low quality</option>
+                </select>
+
+                 </td>
                 <td className="border border-gray-500 px-4 py-2">
-                  {item?.isAppropriate}
+                  {item?.inappropriate}
                 </td>
               </tr>
             );

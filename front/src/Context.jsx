@@ -108,7 +108,7 @@ return {
     correct, setCorrect,
     wrong, setWrong,
     review,
-    answers,
+    
     handleRating,
     allEmotions, setAllEmotions
 }

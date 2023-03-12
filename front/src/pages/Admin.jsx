@@ -82,7 +82,7 @@ export default function Admin() {
 
                 </td>
                 <td className="border border-gray-500 px-4 py-2">
-                  {item?.emotion}
+                  {item?.feeling.emotion}
                 </td>
                 <td className="border border-gray-500 px-4 py-2">
                   {" "}

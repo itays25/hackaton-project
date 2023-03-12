@@ -1,10 +1,11 @@
 const Video = require('../models/Video');
 const Emotion = require('../models/Emotion');
 const { default: mongoose } = require('mongoose');
+const Review = require('../models/Review');
 
 
 module.exports.addVideo = async (req, res) => {
-  const { cloudinaryLink, emotionId, emotion , spectrum, uploader } = req.body;
+  const { cloudinaryLink, emotionId, emotion, spectrum, uploader } = req.body;
 
   try {
     const feeling = await Emotion.findOne({ 'stock._id': emotionId });
@@ -21,7 +22,7 @@ module.exports.addVideo = async (req, res) => {
       cloudinaryLink: cloudinaryLink,
       feeling: {
         spectrum: spectrum,
-        emotion: emotion 
+        emotion: emotion
       },
       uploader: uploader
     });

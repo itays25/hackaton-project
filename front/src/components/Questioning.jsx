@@ -5,16 +5,19 @@ import axios from "axios";
 
 
 export default function Questioning() {
-  const params = useParams();
-  const { videoSrc, randomOptions, emotionList, answers } = useContext(Storage);
+  // const params = useParams();
+  const { videoSrc, randomOptions, emotionList, answers,loading } = useContext(Storage);
 
-  useEffect(() => {
-    answers(params?.index);
-  }, [])
+  // useEffect(() => {
+  //   answers(params.index);
+  // }, [])
+
   const answer = (option) => {
     localStorage.getItem(`${option}Answer`) && localStorage.getItem(`${option}Answer`)
 
   }
+
+  // console.log(localStorage.getItem(`wrongAnswer`));
 
   const qualitySave = (level) => {
     localStorage.setItem("quality", level)
@@ -54,8 +57,6 @@ export default function Questioning() {
     setClicked2(updatedClicked);
     //  console.log(clicked2);
   }
-
-
   function buttonclicked(param) {
     if (param == "L") {
       if (clickedL == false) {
@@ -84,6 +85,7 @@ export default function Questioning() {
 
   return (
     <div>
+      {loading ? "hi" : "ho"}
       <div className="flex flex-col items-center p-1 pt-1">
         <header className="text-center fs-2 p-1">
           Is it an appropriate video?
@@ -132,36 +134,35 @@ export default function Questioning() {
       <header className="text-center fs-2">
         How does the person feel?
       </header>
-
+                
       <div className="emotion px-2 flex flex-row justify-center">
-
         <button onClick={() => { validSave("correct"); handleClick2(0) }}
           className={clicked2[0]
             ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
-          {answer("correct")}
+          {localStorage.getItem("correctAnswer")}
         </button>
 
-        {/* <button onClick={() => { validSave("random"); handleClick2(1) }}
+        <button onClick={() => { validSave("random"); handleClick2(1) }}
           className={clicked2[1]
             ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
-          {answer("first")}
+          {localStorage.getItem("firstRandom")}
         </button>
 
         <button onClick={() => { validSave("wrong"); handleClick2(3) }}
           className={clicked2[3]
             ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
-          {answer("wrong")}
+          {localStorage.getItem("wrongAnswer")}
         </button>
 
         <button onClick={() => { validSave("random"); handleClick2(2) }}
           className={clicked2[2]
             ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
-          {answer("second")}
-        </button> */}
+          {localStorage.getItem("secondRandom")}
+        </button>
 
       </div>
     </div>

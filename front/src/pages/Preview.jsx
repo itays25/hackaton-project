@@ -9,7 +9,7 @@ import { NavLink, useNavigate } from "react-router-dom"
 export default function Preview() {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
-  const { emotionList, allEmotions } = useContext(Storage)
+  const { emotionList} = useContext(Storage)
   const videoLink = localStorage.getItem('videoPreview')
 
   const back = () => {
@@ -39,8 +39,7 @@ export default function Preview() {
         alert(error.response.data.message)
       })
   }
-
-
+{console.log(emotionList)}
   return (
     <div className="w-screen h-screen flex justify-center flex-row items-center bg-indigo-50">
 

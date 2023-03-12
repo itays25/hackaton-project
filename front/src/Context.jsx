@@ -54,8 +54,7 @@ export default function Context() {
                     const firstRandom = arr[randomIndexRandAns]
                     const arr2 = arr.filter(item => item != firstRandom)
                     const secondRandom = arr2[randomIndexRandAns]
-                    console.log(firstRandom);
-                    console.log(secondRandom);
+                   
                     localStorage.setItem("firstRandom", firstRandom);
                     localStorage.setItem("secondRandom", secondRandom);
                     setLoading(false)
@@ -79,15 +78,14 @@ export default function Context() {
     }
 
     const handleRating = () => {
-        localStorage.getItem("quality") &&
-            localStorage.getItem("option") &&
-            review({
+        localStorage.getItem("inappropriate") && inappropriate();
+        localStorage.getItem("quality") && localStorage.getItem("option") && 
+        review({
                 scale: localStorage.getItem("quality"),
-                validation: localStorage.getItem("option"),
+                option: localStorage.getItem("option")
             });
 
     }
-
     const review = (body) => {
         axios.put(`http://localhost:8639/rate/rateVideo/${videoSrc[title]._id}`, body)
             .then((response) => console.log(response))
@@ -95,7 +93,7 @@ export default function Context() {
     }
 
     const inappropriate = () => {
-        axios.put(`http://localhost:8639/rate/rateVideo/${videoSrc[title]._id}`)
+        axios.post(`http://localhost:8639/rate/rateVideo/${videoSrc[title]._id}`)
             .then((response) => console.log(response))
             .catch((error) => console.log(error))
     }

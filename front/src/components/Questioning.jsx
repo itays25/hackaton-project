@@ -12,10 +12,10 @@ export default function Questioning() {
   //   answers(params.index);
   // }, [])
 
-  const answer = (option) => {
-    localStorage.getItem(`${option}Answer`) && localStorage.getItem(`${option}Answer`)
+  // const answer = (option) => {
+  //   localStorage.getItem(`${option}Answer`) && localStorage.getItem(`${option}Answer`)
 
-  }
+  // }
 
   // console.log(localStorage.getItem(`wrongAnswer`));
 
@@ -85,7 +85,7 @@ export default function Questioning() {
 
   return (
     <div>
-      {loading ? "hi" : "ho"}
+      {/* {loading ? "hi" : "ho"} */}
       <div className="flex flex-col items-center p-1 pt-1">
         <header className="text-center fs-2 p-1">
           Is it an appropriate video?

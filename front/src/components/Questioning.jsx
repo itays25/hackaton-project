@@ -120,7 +120,7 @@ export default function Questioning() {
 
         <div>
           {[1, 2, 3, 4, 5].map((number) => (
-            <button onClick={() => { qualitySave(number) }} key={number}
+            <button onClick={() => { qualitySave(number) ;  handleClick(number) }} key={number}
               className={clicked[number]
                 ? "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 : "bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"}>

@@ -28,7 +28,7 @@ export default function Context() {
                 setVideoSrc(videos)
 
                 if (pathname) {
-                    const correctAnswer = videos[pathname.split('/')[2]].feeling.emotion
+                    const correctAnswer = videos[pathname.split('/')[2]]?.feeling?.emotion
                     id = videos[pathname.split('/')[2]].feeling.spectrum
                     correct = correctAnswer
                     localStorage.setItem("correctAnswer", correctAnswer);

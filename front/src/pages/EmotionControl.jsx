@@ -20,7 +20,7 @@ console.log(emotionListAdmin);
             {emotionListAdmin[index]?.stock.map((item, index) => (
               <ul key={index} class="list-disc list-inside">
                 <li class="flex items-center p-2 border-4 w-44 ml-2 mr-2">
-                 {item.need == true? (<input
+                 {item?.need == true? (<input
                     type="checkbox"
                     class="form-checkbox h-5 w-5 text-blue-500"
                   defaultChecked

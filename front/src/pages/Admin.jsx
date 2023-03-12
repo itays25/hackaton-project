@@ -6,6 +6,7 @@ import Popup from "../components/Popup ";
 import AdminNavBar from "../components/AdminNavbar";
 export default function Admin() {
   const { videoSrc } = useContext(Storage);
+ 
   // console.log("surce:", videoSrc);
   const [isOpen, setIsOpen] = useState(false);
   const [popupvideo, setpopupvideo] = useState();

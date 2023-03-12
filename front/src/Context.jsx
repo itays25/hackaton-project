@@ -12,6 +12,7 @@ export default function Context() {
     const [emotionList, setEmotionList] = useState([]);
     const [randomOptions, setRandomOptions] = useState([]);
     const [allEmotions, setAllEmotions] = useState([]);
+    const [emotionListAdmin, setemotionListAdmin] = useState([]);
     // const [cld, setCld] = useState(new Cloudinary({
     //     cloud: {
     //         cloudName: process.env.CLOUDINARY_cloudName,
@@ -27,7 +28,7 @@ export default function Context() {
         axios.get('http://localhost:8639/emotion/allEmotions')
             .then(({ data }) => {
                 setEmotionList(data);
-
+                setemotionListAdmin(data)
                 // getting list of emotions for random answers
                 const list = []
                 data?.map((spectrum) => (
@@ -76,6 +77,6 @@ export default function Context() {
         title, setTitle,
         review,
         handleRating,
-        allEmotions, setAllEmotions
+        allEmotions, setAllEmotions,emotionListAdmin
     }
 }

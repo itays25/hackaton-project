@@ -4,27 +4,18 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 
-export default function Questioning() {
-  // const params = useParams();
-  const { videoSrc, randomOptions, emotionList, answers,loading } = useContext(Storage);
-
-  // useEffect(() => {
-  //   answers(params.index);
-  // }, [])
-
-  // const answer = (option) => {
-  //   localStorage.getItem(`${option}Answer`) && localStorage.getItem(`${option}Answer`)
-
-  // }
-
-  // console.log(localStorage.getItem(`wrongAnswer`));
-
+export default function Questioning(props) {
+  const { videoSrc, randomOptions, emotionList, answers, loading } = useContext(Storage);
+  const counter = props.counter
   const qualitySave = (level) => {
     localStorage.setItem("quality", level)
+    localStorage.setItem("index",counter)
   }
 
   function validSave(picked) {
     localStorage.setItem("option", picked)
+    localStorage.setItem("index",counter)
+
   }
 
   const [clickedL, setCclickedL] = useState(false);
@@ -46,7 +37,6 @@ export default function Questioning() {
     }
     updatedClicked[number] = !updatedClicked[number];
     setClicked(updatedClicked);
-    // console.log(clicked);
   }
   function handleClick2(params) {
     const updatedClicked = [...clicked2];
@@ -55,7 +45,6 @@ export default function Questioning() {
     }
     updatedClicked[params] = !updatedClicked[params];
     setClicked2(updatedClicked);
-    //  console.log(clicked2);
   }
   function buttonclicked(param) {
     if (param == "L") {
@@ -120,7 +109,7 @@ export default function Questioning() {
 
         <div>
           {[1, 2, 3, 4, 5].map((number) => (
-            <button onClick={() => { qualitySave(number) ;  handleClick(number) }} key={number}
+            <button onClick={() => { qualitySave(number); handleClick(number) }} key={number}
               className={clicked[number]
                 ? "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 : "bg-blue-900 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"}>
@@ -134,7 +123,7 @@ export default function Questioning() {
       <header className="text-center fs-2">
         How does the person feel?
       </header>
-                
+
       <div className="emotion px-2 flex flex-row justify-center">
         <button onClick={() => { validSave("correct"); handleClick2(0) }}
           className={clicked2[0]

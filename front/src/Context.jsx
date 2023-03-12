@@ -5,19 +5,17 @@ import { useLocation, useParams } from "react-router-dom";
 
 
 export default function Context() {
-    const [title, setTitle] = useState(0);
     const [cloudinaryLink, setCloudinaryLink] = useState();
-    const [emotion, setEmotion] = useState();
-    const [videoSrc, setVideoSrc] = useState([]);
-    const [videoPreview, setVideoPreview] = useState()
-    const [correct, setCorrect] = useState()
-    const [wrong, setWrong] = useState()
-    const [emotionList, setEmotionList] = useState([]);
     const [randomOptions, setRandomOptions] = useState([]);
+    const [videoPreview, setVideoPreview] = useState();
+    const [emotionList, setEmotionList] = useState([]);
     const [allEmotions, setAllEmotions] = useState([]);
-    const [emotionListAdmin, setemotionListAdmin] = useState([]);
-    const { pathname } = useLocation();
     const [loading, setLoading] = useState(true);
+    const [videoSrc, setVideoSrc] = useState([]);
+    const [emotion, setEmotion] = useState();
+    const [correct, setCorrect] = useState();
+    const [wrong, setWrong] = useState();
+    const { pathname } = useLocation();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,7 +25,6 @@ export default function Context() {
                 try {
                     const { data: videos } = await axios.get('http://localhost:8639/video/allVideos')
                     setVideoSrc(videos)
-                    console.log("videos", videos);
                     if (pathname.split('/')[2] >= 0) {
                         const correctAnswer = videos[pathname.split('/')[2]].feeling.emotion
                         id = videos[pathname.split('/')[2]].feeling.spectrum
@@ -58,7 +55,7 @@ export default function Context() {
                     const firstRandom = arr[randomIndexRandAns]
                     const arr2 = arr.filter(item => item != firstRandom)
                     const secondRandom = arr2[randomIndexRandAns]
-                   
+
                     localStorage.setItem("firstRandom", firstRandom);
                     localStorage.setItem("secondRandom", secondRandom);
                     setLoading(false)
@@ -73,49 +70,22 @@ export default function Context() {
         fetchData()
     }, [])
 
-
-
     const random = (array) => {
         const index = Math.floor(Math.random() * array.length)
         const random = array[index]
         return random
     }
 
-    const handleRating = () => {
-        localStorage.getItem("inappropriate") && inappropriate();
-        localStorage.getItem("quality") && localStorage.getItem("option") && 
-        review({
-                scale: localStorage.getItem("quality"),
-                option: localStorage.getItem("option")
-            });
-
-    }
-    const review = (body) => {
-        axios.put(`http://localhost:8639/rate/rateVideo/${videoSrc[title]._id}`, body)
-            .then((response) => console.log(response))
-            .catch((error) => console.log(error))
-    }
-
-    const inappropriate = () => {
-        axios.post(`http://localhost:8639/rate/rateVideo/${videoSrc[title]._id}`)
-            .then((response) => console.log(response))
-            .catch((error) => console.log(error))
-    }
-
 
     return {
-        // cld, setCld,
         cloudinaryLink, setCloudinaryLink,
         emotion, setEmotion,
         videoSrc, setVideoSrc,
         emotionList, setEmotionList,
         videoPreview, setVideoPreview,
         randomOptions, setRandomOptions,
-        title, setTitle,
         correct, setCorrect,
         wrong, setWrong,
-        review,
-        handleRating,
         allEmotions, setAllEmotions
-}
+    }
 }

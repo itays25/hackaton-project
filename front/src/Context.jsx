@@ -104,6 +104,7 @@ export default function Context() {
             .catch((error) => console.log(error))
     }
 
+
     return {
         // cld, setCld,
         cloudinaryLink, setCloudinaryLink,
@@ -118,5 +119,5 @@ export default function Context() {
         review,
         handleRating,
         allEmotions, setAllEmotions
-    }
+}
 }

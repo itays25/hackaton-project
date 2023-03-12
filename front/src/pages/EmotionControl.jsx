@@ -4,20 +4,20 @@ import AdminNavBar from "../components/AdminNavbar";
 import { Storage } from "../App";
 import { useContext } from "react";
 export default function Statistics() {
-  const { emotionListAdmin } = useContext(Storage);
+  const { emotionList } = useContext(Storage);
 
 
-console.log(emotionListAdmin);
+console.log(emotionList);
   return (
     <div>
       <AdminNavBar></AdminNavBar>
       <div className="flex justify-center  mt-5">
-        {emotionListAdmin?.map((item, index) => (
+        {emotionList?.map((item, index) => (
           <div key={index}>
             <h3 className="flex flex-col items-center border-4 w-44 ml-2 text-2xl">
-              {emotionListAdmin[index]?.spectrum}
+              {emotionList[index]?.spectrum}
             </h3>
-            {emotionListAdmin[index]?.stock.map((item, index) => (
+            {emotionList[index]?.stock.map((item, index) => (
               <ul key={index} class="list-disc list-inside">
                 <li class="flex items-center p-2 border-4 w-44 ml-2 mr-2">
                  {item?.need == true? (<input
@@ -42,7 +42,7 @@ console.log(emotionListAdmin);
           </div>
         ))}
       </div>
-      <button className="bg-blue-600 p-3 mt-2" onClick={()=>console.log(emotionListAdmin)}>save</button>
+      <button className="bg-blue-600 p-3 mt-2" onClick={()=>console.log(emotionList)}>save</button>
     </div>
   );
 }

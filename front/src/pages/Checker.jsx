@@ -3,7 +3,7 @@ import { Storage } from '../App'
 import Questioning from '../components/Questioning';
 import VideoPlayer from '../components/VideoPlayer'
 import { useParams } from "react-router-dom"
-import { NavLink, useNavigate } from "react-router-dom"
+import {  useNavigate } from "react-router-dom"
 
 
 export default function Checker() {
@@ -18,6 +18,7 @@ export default function Checker() {
         handleRating()
         localStorage.clear()
     }
+    
     return (
         <div className='w-full h-full flex flex-row justify-center bg-indigo-50'>
             <div className='w-1/6 flex justify-center items-center'>

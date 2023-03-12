@@ -1,16 +1,23 @@
-import { React, useContext, useState } from "react";
+import { React, useContext, useEffect, useState } from "react";
 import { Storage } from "../App";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 
 
 export default function Questioning() {
-  const params = useParams();
-  const { videoSrc, randomOptions } = useContext(Storage);
+  // const params = useParams();
+  const { videoSrc, randomOptions, emotionList, answers,loading } = useContext(Storage);
 
-  const wrongAnswer = () => {
-    const spectrum = videoSrc[params.index]?.feeling.spectrum
+  // useEffect(() => {
+  //   answers(params.index);
+  // }, [])
+
+  const answer = (option) => {
+    localStorage.getItem(`${option}Answer`) && localStorage.getItem(`${option}Answer`)
+
   }
-  console.log("answers:", videoSrc[params.index]);
+
+  // console.log(localStorage.getItem(`wrongAnswer`));
 
   const qualitySave = (level) => {
     localStorage.setItem("quality", level)
@@ -24,6 +31,7 @@ export default function Questioning() {
   const [clickedR, setCclickedR] = useState(false);
   const [clicked, setClicked] = useState([false, false, false, false, false, false]);
   const [clicked2, setClicked2] = useState([false, false, false, false, false]);
+
   const buttonL = clickedL
     ? "bg-gray-600 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l"
     : "bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l";
@@ -49,8 +57,6 @@ export default function Questioning() {
     setClicked2(updatedClicked);
     //  console.log(clicked2);
   }
-
-
   function buttonclicked(param) {
     if (param == "L") {
       if (clickedL == false) {
@@ -79,6 +85,7 @@ export default function Questioning() {
 
   return (
     <div>
+      {loading ? "hi" : "ho"}
       <div className="flex flex-col items-center p-1 pt-1">
         <header className="text-center fs-2 p-1">
           Is it an appropriate video?
@@ -127,35 +134,34 @@ export default function Questioning() {
       <header className="text-center fs-2">
         How does the person feel?
       </header>
-
+                
       <div className="emotion px-2 flex flex-row justify-center">
-
         <button onClick={() => { validSave("correct"); handleClick2(0) }}
           className={clicked2[0]
             ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
-          {videoSrc[params.index]?.feeling?.emotion}
+          {localStorage.getItem("correctAnswer")}
         </button>
 
         <button onClick={() => { validSave("random"); handleClick2(1) }}
           className={clicked2[1]
             ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
-          {randomOptions[1]}
-        </button>
-
-        <button onClick={() => { validSave("random"); handleClick2(2) }}
-          className={clicked2[2]
-            ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-            : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
-          {randomOptions[0]}
+          {localStorage.getItem("firstRandom")}
         </button>
 
         <button onClick={() => { validSave("wrong"); handleClick2(3) }}
           className={clicked2[3]
             ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
             : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
-          WRONGG(ONE MORE FUNC)
+          {localStorage.getItem("wrongAnswer")}
+        </button>
+
+        <button onClick={() => { validSave("random"); handleClick2(2) }}
+          className={clicked2[2]
+            ? "bg-blue-800 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            : "bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded"}>
+          {localStorage.getItem("secondRandom")}
         </button>
 
       </div>

@@ -125,6 +125,8 @@ export default function Admin() {
           <Popup
             title="My Popup"
             content={<SmallVideos 
+              autoplay
+              muted
               src={popupvideo} />}
             handleClose={togglePopup}
             emotion={popupemotion}

@@ -1,20 +1,32 @@
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
-module.exports.login = async (req, res) => {
-  const { email, id } = req.body;
+
+module.exports.createUser = async (req, res) => {
+const email = req.body.email
+try{
+  User.create({email:email})
+  return res.status(200).json({ message: 'User created !'});
+}
+catch(err){
+  return res.status(500).json({ message: err.message });
+
+}}
+
+
+
+module.exports.checkID = async (req, res) => {
+  const email = req.body.email;
+
   try {
-    const accessToken = jwt.sign(
-      {
-        id,
-        email,
-      },
-      process.env.JWT_SEC,
-      { expiresIn: "30d" }
-    );
-    res.status(200).json(accessToken);
+    const user = await User.findOne({ email: email });
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    const userId = user._id;
+    return res.json({ userId: userId });
   } catch (err) {
-    res.status(500).json(err);
+    return res.status(500).json({ message: err.message });
   }
-};
+}
 

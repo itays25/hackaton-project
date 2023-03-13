@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import Image1 from '../lotty/login.json'
-
+import axios from "axios";
 
 export default function ContactUs() {
   useEffect(() => {
@@ -45,6 +45,13 @@ export default function ContactUs() {
   function checkverify() {
     if (check == verifycode) {
       localStorage.setItem("email", email);
+      const checking = (email) =>  {
+        console.log(email);
+        axios.post('http://localhost:8639/user/checkID',{email:email})
+            .then((response) => localStorage.setItem("id" , response.data.userId))
+            .catch((error) => console.log(error))
+    }
+    checking(email)
     }
     if (localStorage.getItem("email") == email) {
       navigate("/enter");

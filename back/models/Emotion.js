@@ -8,15 +8,17 @@ const EmotionSchema = new mongoose.Schema({
         required: true
     },
     color: {
-        type: String
+        type: String,
+        default: "grey"
     },
     stock: [{
         title: {
             type: String,
+            unique: true
         },
         need: {
             type: Boolean,
-            default : true
+            default: true
         },
         content: [{
             type: mongoose.Schema.Types.ObjectId,

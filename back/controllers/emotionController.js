@@ -1,15 +1,5 @@
 const Emotion = require('../models/Emotion');
 
-module.exports.create = (req, res) => {
-    const newEmotion = new Emotion(req.body);
-    newEmotion.save((error, emotion) => {
-        if (error) {
-            res.status(500).json({ message: "error:", error })
-        } else {
-            res.status(200).json({ message: "Emotion created successfully", emotion })
-        }
-    })
-};
 
 module.exports.getAll = (req, res) => {
     Emotion.find()
@@ -20,18 +10,139 @@ module.exports.getAll = (req, res) => {
             res.status(500).json({ message: "errorrrr:", error }))
 };
 
-// all emotions from all of the documents of collection
-// module.exports.getAll = (req, res) => {
-//     const list = [];
-//     Emotion.aggregate([{ $project: { 'stock.title': 1, 'stock._id': 1 } }])
-//         .then(response => {
-//             response.forEach((item) => {
-//                 item.stock.forEach((stock) => {
-//                     list.push({ title: stock.title, _id: stock._id });
-//                 });
-//             });
-//             res.status(200).json(list)
-//         })
-//         .catch(error => res.status(500).json({ message: "error:", error }))
-// };
+//////////////////////////////-----------------CREATE--------------------///////////////////--------
+module.exports.createSpectrum = (req, res) => {
+    const newEmotion = new Emotion(req.body);
+    newEmotion.save((error, emotion) => {
+        if (error) {
+            res.status(500).json({
+                message: "error:", error
+            })
+        } else {
+            res.status(200).json({
+                message: "Emotion created successfully", emotion
+            })
+        }
+    })
+};
 
+module.exports.addEmotion = (req, res) => {
+    if (req.body.emotion) {
+        Emotion.updateOne({ _id: req.params.spectrumId }, {
+            $push: {
+                stock: {
+                    "title": req.body.emotion,
+                    "content": []
+                }
+            }
+        })
+            .then(response => {
+                res.status(200).json({
+                    message: "Emotion added successfully", response
+                })
+            })
+            .catch(err => res.status(500).json({
+                message: "something is wrong", err
+            }))
+    }
+    else {
+        res.status(500).json({ message: "send an emotion:", error })
+    }
+};
+
+//////////////////////////////-----------DELETE-------------------//////////////////////--------------------
+module.exports.deleteSpectrum = (req, res) => {
+    Emotion.findByIdAndDelete(req.params.spectrumId)
+        .then(response => {
+            if (!response) {
+                res.status(404).json({ message: "spectrum not found" });
+            } else {
+                res.status(200).json({ message: "spectrum deleted successfully", response });
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            res.status(500).json({ message: "failed to delete spectrum" });
+        });
+};
+
+module.exports.deleteEmotion = (req, res) => {
+    Emotion.findByIdAndUpdate(req.params.spectrumId,
+        {
+            $pull: {
+                stock: { title: req.body.emotion }
+            }
+        },
+        { new: true }
+    )
+        .then((response) => {
+            if (!response) {
+                res.status(404).json({ message: 'Spectrum not found' });
+            } else {
+                res.status(200).json({
+                    message: 'Emotion deleted successfully',
+                    updatedSpectrum: response,
+                });
+            }
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500).json({ message: 'Failed to delete Emotion' });
+        });
+};
+
+
+//////////////////////////////////---------------UPDATE---------------////////////-------------------------
+module.exports.updateSpectrum = (req, res) => {
+    const { spectrum, color, emotion, need } = req.body
+    Emotion.findByIdAndUpdate(req.params.spectrumId, {
+        spectrum: spectrum,
+        color: color
+    },
+        { new: true })
+        .then((response) => {
+            if (!response) {
+                res.status(404).json({ message: 'Spectrum not found' });
+            } else {
+                res.status(200).json({
+                    message: 'Spectrum updated successfully',
+                    response
+                });
+            }
+        })
+        .catch(err =>
+            res.status(500).json({
+                message: "coudn't update spectrum", err
+            }))
+}
+
+module.exports.updateEmotion = async (req, res) => {
+    // const { emotion, need, emotionId } = req.body;
+
+    // try {
+    //     const spectrum = await Emotion.findOne({
+    //         _id: req.params.spectrumId
+    //     });
+    //     await spectrum.findOneAndUpdate({ 'stock._id': emotionId }, {
+    //         $set: {
+    //             'title': emotion,
+    //             'need': need
+    //         }
+    //     }, { new: true });
+    //     if (!updatedEmotion) {
+    //         return res.status(404).json({ message: "Emotion not found" });
+    //     }
+
+    //     res.status(200).json({
+    //         message: "Emotion updated successfully",
+    //         updatedEmotion
+    //     });
+
+    // } catch (error) {
+    //     console.error(error);
+    //     res.status(500).json({
+    //         message: "Error updating emotion",
+    //         error
+    //     });
+    // }
+};

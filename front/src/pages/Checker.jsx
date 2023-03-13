@@ -13,10 +13,19 @@ export default function Checker() {
     const [counter, setCounter] = useState(Number(params.index))
     const navigate = useNavigate();
     // setTitle(Number(params.index))
+    const [myOrder, setMyOrder] = useState([]);
 
+    useEffect(() => {
+      const order = [0,1,2,3].sort(() => Math.random() - 0.5);
+      setMyOrder(order);
+      console.log(order);
+    }, []);
     function finishingFunc() {
         handleRating()
         setCounter(counter + 1)
+        const order = [0,1,2,3].sort(() => Math.random() - 0.5);
+        setMyOrder(order);
+        console.log(order);
     }
     
     const handleRating = () => {
@@ -54,7 +63,7 @@ export default function Checker() {
 
             <div className='w-3/6 p-8 '>
                 <VideoPlayer counter={counter} setCounter={setCounter} />
-                <Questioning counter={counter} setCounter={setCounter} />
+                <Questioning counter={counter} myOrder={myOrder} setCounter={setCounter} />
             </div>
 
             <div className='w-1/6 flex justify-center items-center  '>

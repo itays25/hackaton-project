@@ -117,32 +117,26 @@ module.exports.updateSpectrum = (req, res) => {
 }
 
 module.exports.updateEmotion = async (req, res) => {
-    // const { emotion, need, emotionId } = req.body;
+    const { emotion, need, emotionId, spectrumId } = req.body;
 
-    // try {
-    //     const spectrum = await Emotion.findOne({
-    //         _id: req.params.spectrumId
-    //     });
-    //     await spectrum.findOneAndUpdate({ 'stock._id': emotionId }, {
-    //         $set: {
-    //             'title': emotion,
-    //             'need': need
-    //         }
-    //     }, { new: true });
-    //     if (!updatedEmotion) {
-    //         return res.status(404).json({ message: "Emotion not found" });
-    //     }
-
-    //     res.status(200).json({
-    //         message: "Emotion updated successfully",
-    //         updatedEmotion
-    //     });
-
-    // } catch (error) {
-    //     console.error(error);
-    //     res.status(500).json({
-    //         message: "Error updating emotion",
-    //         error
-    //     });
-    // }
+    await Emotion.findOneAndUpdate({ "_id": spectrumId, "stock._id": emotionId }, {
+        $set: {
+            'stock.$.title': emotion,
+            'stock.$.need': need
+        }
+    }, { new: true })
+        .then((response) => {
+            if (!response) {
+                res.status(404).json({ message: 'Emotion not found' });
+            } else {
+                res.status(200).json({
+                    message: 'Emotion updated successfully',
+                    response
+                });
+            }
+        })
+        .catch(err =>
+            res.status(500).json({
+                message: "coudn't update Emotion", err
+            }))
 };

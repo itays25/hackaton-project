@@ -28,14 +28,14 @@ module.exports.createSpectrum = (req, res) => {
 
 module.exports.addEmotion = (req, res) => {
     if (req.body.emotion) {
-        Emotion.updateOne({ _id: req.params.spectrumId }, {
+        Emotion.updateOne({ _id: req.params.spectrumID }, {
             $push: {
                 stock: {
                     "title": req.body.emotion,
                     "content": []
                 }
             }
-        })
+        },{new: true})
             .then(response => {
                 res.status(200).json({
                     message: "Emotion added successfully", response

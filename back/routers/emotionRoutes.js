@@ -6,7 +6,8 @@ const { createSpectrum,
     deleteSpectrum,
     deleteEmotion, 
     updateSpectrum,
-    updateEmotion
+    updateEmotion,
+    changeNeed
 } = require("../controllers/emotionController")
 
 router.get("/allEmotions", getAll);
@@ -16,6 +17,7 @@ router.post("/deleteSpectrum/:spectrumId", deleteSpectrum);
 router.post("/deleteEmotion/:spectrumId", deleteEmotion);
 router.post("/updateSpectrum/:spectrumId", updateSpectrum);
 router.post("/updateEmotion", updateEmotion);
+router.post('/changeNeed/:spectrumId', changeNeed)
 
 module.exports = router;
 

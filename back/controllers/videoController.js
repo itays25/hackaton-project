@@ -58,3 +58,22 @@ module.exports.deleteFromCloudinary = (req, res) => {
   //     .then(result => console.log(result));
 };
 
+module.exports.changeStatus = async (req, res) => {
+  Video.findByIdAndUpdate(req.params.videoId,
+    { status: req.body.status },
+    { new: true })
+    .then((response) => {
+      if (!response) {
+        res.status(404).json({ message: "video not found, try another id" })
+      } else {
+        res.status(200).json({
+          message: "status updated successfully",
+          response
+        })
+      }
+    })
+    .catch(error => res.status(500).json({
+      message: "something went wrong",
+      error
+    }))
+}

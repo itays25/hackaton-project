@@ -36,6 +36,10 @@ const VideoSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    status:{
+        type:String,
+        default: "In 1st check"
+    },
     quality: {
         type: Object,
         1: {

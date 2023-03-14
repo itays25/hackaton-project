@@ -9,7 +9,8 @@ const [acceptterms,setacceptterms] = useState(false)
 // console.log(acceptterms);
     return (
         <div className="min-h-screen w-100 d-flex  align-items-center bg-indigo-50 ">
-        <div><img src={Image4} alt="" />  <Lottie animationData={Image2} loop={true} className="w-96 h-auto  " /></div> 
+        <div><img src={Image4} alt="" />  
+        <Lottie animationData={Image2} loop={true} className="w-96 h-auto  " /></div> 
             <div className="ml-11">
            <div className="mr-32 ">  <h1 className="font-sans text-3xl ">upload video:</h1> <br />
             <p>step 1 : choose video to upload</p>

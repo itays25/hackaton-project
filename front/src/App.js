@@ -44,11 +44,7 @@ useEffect(() => {
           <Route path="/EmotionControl" element={ verifyId == localStorage.getItem('id')  ? <EmotionControl />: <Nonlogin/>}></Route>
           <Route path="/statistics" element={ verifyId == localStorage.getItem('id')  ? <Statistics />: <Nonlogin/>}></Route>
         </Routes>
-
-  
-
     </Storage.Provider >
-
   );
 }
 

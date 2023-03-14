@@ -45,13 +45,13 @@ export default function ContactUs() {
   function checkverify() {
     if (check == verifycode) {
       localStorage.setItem("email", email);
-      const checking = (email) =>  {
+      const checking = (email) => {
         console.log(email);
-        axios.post('http://localhost:8639/user/checkID',{email:email})
-            .then((response) => localStorage.setItem("id" , response.data.userId))
-            .catch((error) => console.log(error))
-    }
-    checking(email)
+        axios.post('http://localhost:8639/user/checkID', { email: email })
+          .then((response) => localStorage.setItem("id", response.data.userId))
+          .catch((error) => console.log(error))
+      }
+      checking(email)
     }
     if (localStorage.getItem("email") == email) {
       navigate("/enter");
@@ -80,7 +80,10 @@ export default function ContactUs() {
             <div className="max-w-xl flex-row lg:max-w-lg">
               <h2 className="text-3xl font-bold tracking-tight text-blue-900 sm:text-4xl">Enter the verification code you received in the email.</h2>
               <div className="mt-6 flex max-w-md gap-x-4">
-                <input id="email-address" name="email" type="number" autoComplete="email" required className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-black shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring--500 sm:text-sm sm:leading-6" placeholder="Enter your verification code" onChange={(e) => { setcheck(e.target.value) }} />
+                <input id="email-address" name="email" type="number" autoComplete="email"
+                  required className="min-w-0 flex-auto rounded-md border-0 bg-white/5 px-3.5 py-2 text-black shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring--500 sm:text-sm sm:leading-6"
+                  placeholder="Enter your verification code"
+                  onChange={(e) => { setcheck(e.target.value) }} />
                 <button type="submit"
                   className="flex-none rounded-md bg-blue-500 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                   onClick={() => { checkverify() }}>

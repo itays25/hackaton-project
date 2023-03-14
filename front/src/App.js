@@ -22,7 +22,6 @@ function App() {
 
 
   const verified = (email) => {
-    console.log(email);
     axios.post('http://localhost:8639/user/checkID', { email: email })
       .then((response) => setverifyId(response.data.userId))
       .catch((error) => console.log(error))

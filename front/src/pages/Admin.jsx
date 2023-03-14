@@ -4,6 +4,7 @@ import Graph from "../components/Graph";
 import SmallVideos from "../components/SmallVideos";
 import Popup from "../components/Popup ";
 import AdminNavBar from "../components/AdminNavbar";
+import axios from "axios";
 export default function Admin() {
   const { videoSrc } = useContext(Storage);
 
@@ -16,7 +17,15 @@ export default function Admin() {
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
-
+  
+  function updatestatus(videoId, status) {
+    axios
+      .put(`http://localhost:8639/video/changeStatus/${videoId}`, {
+        status: status,
+      })
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
+  }
 
   return (
     <div className="w-full h-screen">
@@ -117,7 +126,7 @@ export default function Admin() {
                   {console.log(item)}
                   <div className={toEdit}>
                     <select defaultValue={""} id="" className="w-32 h-9"
-                      onChange={(e) => setStatus(e.target.value)}>
+                      onChange={(e) => updatestatus(item._id,e.target.value)}>
                       <option value="In 1st check">In 1st check</option>
                       <option value="In 2nd check">In 2nd check</option>
                       <option value="Validated">Validated</option>

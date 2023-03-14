@@ -15,7 +15,7 @@ router.post("/addEmotion/:spectrumId", addEmotion);
 router.post("/deleteSpectrum/:spectrumId", deleteSpectrum);
 router.post("/deleteEmotion/:spectrumId", deleteEmotion);
 router.post("/updateSpectrum/:spectrumId", updateSpectrum);
-router.post("/updateEmotion/spectrumId", updateEmotion);
+router.post("/updateEmotion", updateEmotion);
 
 module.exports = router;
 

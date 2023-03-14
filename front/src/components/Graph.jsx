@@ -46,27 +46,27 @@ export default function Graph (props){
           {
             label: "quality 1",
             data: [videoSrc[index]?.quality?.[1] , 0],
-            backgroundColor: "green",
+            backgroundColor: "orange",
           },
           {
             label: "quality 2",
             data: [videoSrc[index]?.quality?.[2], 0],
-            backgroundColor: "red",
+            backgroundColor: "orange",
           },
           {
             label: "quality 3",
             data: [videoSrc[index]?.quality?.[3], 0],
-            backgroundColor: "yellow",
+            backgroundColor: "orange",
           },
           {
             label: "quality 4",
             data: [videoSrc[index]?.quality?.[4], 0],
-            backgroundColor: "pink",
+            backgroundColor: "orange",
           },
           {
             label: "quality 5",
             data: [videoSrc[index]?.quality?.[5], 0],
-            backgroundColor: "brown",
+            backgroundColor: "orange",
           },
         ],
       };

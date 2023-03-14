@@ -47,7 +47,6 @@ function App() {
         <Route path="/statistics" element={verifyId == localStorage.getItem('id') ? <Statistics /> : <Nonlogin />}></Route>
       </Routes>
     </Storage.Provider >
-
   );
 }
 

@@ -53,9 +53,6 @@ module.exports.allVideos = (req, res) => {
 
 module.exports.deleteFromCloudinary = (req, res) => {
 
-  // cloudinary.v2.uploader
-  //     .destroy('sample', resource_type: 'video')
-  //     .then(result => console.log(result));
 };
 
 module.exports.changeStatus = async (req, res) => {

@@ -14,7 +14,7 @@ router.get("/allEmotions", getAll);
 router.post("/createSpectrum", createSpectrum);
 router.post("/addEmotion/:spectrumId", addEmotion);
 router.post("/deleteSpectrum/:spectrumId", deleteSpectrum);
-router.post("/deleteEmotion/:spectrumId", deleteEmotion);
+router.post("/deleteEmotion/", deleteEmotion);
 router.post("/updateSpectrum/:spectrumId", updateSpectrum);
 router.post("/updateEmotion", updateEmotion);
 router.post('/changeNeed/:spectrumId', changeNeed)

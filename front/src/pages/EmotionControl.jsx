@@ -3,7 +3,6 @@ import { Storage } from "../App";
 import { useContext, useState } from "react";
 import axios from "axios";
 
-
 export default function Statistics() {
   const { emotionList } = useContext(Storage);
   const [spectrum, setSpectrum] = useState("")
@@ -36,6 +35,17 @@ export default function Statistics() {
       .then(response => console.log(response))
       .catch(error => console.log(error))
   }
+
+  function changeNeed(spectrumID,need,index) {
+    axios
+      .post(`http://localhost:8639/emotion/changeNeed/${spectrumID}`, {
+        need: need,
+        index: index
+      })
+      .then((res) => console.log(res))
+      .catch((error) => console.log(error));
+  }
+
 
   return (
     <div className="w-screen">
@@ -73,18 +83,20 @@ export default function Statistics() {
                   <li className="flex items-center justify-between p-2 border-2 w-56 ml-2 mr-2 rounded">
 
                     <div className="flex items-center">
-                      {item?.need == true ? (<input
-                        type="checkbox"
-                        className="form-checkbox h-4 w-5 text-blue-500"
-                        defaultChecked
-                        onClick={() => item.need = false}
-                      />) :
-                        (<input
+                    {item?.need == true ? (
+                        <input
                           type="checkbox"
-                          className="form-checkbox h-5 w-5 text-blue-500"
-                          onClick={() => item.need = true}
-                        />)
-                      }
+                          class="form-checkbox h-4 w-5 text-blue-500"
+                          defaultChecked
+                          onClick={() => changeNeed(emotionList[index]._id,false,i)}
+                        />
+                      ) : (
+                        <input
+                          type="checkbox"
+                          class="form-checkbox h-5 w-5 text-blue-500"
+                          onClick={() => changeNeed(emotionList[index]._id,true,i)}
+                        />
+                      )}
 
                       <span className="ml-2 text-gray-700">
                         {item.title}
@@ -115,10 +127,7 @@ export default function Statistics() {
           </div>
         ))}
       </div>
-      <button className="bg-blue-600 p-2 mt-2 rounded text-lg"
-        onClick={() => console.log(emotionList)}>
-        save
-      </button>
+      <button className="bg-blue-600 p-2 mt-2 rounded text-lg" onClick={() => console.log(emotionList)}>save</button>
     </div>
   );
 }

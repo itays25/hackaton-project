@@ -53,11 +53,11 @@ export default function Checker() {
 
 
     return (
-        <div className='w-full h-full flex flex-row justify-center bg-indigo-50'>
+        <div className='w-full h-full flex flex-row justify-center bg--50'>
             <div className='w-1/6 flex justify-center items-center'>
-                <button size="sm" className=' bg-slate-500 rounded-full p-12 '
+                <button  className=' bg-orange-600 rounded p-3 text-white text-xl'
                     onClick={() => { navigate('/enter'); localStorage.clear() }} >
-                    Exit
+                    EXIT
                 </button>
             </div>
 
@@ -67,10 +67,10 @@ export default function Checker() {
             </div>
 
             <div className='w-1/6 flex justify-center items-center  '>
-                <a className='object-none text-light bg-slate-500 rounded-full p-12 '
+                <a className='object-none  rounded p-3 text-white text-xl bg-blue-600'
                     href={`/checker/${counter}`}
                     onClick={() => finishingFunc()}>
-                    next
+                    NEXT
                 </a>
             </div>
         </div>

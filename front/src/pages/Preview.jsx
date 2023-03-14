@@ -41,7 +41,7 @@ export default function Preview() {
   }
 {console.log(emotionList)}
   return (
-    <div className="w-screen h-screen flex justify-center flex-row items-center bg-indigo-50">
+    <div className="w-screen h-screen flex justify-center flex-row items-center bg--50">
 
       {videoLink && (
         <div className="w-3/5 -ml-32">
@@ -84,7 +84,7 @@ export default function Preview() {
             <div className='w-75 d-flex justify-content-between align-items-center '>
 
               <button onClick={() => back()}
-                className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-blue-700 rounded' >
+                className='bg-orange-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-blue-700 rounded' >
                 Back
               </button>
 

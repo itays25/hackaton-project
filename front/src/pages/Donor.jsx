@@ -13,7 +13,6 @@ export default function Donor() {
     return (
         <div className="h-screen w-screen d-flex align-items-center justify-evenly bg--50 ">
 
-            <img src={logo} alt="" className="fixed top-0 left-0 w-64 p-2" />
 
                 <Lottie animationData={uploadLotty} loop={true} className="w-5/12 h-auto  " />
 

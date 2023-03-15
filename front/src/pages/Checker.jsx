@@ -14,7 +14,7 @@ export default function Checker() {
     const navigate = useNavigate();
     // setTitle(Number(params.index))
     const [myOrder, setMyOrder] = useState([]);
-
+    const [nextPage,setNextPage] = useState(false)
     useEffect(() => {
       const order = [0,1,2,3].sort(() => Math.random() - 0.5);
       setMyOrder(order);
@@ -63,16 +63,26 @@ export default function Checker() {
 
             <div className='w-3/6 p-8 '>
                 <VideoPlayer counter={counter} setCounter={setCounter} />
-                <Questioning counter={counter} myOrder={myOrder} setCounter={setCounter} />
+                <Questioning setNextPage={setNextPage}  counter={counter} myOrder={myOrder} setCounter={setCounter} />
             </div>
-
+            {nextPage == true ? (
+                 <div className='w-1/6 flex justify-center items-center  '>
+                 <a className='object-none  rounded p-3 text-white text-xl bg-blue-600'
+                     href={`/checker/${counter}`}
+                     onClick={() => finishingFunc()}>
+                     NEXT
+                 </a>
+             </div>
+            ): (  
             <div className='w-1/6 flex justify-center items-center  '>
-                <a className='object-none  rounded p-3 text-white text-xl bg-blue-600'
-                    href={`/checker/${counter}`}
-                    onClick={() => finishingFunc()}>
-                    NEXT
-                </a>
-            </div>
+            <a className='object-none  rounded p-3 text-white text-xl bg-blue-300'>
+                NEXT
+            </a>
+             </div>
+            )}
+           
+         
+
         </div>
     )
 }

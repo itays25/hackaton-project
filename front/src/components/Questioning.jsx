@@ -7,11 +7,14 @@ import axios from "axios";
 export default function Questioning(props) {
   const { videoSrc, randomOptions, emotionList, answers, loading } = useContext(Storage);
   const counter = props.counter
+  const [next1,setnext1] =useState(false)
+  const [next2,setnext2] =useState(false)
+  const [next3,setnext3] =useState(false)
   const qualitySave = (level) => {
     localStorage.setItem("quality", level)
     localStorage.setItem("index", counter)
   }
-
+  const setNextPage = props.setNextPage
   function validSave(picked) {
     localStorage.setItem("option", picked)
     localStorage.setItem("index", counter)
@@ -22,7 +25,40 @@ export default function Questioning(props) {
   const [clickedR, setCclickedR] = useState(false);
   const [clicked, setClicked] = useState([false, false, false, false, false, false]);
   const [clicked2, setClicked2] = useState([false, false, false, false, false]);
+useEffect(()=>{
+if ( next1 == true && next2 == true && next3 == true ) {
+  setNextPage(true)
+}
+if ( next1 == false || next2 == false || next3 == false ) {
+  setNextPage(false)
+}
+},[next1,next2,next3])
+  useEffect(()=>{
+  if (clickedL == true || clickedR == true) {
+    setnext1(true)
+  }
+  if (clickedL == false && clickedR == false) {
+    setnext1(false)
+  }
+  console.log(next1);
 
+},[clickedL,clickedR])
+useEffect(()=>{
+if (clicked[0] == true||clicked[1] == true||clicked[2] == true||clicked[3] == true||clicked[4] == true||clicked[5] == true) {
+  setnext2(true)
+}
+if (clicked[0] == false && clicked[1] == false && clicked[2] == false && clicked[3] == false && clicked[4] == false && clicked[5] == false) {
+  setnext2(false)
+}
+},[clicked])
+useEffect(()=>{
+if (clicked2[0] == true||clicked2[1] == true||clicked2[2] == true||clicked2[3] == true||clicked2[4] == true||clicked2[5] == true) {
+  setnext3(true)
+}
+if (clicked2[0] == false && clicked2[1] == false && clicked2[2] == false && clicked2[3] == false && clicked2[4] == false && clicked2[5] == false) {
+  setnext3(false)
+}
+},[clicked2])
   const buttonL = clickedL
     ? "bg-orange-600 hover:bg-orange-400 text-orange-800 font-bold py-2 px-4 rounded-l text-lg"
     : "bg-orange-300 hover:bg-orange-400 text-orange-800 font-bold py-2 px-4 rounded-l text-lg";
@@ -80,7 +116,7 @@ export default function Questioning(props) {
     <div className="">
       {/* {loading ? "hi" : "ho"} */}
 
-      <div className="flex flex-col items-center p-1 pt-1 text-2xl p-1">
+      <div className="flex flex-col items-center p-1 pt-1 text-2xl ">
         <header className="text-center fs-2 p-2">
           Is it an appropriate video?
         </header>

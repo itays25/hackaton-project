@@ -7,8 +7,9 @@ import Donor from "./pages/Donor";
 import Checker from "./pages/Checker";
 import Enter from "./pages/Enter";
 import Admin from "./pages/Admin";
+import EmotionControllEditing from "./pages/EmotionControllEditing";
 import axios from "axios";
-import Navbar from"./components/Navbar"
+import Navbar from "./components/Navbar"
 import Statistics from "./pages/Statistics";
 import Preview from "./pages/Preview";
 import Nonlogin from "./pages/Nonlogin";
@@ -43,6 +44,7 @@ function App() {
         <Route path="/checker/:index" element={verifyId == localStorage.getItem('id') ? <Checker /> : <Nonlogin />}></Route>
         <Route path="/admin" element={verifyId == localStorage.getItem('id') ? <Admin /> : <Nonlogin />}></Route>
         <Route path="/EmotionControl" element={verifyId == localStorage.getItem('id') ? <EmotionControl /> : <Nonlogin />}></Route>
+        <Route path="/EmotionControllEditing" element={verifyId == localStorage.getItem('id') ? <EmotionControllEditing /> : <Nonlogin />}></Route>
         <Route path="/statistics" element={verifyId == localStorage.getItem('id') ? <Statistics /> : <Nonlogin />}></Route>
       </Routes>
     </Storage.Provider >

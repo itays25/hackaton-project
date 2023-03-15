@@ -27,34 +27,26 @@ module.exports.createSpectrum = (req, res) => {
 };
 
 module.exports.addEmotion = (req, res) => {
-  if (req.body.emotion) {
-    Emotion.updateOne(
-      { _id: req.params.spectrumID },
-      {
-        $push: {
-          stock: {
-            title: req.body.emotion,
-            content: [],
-          },
-        },
-      },
-      { new: true }
-    )
-      .then((response) => {
+  Emotion.findByIdAndUpdate(req.params.spectrumId, {
+    $push: { "stock": req.body },
+  },{ new: true }
+  )
+    .then((response) => {
+      if (!response) {
+        res.status(404).json({ message: "spectrum not found" });
+      } else {
         res.status(200).json({
           message: "Emotion added successfully",
           response,
-        });
-      })
-      .catch((err) =>
-        res.status(500).json({
-          message: "something is wrong",
-          err,
         })
-      );
-  } else {
-    res.status(500).json({ message: "send an emotion:", error });
-  }
+      }
+    })
+    .catch((err) =>
+      res.status(500).json({
+        message: "something is wrong",
+        err,
+      })
+    );
 };
 
 //////////////////////////////-----------DELETE-------------------//////////////////////--------------------
@@ -76,23 +68,23 @@ module.exports.deleteSpectrum = (req, res) => {
 };
 
 module.exports.deleteEmotion = (req, res) => {
-    const { spectrumId, emotionId } = req.body
-    Emotion.findOneAndUpdate(  { _id: spectrumId },
-        { $pull: { stock: { _id: emotionId } } })
-        .then((response) => {
-            if (!response) {
-                res.status(404).json({ message: 'Spectrum not found' });
-            } else {
-                res.status(200).json({
-                    message: 'Emotion deleted successfully',
-                    updatedSpectrum: response,
-                });
-            }
-        })
-        .catch((err) => {
-            console.error(err);
-            res.status(500).json({ message: 'Failed to delete Emotion', err });
+  const { spectrumId, emotionId } = req.body
+  Emotion.findOneAndUpdate({ _id: spectrumId },
+    { $pull: { stock: { _id: emotionId } } })
+    .then((response) => {
+      if (!response) {
+        res.status(404).json({ message: 'Spectrum not found' });
+      } else {
+        res.status(200).json({
+          message: 'Emotion deleted successfully',
+          updatedSpectrum: response,
         });
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ message: 'Failed to delete Emotion', err });
+    });
 };
 
 //////////////////////////////////---------------UPDATE---------------////////////-------------------------

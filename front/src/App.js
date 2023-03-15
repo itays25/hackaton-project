@@ -14,6 +14,8 @@ import Preview from "./pages/Preview";
 import Nonlogin from "./pages/Nonlogin";
 import ContactUs from "./pages/Email";
 import EmotionControl from "./pages/EmotionControl";
+import Thankyou from "./components/Thankyou";
+import Emotionlist from "./pages/Emotionlist";
 export const Storage = createContext()
 
 function App() {
@@ -44,6 +46,8 @@ function App() {
         <Route path="/admin" element={verifyId == localStorage.getItem('id') ? <Admin /> : <Nonlogin />}></Route>
         <Route path="/EmotionControl" element={verifyId == localStorage.getItem('id') ? <EmotionControl /> : <Nonlogin />}></Route>
         <Route path="/statistics" element={verifyId == localStorage.getItem('id') ? <Statistics /> : <Nonlogin />}></Route>
+        <Route path="/thankyou" element={verifyId == localStorage.getItem('id') ? <Thankyou /> : <Nonlogin />}></Route>
+        <Route path="/emotionlist" element={verifyId == localStorage.getItem('id') ? <Emotionlist /> : <Nonlogin />}></Route>
       </Routes>
     </Storage.Provider >
   );

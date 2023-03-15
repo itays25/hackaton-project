@@ -7,7 +7,7 @@ export default function Navbar() {
         
         <div className="flex justify-between items-center shadow-md fixed z-50 top-0 right-0 left-0 bg-white" >
             <a href="http://emotiplay.com/">
-                <img src={logo} className=" w-64 p-2 z-50" />
+                <img src={logo} className=" w-64 p-2 z-50 " />
             </a>
 
             <div>
@@ -27,7 +27,7 @@ export default function Navbar() {
                     onClick={() => window.open('https://www.emotiplay.com', '_blank')}>
                     ABOUT US
                 </button>
-                <button className="p-3 hover:border-x-2"
+                <button className="p-3 hover:border-x-2 mr-2"
                     onClick={() => window.open('http://emotiplay.com/contact-us/', '_blank')}>
                     CONTACT US
                 </button>

@@ -39,17 +39,23 @@ export default function Admin() {
     <div className="w-full h-screen">
       {localStorage.getItem('adpas') !== '0987' ?
 
-        (<div className=" h-screen w-screen flex items-center justify-evenly">
-          <div className="w-1/5">
-            <h3 className="text-xl">
-              Enter admin password:
-            </h3>
-            <input type="password" onChange={(e) => setpass(e.target.value)} />
+        (<div className="border border-gray-800 rounded-lg h-screen w-screen flex items-center justify-evenly  ">
+
+          <div className="w-1/3 h-1/3 flex flex-col justify-around items-center drop-shadow-md bg-grey-50">
+            <div className="w-full h-3/4 flex flex-col justify-around items-center">
+              <h3 className="text-4xl">
+                Enter admin password:
+              </h3>
+              <input type="password" onChange={(e) => setpass(e.target.value)}
+                className="w-3/4 h-10 " placeholder="Password..."/>
+            </div>
+
+            <button className="bg-orange-400 p-2 rounded text-2xl" onClick={() => checkpass(pass)}>
+              Enter
+            </button>
           </div>
 
-          <button className="bg-orange-400 p-2 rounded" onClick={() => checkpass(pass)}>
-            Enter
-          </button>
+
         </div>)
 
         : (<div className="w-full h-screen"><AdminNavBar />

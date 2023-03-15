@@ -39,7 +39,7 @@ function checkpass(pass) {
    <div className="w-full h-screen">
    { localStorage.getItem('adpas') !== '0987' ? (<div>enter admin password: 
       <br />
-      <input type="password" onChange={(e)=>setpass(e.target.value)} />
+      <input type="password" onChange={(e)=>setpass(e.target.value)}  />
       <button onClick={()=>checkpass(pass)}>enter</button>
     </div>):( <div className="w-full h-screen"><AdminNavBar />
       <table className="w-5/6 ml-3  ">

@@ -12,6 +12,8 @@ export default function Navbar() {
             <button className="ml-8 pl-1 pr-1 hover:border-x-2" onClick={()=> navigate('../checker/0')}>  CHECKER </button>
             <button className="ml-8 pl-1 pr-1 hover:border-x-2" onClick={()=>window.open('https://www.emotiplay.com', '_blank')}>  ABOUT US </button>
             <button className="ml-8 pl-1 pr-1 hover:border-x-2" onClick={()=>window.open('http://emotiplay.com/contact-us/', '_blank')}> CONTACT US </button>
+            <button className="ml-8 pl-1 pr-1 hover:border-x-2" onClick={()=> navigate('../')}>  LOG IN  </button>
+        
         </div>
     )
 }

@@ -33,7 +33,7 @@ export default function Preview() {
         console.log("adding to mongo successed:", result);
         if (result.status === 200) {
           localStorage.removeItem("videoPreview");
-          navigate("/enter");
+          navigate("../thankyou");
         }
       })
       .catch((error) => {
@@ -108,6 +108,7 @@ export default function Preview() {
               <button
                 type="submit"
                 className="bg-blue-500 ml-9 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded"
+              
               >
                 Save
               </button>

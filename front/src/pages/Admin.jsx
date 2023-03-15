@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Storage } from "../App";
 import Graph from "../components/Graph";
 import SmallVideos from "../components/SmallVideos";
@@ -7,10 +7,13 @@ import AdminNavBar from "../components/AdminNavbar";
 import axios from "axios";
 export default function Admin() {
   const { videoSrc } = useContext(Storage);
+  const { log,setlog } = useContext(Storage);
+  const { pass, setpass } = useContext(Storage);
 
   const window = "flex justify-center items-center border border-gray-800 p-6 rounded-lg w-40 h-14"
   const [isOpen, setIsOpen] = useState(false);
   const [popupvideo, setpopupvideo] = useState();
+  
   const [popupemotion, setpopupemotion] = useState();
   const [status, setStatus] = useState("");
   const [toEdit, setToEdit] = useState(`${window} invisible`)
@@ -26,10 +29,19 @@ export default function Admin() {
       .then((res) => console.log(res))
       .catch((error) => console.log(error));
   }
-
+function checkpass(pass) {
+  if (pass == "0987") {
+    setlog(true)
+    localStorage.setItem("adpas", "0987")
+  }
+}
   return (
-    <div className="w-full h-screen">
-      <AdminNavBar />
+   <div className="w-full h-screen">
+   { localStorage.getItem('adpas') !== '0987' ? (<div>enter admin password: 
+      <br />
+      <input type="password" onChange={(e)=>setpass(e.target.value)} />
+      <button onClick={()=>checkpass(pass)}>enter</button>
+    </div>):( <div className="w-full h-screen"><AdminNavBar />
       <table className="w-5/6 ml-3  ">
         <thead>
           <tr>
@@ -157,7 +169,10 @@ export default function Admin() {
             emotion={popupemotion}
             title="My Popup" />
         )}
-      </div>
+      </div> </div>) 
+    
+   } 
+     
     </div>
   );
 }

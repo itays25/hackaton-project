@@ -128,15 +128,16 @@ export default function Statistics() {
 
 
   return (
-    <div className="w-screen">
-      <AdminNavBar />
+    <div >
+      { localStorage.getItem('adpas') == '0987' ?   (
+     <div className="w-screen"> <AdminNavBar />
 
       <div className="flex w-screen " style={{ "flexWrap": "wrap" }} >
 
 
         {/* CREATE SPECTRUM PART*/}
         <div className="p-3 ">
-          <div className="p-3 flex justify-center justify-evenly items-center border border-gray-800 flex-col rounded-lg w-64 shadow-md m-1 mb-4" >
+          <div className="p-3 flex justify-center  items-center border border-gray-800 flex-col rounded-lg w-64 shadow-md m-1 mb-4" >
             <span className="ml-2 text-gray-700">
               To change and remove:
             </span>
@@ -146,7 +147,7 @@ export default function Statistics() {
             </a>
           </div>
 
-          <div className="p-3 flex justify-center justify-evenly items-center border border-gray-800 flex-col rounded-lg w-64 shadow-md  m-1">
+          <div className="p-3 flex justify-center  items-center border border-gray-800 flex-col rounded-lg w-64 shadow-md  m-1">
             <h3 className="flex flex-col items-center ml-2 text-2xl p-1">
               Add spectrum:
             </h3>
@@ -276,14 +277,19 @@ export default function Statistics() {
           </div>
         ))}
       </div>
-
       {/* <div className="w-full flex justify-center">
         <a className="border border-gray-800 rounded shadow-lg p-2 mt-2 bg-orange-400 text-2xl hover:bg-orange-500 hover:text-black"
           href="/EmotionControl" onClick={() => console.log(emotionList)}>
           Save the changes
         </a>
       </div> */}
+    </div>  ):(
 
-    </div>
+        <div>
+        login at admin page  
+          </div>
+      )}
+      
+      </div>
   );
 }

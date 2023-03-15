@@ -21,8 +21,8 @@ export const Storage = createContext()
 
 function App() {
   const values = Context()
-  const [verifyId, setverifyId] = useState()
-
+  const [verifyId, setverifyId] = useState("")
+  const [recheck,setrecheck] = useState(false)
 
   const verified = (email) => {
     axios.post('http://localhost:8639/user/checkID', { email: email })

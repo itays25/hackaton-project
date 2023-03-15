@@ -60,13 +60,14 @@ export default function Statistics() {
 
 
   return (
-    <div className="w-screen">
-      <AdminNavBar />
+    <div >
+      { localStorage.getItem('adpas') == '0987' ?   (
+     <div className="w-screen"> <AdminNavBar />
 
       <div className="flex w-screen " style={{ "flexWrap": "wrap" }} >
 
         <div className="p-3">
-          <div className="p-3 flex justify-center justify-evenly items-center border border-gray-800 flex-col rounded-lg w-fit ">
+          <div className="p-3 flex justify-center  items-center border border-gray-800 flex-col rounded-lg w-fit ">
             <h3 className="flex flex-col items-center ml-2 text-2xl p-1">
               Add one more:
             </h3>
@@ -165,6 +166,11 @@ export default function Statistics() {
         ))}
       </div>
       <button className="bg-blue-600 p-2 mt-2 rounded text-lg" onClick={() => console.log(emotionList)}>save</button>
-    </div>
+    </div>  ):(
+
+        <div>
+        login at admin page  
+          </div>
+      )}</div>
   );
 }

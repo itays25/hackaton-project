@@ -75,7 +75,8 @@ export default function Context() {
         const random = array[index]
         return random
     }
-
+    const [log, setlog] = useState(false);
+    const [pass, setpass] = useState(false);
 
     return {
         cloudinaryLink, setCloudinaryLink,
@@ -86,6 +87,8 @@ export default function Context() {
         randomOptions, setRandomOptions,
         correct, setCorrect,
         wrong, setWrong,
-        allEmotions, setAllEmotions
+        allEmotions, setAllEmotions,
+        log, setlog,
+        pass, setpass
     }
 }

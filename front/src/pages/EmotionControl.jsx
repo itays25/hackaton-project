@@ -141,8 +141,8 @@ export default function Statistics() {
             <span className="ml-2 text-gray-700">
               To change and remove:
             </span>
-            <a href="/EmotionControllEditing"
-              className="border border-gray-800 rounded p-2 mt-2 bg-orange-400 text-base hover:bg-orange-500 shadow-lg">
+            <a href="/EmotionEditor"
+              className="border border-gray-800 rounded p-2 mt-2 bg-orange-400 text-base hover:bg-orange-500 shadow-lg hover:text-black">
               Editor
             </a>
           </div>

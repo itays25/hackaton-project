@@ -171,6 +171,8 @@ export default function Statistics() {
         <div>
         login at admin page  
           </div>
-      )}</div>
+      )}
+      
+      </div>
   );
 }

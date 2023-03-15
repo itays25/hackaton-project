@@ -55,7 +55,7 @@ const WidgetUpload = (props) => {
     return (
         <div> {accept == true ? (
             <button
-                className="w-80 rounded-lg p-3 flex flex-row justify-center text-center bg-sky-400 items-center content-start hover:bg-sky-600 "
+                className="w-80 rounded-lg p-3 flex flex-row justify-center text-center bg-orange-400 items-center content-start hover:bg-orange-600 "
                 onClick={() => widgetRef.current.open()}>
                 <svg xmlns="http://www.w3.org/2000/svg"
                     width="60" height="60" fill="currentColor"

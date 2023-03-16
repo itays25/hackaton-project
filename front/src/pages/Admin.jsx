@@ -39,34 +39,40 @@ export default function Admin() {
     <div className="w-full h-screen">
       {localStorage.getItem('adpas') !== '0987' ?
 
-        (<div className=" h-screen w-screen flex items-center justify-evenly">
-          <div className="w-1/5">
-            <h3 className="text-xl">
-              Enter admin password:
-            </h3>
-            <input className="border-4" type="password" onChange={(e) => setpass(e.target.value)} />
+        (<div className="border border-gray-800 rounded-lg h-screen w-full flex items-center justify-evenly  ">
+
+          <div className="w-1/3 h-1/3 flex flex-col justify-around items-center drop-shadow-md bg-grey-50">
+            <div className="w-full h-3/4 flex flex-col justify-around items-center">
+              <h3 className="text-4xl">
+                Enter admin password:
+              </h3>
+              <input type="password" onChange={(e) => setpass(e.target.value)}
+                className="w-3/4 h-10 border-4" placeholder="Password..." />
+            </div>
+
+            <button className="bg-orange-400 p-2 rounded text-2xl" onClick={() => checkpass(pass)}>
+              Enter
+            </button>
           </div>
 
-          <button className="bg-orange-400 p-2 rounded" onClick={() => checkpass(pass)}>
-            Enter
-          </button>
+
         </div>)
 
         : (<div className="w-full h-screen"><AdminNavBar />
-          <table className="w-5/6 ml-3  ">
+          <table className="w-5/6 ml-3 text-center">
             <thead>
               <tr>
                 <th className="border border-gray-500 px-4 py-2 ">Video </th>
-                <th className="border border-gray-500 px-4 py-2">donor emotion</th>
-                <th className="border border-gray-500 px-4 py-2">total votes</th>
-                <th className="border border-gray-500 px-4 py-2">validation </th>
-                <th className="border border-gray-500 px-4 py-2">quality votes</th>
-                <th className="border border-gray-500 px-4 py-2">
-                  validation agree
+                <th className="border border-gray-500 px-2 py-2">Emotion</th>
+                <th className="border border-gray-500 px-2 py-2">Total votes</th>
+                <th className="border border-gray-500 px-2 py-2">Validation </th>
+                <th className="border border-gray-500 px-2 py-2">Quality</th>
+                <th className="border border-gray-500 px-2 py-2">
+                  Validation agree
                 </th>
-                <th className="border border-gray-500 px-4 py-2">status</th>
-                <th className="border border-gray-500 px-4 py-2">
-                  inappropriate votes
+                <th className="border border-gray-500 px-2 py-2">Status</th>
+                <th className="border border-gray-500 px-2 py-2">
+                  Inappropriate
                 </th>
               </tr>
             </thead>
@@ -122,10 +128,9 @@ export default function Admin() {
 
                     <td className="border border-gray-500 px-4 py-2">
                       {" "}
-                      correct: {item?.validation?.correct} {" "}
-                      random:{item?.validation?.random}{" "}
-                       similar: {item?.validation?.wrong}{" "}
-                      
+                      <p className="text-blue-500">correct: {item?.validation?.correct}</p>
+                      <p className="text-orange-500"> similar:{" "}{item?.validation?.wrong}</p>{" "}
+                      <p className="">random:{" "}{item?.validation?.random}</p>
                     </td>
 
                     <td className="border border-gray-500 px-4 py-2">
@@ -134,8 +139,8 @@ export default function Admin() {
                     </td>
 
                     <td className="border border-gray-500 px-4 py-2">
-                      only coreect: {amount.toFixed(2)}% coreect+simillar:{" "}
-                      {amount2.toFixed(2)}%
+                      <p className="text-blue-600">only correct: {amount.toFixed(2)}%</p>
+                      <p className="text-orange-600"> correct+simillar:{" "}{amount2.toFixed(2)}%</p>
                     </td>
 
                     <td className="border border-gray-500 px-4 py-2">
@@ -146,8 +151,9 @@ export default function Admin() {
                           <path fillRule="evenodd" clipRule="evenodd" fill="#000000" d="M14.2322 5.76777C15.2085 4.79146 16.7915 4.79146 17.7678 5.76777L18.4749 6.47487C19.4512 7.45118 19.4512 9.0341 18.4749 10.0104L10.3431 18.1421L7.10051 18.1421C6.54822 18.1421 6.1005 17.6944 6.10051 17.1421L6.10051 13.8995L14.2322 5.76777ZM16.3536 7.18198L17.0607 7.88909C17.2559 8.08435 17.2559 8.40093 17.0607 8.59619L16 9.65685L14.5858 8.24264L15.6464 7.18198C15.8417 6.98672 16.1583 6.98672 16.3536 7.18198ZM14.5858 11.0711L9.51472 16.1421L8.10051 16.1421L8.10051 14.7279L13.1716 9.65685L14.5858 11.0711Z" />
                         </svg>
                       </p>
-
-                      {console.log(item)}
+                    </td>
+                    <td>
+                   
                       <div className={toEdit}>
                         <select defaultValue={""} id="" className="w-32 h-9"
                           onChange={(e) => updatestatus(item._id, e.target.value)}>
@@ -185,6 +191,6 @@ export default function Admin() {
 
       }
 
-    </div>
+    </div >
   );
 }

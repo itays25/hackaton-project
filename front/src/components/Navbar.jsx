@@ -27,7 +27,7 @@ export default function Navbar() {
                     onClick={() => window.open('https://www.emotiplay.com', '_blank')}>
                     ABOUT US
                 </button>
-                <button className="p-3 hover:border-x-2"
+                <button className="p-3 hover:border-x-2 mr-2"
                     onClick={() => window.open('http://emotiplay.com/contact-us/', '_blank')}>
                     CONTACT US
                 </button>

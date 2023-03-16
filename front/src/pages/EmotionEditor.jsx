@@ -65,7 +65,7 @@ export default function Statistics() {
                 alert("Spectrum deleted successfully")
             })
             .catch((error) => {
-                alert("Something went wrong")
+                // alert("Something went wrong")
                 console.log(error);
             });
     }
@@ -85,7 +85,7 @@ export default function Statistics() {
             })
             .catch((error) => {
                 console.log(error);
-                alert("Something went wrong")
+                // alert("Something went wrong")
             });
 
     }

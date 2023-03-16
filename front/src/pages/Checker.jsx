@@ -53,7 +53,7 @@ export default function Checker() {
 
 
     return (
-        <div className='w-full h-full flex flex-row justify-center bg--50'>
+        <div className='w-full h-full flex flex-row justify-center bg--50 mt-10'>
             <div className='w-1/6 flex justify-center items-center'>
                 <button  className=' bg-orange-600 rounded p-3 text-white text-xl'
                     onClick={() => { navigate('/enter'); localStorage.clear() }} >

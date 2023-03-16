@@ -39,7 +39,7 @@ export default function Admin() {
     <div className="w-full h-screen">
       {localStorage.getItem('adpas') !== '0987' ?
 
-        (<div className="border border-gray-800 rounded-lg h-screen w-screen flex items-center justify-evenly  ">
+        (<div className="border border-gray-800 rounded-lg h-screen w-full flex items-center justify-evenly  ">
 
           <div className="w-1/3 h-1/3 flex flex-col justify-around items-center drop-shadow-md bg-grey-50">
             <div className="w-full h-3/4 flex flex-col justify-around items-center">
@@ -47,7 +47,7 @@ export default function Admin() {
                 Enter admin password:
               </h3>
               <input type="password" onChange={(e) => setpass(e.target.value)}
-                className="w-3/4 h-10 " placeholder="Password..."/>
+                className="w-3/4 h-10 " placeholder="Password..." />
             </div>
 
             <button className="bg-orange-400 p-2 rounded text-2xl" onClick={() => checkpass(pass)}>
@@ -59,28 +59,28 @@ export default function Admin() {
         </div>)
 
         : (<div className="w-full h-screen"><AdminNavBar />
-          <table className="w-5/6 ml-3  ">
+          <table className="w-5/6 ml-3 text-center">
             <thead>
               <tr>
                 <th className="border border-gray-500 px-4 py-2 ">Video </th>
-                <th className="border border-gray-500 px-4 py-2">donor emotion</th>
-                <th className="border border-gray-500 px-4 py-2">total votes</th>
-                <th className="border border-gray-500 px-4 py-2">validation </th>
-                <th className="border border-gray-500 px-4 py-2">quality votes</th>
-                <th className="border border-gray-500 px-4 py-2">
-                  validation agree
+                <th className="border border-gray-500 px-2 py-2">Emotion</th>
+                <th className="border border-gray-500 px-2 py-2">Total votes</th>
+                <th className="border border-gray-500 px-2 py-2">Validation </th>
+                <th className="border border-gray-500 px-2 py-2">Quality</th>
+                <th className="border border-gray-500 px-2 py-2">
+                  Validation agree
                 </th>
-                <th className="border border-gray-500 px-4 py-2">status</th>
-                <th className="border border-gray-500 px-4 py-2">
-                  inappropriate votes
+                <th className="border border-gray-500 px-2 py-2">Status</th>
+                <th className="border border-gray-500 px-2 py-2">
+                  Inappropriate
                 </th>
               </tr>
             </thead>
 
             <tbody>
               {videoSrc.map((item, index) => {
-                const similar = item?.validation?.similiar
-                  ? item?.validation?.similiar
+                const similar = item?.validation?.wrong
+                  ? item?.validation?.wrong
                   : 0;
                 const correct = item?.validation?.correct
                   ? item?.validation?.correct
@@ -128,9 +128,9 @@ export default function Admin() {
 
                     <td className="border border-gray-500 px-4 py-2">
                       {" "}
-                      correct: {item?.validation?.correct} random:{" "}
-                      {item?.validation?.random} similar:{" "}
-                      {item?.validation?.similiar}{" "}
+                      <p className="text-blue-500">correct: {item?.validation?.correct}</p>
+                      <p className="text-orange-500"> similar:{" "}{item?.validation?.wrong}</p>{" "}
+                      <p className="">random:{" "}{item?.validation?.random}</p>
                     </td>
 
                     <td className="border border-gray-500 px-4 py-2">
@@ -139,8 +139,8 @@ export default function Admin() {
                     </td>
 
                     <td className="border border-gray-500 px-4 py-2">
-                      only coreect: {amount.toFixed(2)}% coreect+simillar:{" "}
-                      {amount2.toFixed(2)}%
+                      <p className="text-blue-600">only correct: {amount.toFixed(2)}%</p>
+                      <p className="text-orange-600"> correct+simillar:{" "}{amount2.toFixed(2)}%</p>
                     </td>
 
                     <td className="border border-gray-500 px-4 py-2">

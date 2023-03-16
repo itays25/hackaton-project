@@ -44,7 +44,7 @@ export default function Admin() {
             <h3 className="text-xl">
               Enter admin password:
             </h3>
-            <input type="password" onChange={(e) => setpass(e.target.value)} />
+            <input className="border-4" type="password" onChange={(e) => setpass(e.target.value)} />
           </div>
 
           <button className="bg-orange-400 p-2 rounded" onClick={() => checkpass(pass)}>
@@ -73,8 +73,8 @@ export default function Admin() {
 
             <tbody>
               {videoSrc.map((item, index) => {
-                const similar = item?.validation?.similiar
-                  ? item?.validation?.similiar
+                const similar = item?.validation?.wrong
+                  ? item?.validation?.wrong
                   : 0;
                 const correct = item?.validation?.correct
                   ? item?.validation?.correct
@@ -122,9 +122,10 @@ export default function Admin() {
 
                     <td className="border border-gray-500 px-4 py-2">
                       {" "}
-                      correct: {item?.validation?.correct} random:{" "}
-                      {item?.validation?.random} similar:{" "}
-                      {item?.validation?.similiar}{" "}
+                      correct: {item?.validation?.correct} {" "}
+                      random:{item?.validation?.random}{" "}
+                       similar: {item?.validation?.wrong}{" "}
+                      
                     </td>
 
                     <td className="border border-gray-500 px-4 py-2">

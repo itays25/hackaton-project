@@ -29,7 +29,7 @@ module.exports.createSpectrum = (req, res) => {
 module.exports.addEmotion = (req, res) => {
   Emotion.findByIdAndUpdate(req.params.spectrumId, {
     $push: { "stock": req.body },
-  },{ new: true }
+  }, { new: true }
   )
     .then((response) => {
       if (!response) {
@@ -67,24 +67,34 @@ module.exports.deleteSpectrum = (req, res) => {
     });
 };
 
-module.exports.deleteEmotion = (req, res) => {
-  const { spectrumId, emotionId } = req.body
-  Emotion.findOneAndUpdate({ _id: spectrumId },
-    { $pull: { stock: { _id: emotionId } } })
-    .then((response) => {
-      if (!response) {
-        res.status(404).json({ message: 'Spectrum not found' });
-      } else {
-        res.status(200).json({
-          message: 'Emotion deleted successfully',
-          updatedSpectrum: response,
-        });
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).json({ message: 'Failed to delete Emotion', err });
+module.exports.deleteEmotion = async (req, res) => {
+  try {
+    const { spectrumId, emotionId } = req.body
+    const emotion = await Emotion.findOneAndUpdate({ _id: spectrumId },
+      { $pull: { stock: { _id: emotionId } } }, { new: true })
+    if (!emotion) {
+      res.status(404).json();
+    } else res.status(200).json({
+      message: 'Emotion deleted successfully',
+      updatedSpectrum: emotion,
     });
+  } catch (err) {
+    res.status(500).json({ message: 'Spectrum not found', err })
+  }
+  // .then((response) => {
+  //   if (!response) {
+  //     res.status(404).json({ message: 'Spectrum not found' });
+  //   } else {
+  //     res.status(200).json({
+  //       message: 'Emotion deleted successfully',
+  //       updatedSpectrum: response,
+  //     });
+  //   }
+  // })
+  // .catch((err) => {
+  //   console.error(err);
+  //   res.status(500).json({ message: 'Failed to delete Emotion', err });
+  // });
 };
 
 //////////////////////////////////---------------UPDATE---------------////////////-------------------------

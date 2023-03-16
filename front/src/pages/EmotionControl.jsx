@@ -132,7 +132,7 @@ export default function Statistics() {
       { localStorage.getItem('adpas') == '0987' ?   (
      <div className="w-screen"> <AdminNavBar />
 
-      <div className="flex w-screen " style={{ "flexWrap": "wrap" }} >
+      <div className="flex w-full " style={{ "flexWrap": "wrap" }} >
 
 
         {/* CREATE SPECTRUM PART*/}

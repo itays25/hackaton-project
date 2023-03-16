@@ -16,7 +16,7 @@ export default function Donor() {
   return (
     <div className="h-screen w-screen flex flex-col">
 
-      <div className="h-1/4 flex items-end justify-center">
+      <div className="h-1/4 flex items-end justify-center ">
         <h1 className=" text-5xl ">
           Upload video:
         </h1>

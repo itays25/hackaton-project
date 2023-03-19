@@ -70,38 +70,38 @@ export default function Statistics() {
             });
     }
 
-    async function deleteEmotion(spectrumId, emotionId) {
-        console.log(typeof (spectrumId))
-        console.log(typeof (emotionId))
-        console.log(spectrumId, emotionId);
+    async function deleteEmotion(spectrum, emotion, title) {
+        console.log(spectrum, emotion, title);
         try {
-            await axios.post('http://localhost:8639/emotion/deleteEmotion', { spectrumId, emotionId })
-            alert("Emotion deleted successfully")
-            window.location.reload()
-
-        } catch (err) {
-            console.log(err.message);
-            alert("Something went wrong")
-        }
-    }
-
-    async function deleteEmotion(spectrumId, emotionId) {
-        console.log(typeof (spectrumId))
-        console.log(typeof (emotionId))
-        console.log(spectrumId, emotionId);
-        try {
-            await axios.post('http://localhost:8639/emotion/deleteSpectrum', {
-                spectrumId: spectrumId,
-                emotionId: emotionId
+            await axios.post('http://localhost:8639/emotion/deleteEmotion', {
+                spectrumId: spectrum,
+                emotionId: emotion,
+                emotionTitle: title
             })
             alert("Emotion deleted successfully")
             window.location.reload()
 
         } catch (err) {
-            console.log(err.message);
-            alert("Something went wrong")
+            console.log(err);
+            // alert("Something went wrong")
         }
     }
+
+    // async function deleteSpectrum(spectrum, emotion) {
+    //     console.log(spectrum, emotion);
+    //     try {
+    //         await axios.post('http://localhost:8639/emotion/deleteSpectrum', {
+    //             spectrumId: spectrum,
+    //             emotionId: emotion
+    //         })
+    //         alert("Emotion deleted successfully")
+    //         window.location.reload()
+
+    //     } catch (err) {
+    //         console.log(err);
+    //         // alert("Something went wrong")
+    //     }
+    // }
 
 
 
@@ -170,8 +170,8 @@ export default function Statistics() {
                                         </svg>
                                     </div> */}
 
-                                    {/* DELETE SPECTRUM SVG */}
-                                    {/* <div className="hover:stroke-orange-500 w-fit h-fit">
+                                {/* DELETE SPECTRUM SVG */}
+                                {/* <div className="hover:stroke-orange-500 w-fit h-fit">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
                                             onClick={() => deleteSpectrum(emotionList[index]?._id, item._id)}
                                             className="opacity-30 hover:fill-orange-500" >
@@ -186,7 +186,7 @@ export default function Statistics() {
 
 
                             {/* LIST ALL EMOTIONS */}
-                            {emotionList[index]?.stock.map((item, i) => (
+                            {emotionList[index]?.stock.map((emotion, i) => (
 
                                 <ul key={i} className="list-disc list-inside rounded">
                                     <li className="flex items-center justify-between p-2 border-2 w-52 ml-2 mr-2 rounded">
@@ -208,7 +208,7 @@ export default function Statistics() {
                                             )} */}
 
                                             <span className="ml-2 text-gray-700">
-                                                {item.title}
+                                                {emotion.title}
                                             </span>
                                         </div>
 
@@ -224,7 +224,7 @@ export default function Statistics() {
                                             {/* DELETE SVG */}
                                             <div className="hover:stroke-orange-500 w-fit h-fit">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24" fill="none"
-                                                    onClick={() => deleteEmotion(emotionList[index]?._id, item._id)}
+                                                    onClick={() => deleteEmotion(emotionList[index]?._id, emotion._id, emotion.title)}
                                                     className="opacity-30 hover:fill-orange-500" >
                                                     <path d="M5.16565 10.1534C5.07629 8.99181 5.99473 8 7.15975 8H16.8402C18.0053 8 18.9237 8.9918 18.8344 10.1534L18.142 19.1534C18.0619 20.1954 17.193 21 16.1479 21H7.85206C6.80699 21 5.93811 20.1954 5.85795 19.1534L5.16565 10.1534Z" stroke="#000000" strokeWidth="2" /><path d="M19.5 5H4.5" stroke="#000000" strokeWidth="2" strokeLinecap="round" /><path d="M10 3C10 2.44772 10.4477 2 11 2H13C13.5523 2 14 2.44772 14 3V5H10V3Z" stroke="#000000" strokeWidth="2" />
                                                 </svg>

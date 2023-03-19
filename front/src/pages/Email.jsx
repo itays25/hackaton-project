@@ -65,9 +65,9 @@ export default function ContactUs(props) {
     <div className="relative isolate  bg--50  h-auto py-16 flex-row sm:py-24 lg:py-32 ">
       <div className="mx-auto max-w-7xl px-6  flex-row lg:px-8 ">
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 flex-row lg:max-w-none lg:grid-cols-2 ">
-          <Lottie animationData={Image1} loop={true} className="w-96 h-auto " />
+          <Lottie animationData={Image1} loop={true} className="w-96 h-auto place-self-center" />
           {submited ? (
-            <div className="max-w-xl flex-row lg:max-w-lg">
+            <div className="max-w-xl lg:max-w-lg place-self-center">
               <h2 className="text-3xl font-bold tracking-tight text--900 sm:text-4xl">
                 Easy login via email.
               </h2>

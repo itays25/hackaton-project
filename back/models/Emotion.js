@@ -14,7 +14,7 @@ const EmotionSchema = new mongoose.Schema({
     stock: [{
         title: {
             type: String,
-            unique: true
+            unique:true
         },
         need: {
             type: Boolean,

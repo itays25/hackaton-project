@@ -11,7 +11,7 @@ const Enter = () => {
     const cloudinaryRef = useRef()
     const widgetRef = useRef()
     return (
-        <div className="w-full h-screen flex flex-row justify-evenly items-center sm:py-24 flex-col " >
+        <div className="w-full h-screen flex flex-row justify-evenly items-center sm:py-24  " >
             <Lottie className="w-1/3 h-auto " animationData={Emotion} loop={true} />
 
             <div className='h-full w-1/4  flex flex-col justify-center'>

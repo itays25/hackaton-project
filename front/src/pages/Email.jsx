@@ -13,13 +13,14 @@ export default function ContactUs(props) {
   const [check, setcheck] = useState();
   const [submited, setsubmited] = useState(true);
   const [verifycode, setverifycode] = useState();
+  const [buttonclick, setbuttonclick] = useState(true)
 
   const min = 100000;
   const max = 999999;
   const navigate = useNavigate();
   function sendemail() {
     const verificationCode = Math.floor(Math.random() * (max - min + 1) + min);
-
+    setbuttonclick(false)
     const templateParams = {
       to_email: email,
       verificationCode: verificationCode,
@@ -40,11 +41,14 @@ export default function ContactUs(props) {
         (error) => {
           console.log(error.text);
           alert("Please insert a normal email address ");
+          setbuttonclick(true)
         }
       );
   }
 
   async function checkverify() {
+    setbuttonclick(true)
+    console.log(buttonclick);
     if (check == verifycode) {
       localStorage.setItem("email", email);
       localStorage.removeItem('id')
@@ -58,6 +62,11 @@ export default function ContactUs(props) {
       localStorage.setItem("id", data._id);
       navigate("/enter");
       window.location.reload();
+    }
+    else{
+      alert('wrong code')
+      setbuttonclick(false)
+
     }
   }
 
@@ -87,13 +96,22 @@ export default function ContactUs(props) {
                   placeholder="Enter your email"
                   onChange={(e) => setemail(e.target.value)}
                 />
-                <button
-                  type="submit"
-                  className="flex-none rounded-md bg--500 py-2.5 px-3.5 text-sm font-semibold  text-white shadow-sm bg-blue-500 hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline--500"
-                  onClick={() => sendemail()}
-                >
-                  Get a verification code
-                </button>
+             {buttonclick ? (
+  <button
+  type="submit"
+  className="flex-none rounded-md bg--500 py-2.5 px-3.5 text-sm font-semibold   text-white shadow-sm bg-blue-500 hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline--500"
+  onClick={() => sendemail()}
+>
+  Get a verification code
+</button>
+             ):(
+              <button
+              type="submit"
+              className="flex-none rounded-md bg--500 py-2.5 px-3.5 text-sm font-semibold !cursor-wait text-white shadow-sm  bg-slate-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline--500"
+            >
+              Get a verification code
+            </button>
+             )} 
               </div>
             </div>
           ) : (
@@ -114,13 +132,21 @@ export default function ContactUs(props) {
                     setcheck(e.target.value);
                   }}
                 />
-                <button
+               {buttonclick ? ( <button
                   type="submit"
-                  className="flex-none rounded-md bg-blue-500 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                  className="flex-none rounded-md py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm bg-slate-500 !cursor-wait focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
+                >
+                  Log in
+                </button>):(
+                  <button
+                  type="submit"
                   onClick={() => checkverify()}
+                  className="flex-none rounded-md bg-blue-500 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500"
                 >
                   Log in
                 </button>
+
+                )}
               </div>
             </div>
           )}

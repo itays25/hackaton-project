@@ -24,32 +24,32 @@ function App() {
   const [verifyId, setverifyId] = useState("")
   const [recheck,setrecheck] = useState(false)
 
-  // const verified = (email) => {
-  //   axios.post('http://localhost:8639/user/checkID', { email: email })
-  //     .then((response) => setverifyId(response.data.userId))
-  //     .catch((error) => console.log(error))
-  // }
+  const verified = (email) => {
+    axios.post('http://localhost:8639/user/checkID', { email: email })
+      .then((response) => setverifyId(response.data.userId))
+      .catch((error) => console.log(error))
+  }
 
-  // useEffect(() => {
-  //   const email = localStorage.getItem('email')
-  //   verified(email)
-  // }, [])
+  useEffect(() => {
+    const email = localStorage.getItem('email')
+    verified(email)
+  }, [])
 
   return (
     <Storage.Provider value={values}>
       <Navbar />
       <Routes>
         <Route path="/" element={<ContactUs />}></Route>
-        <Route path="/enter" element={< Enter /> }></Route>
-        <Route path="/donor" element={<Donor /> }></Route>
-        <Route path="/preview" element={<Preview /> }></Route>
-        <Route path="/checker/:index" element={<Checker /> }></Route>
-        <Route path="/admin" element={<Admin /> }></Route>
-        <Route path="/EmotionControl" element={<EmotionControl /> }></Route>
-        <Route path="/EmotionEditor" element={<EmotionEditor /> }></Route>
-        <Route path="/statistics" element={<Statistics /> }></Route>
-        <Route path="/thankyou" element={<Thankyou /> }></Route>
-        <Route path="/emotionlist" element={<Emotionlist /> }></Route>
+        <Route path="/enter" element={verifyId == localStorage.getItem('id') ? < Enter /> : <Nonlogin />}></Route>
+        <Route path="/donor" element={verifyId == localStorage.getItem('id') ?<Donor /> : <Nonlogin />}></Route>
+        <Route path="/preview" element={verifyId == localStorage.getItem('id') ?<Preview />: <Nonlogin /> }></Route>
+        <Route path="/checker/:index" element={verifyId == localStorage.getItem('id') ?<Checker /> : <Nonlogin />}></Route>
+        <Route path="/admin" element={verifyId == localStorage.getItem('id') ?<Admin />: <Nonlogin /> }></Route>
+        <Route path="/EmotionControl" element={verifyId == localStorage.getItem('id') ?<EmotionControl /> : <Nonlogin />}></Route>
+        <Route path="/EmotionEditor" element={verifyId == localStorage.getItem('id') ?<EmotionEditor /> : <Nonlogin />}></Route>
+        <Route path="/statistics" element={verifyId == localStorage.getItem('id') ?<Statistics /> : <Nonlogin />}></Route>
+        <Route path="/thankyou" element={verifyId == localStorage.getItem('id') ?<Thankyou /> : <Nonlogin />}></Route>
+        <Route path="/emotionlist" element={verifyId == localStorage.getItem('id') ?<Emotionlist />: <Nonlogin /> }></Route>
       </Routes>
     </Storage.Provider >
   );
